@@ -19,7 +19,7 @@
         tools:layout_height="300dp"
         android:layout_gravity="center_horizontal|top"
         android:clickable="true"
-        app:layout_behavior="wannabit.io.bitcv.wannabit.io.bitcv.dialog.TopSheetBehavior"
+        app:layout_behavior="wannabit.io.bitcv.dialog.TopSheetBehavior"
         style="@style/Widget.Design.TopSheet.Modal"
         />
 
