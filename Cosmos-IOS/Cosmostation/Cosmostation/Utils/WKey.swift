@@ -31,7 +31,7 @@ class WKey {
     }
     
     static func getMasterKeyFromWords(_ m: [String]) -> HDPrivateKey {
-        return HDPrivateKey(seed: Mnemonic.seed(mnemonic: m), network: .testnet)
+        return try! HDPrivateKey(seed: Mnemonic.seed(mnemonic: m), network: .testnet);
     }
     
     static func getMasterEd25519KeyFromWord(_ m: [String]) -> Ed25519Key? {

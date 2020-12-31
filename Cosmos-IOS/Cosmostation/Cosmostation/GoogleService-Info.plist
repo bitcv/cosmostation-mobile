@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>460953936860-573ctsib1vdpt4ct1b49uhrsv7aj5d7c.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.460953936860-573ctsib1vdpt4ct1b49uhrsv7aj5d7c</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAnNIh7AENEPjk79azyFAT_JidFRpRy7nY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>460953936860</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>io.wannabit.bitcv</string>
+	<key>PROJECT_ID</key>
+	<string>bacwallet-ea454</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bacwallet-ea454.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:460953936860:ios:debbd904d28660efb9e519</string>
+</dict>
+</plist>
