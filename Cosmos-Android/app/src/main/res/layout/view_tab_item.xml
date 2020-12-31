@@ -12,7 +12,7 @@
         android:layout_centerInParent="true"
         android:orientation="vertical"
         android:gravity="center">
-        <wannabit.io.cosmostaion.widget.TintableImageView
+        <wannabit.io.bitcv.widget.TintableImageView
             android:id="@+id/tabItemIcon"
             android:layout_width="24dp"
             android:layout_height="24dp"

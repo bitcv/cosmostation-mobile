@@ -17,7 +17,7 @@
         android:id="@+id/top_sheet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="wannabit.io.cosmostaion.dialog.TopSheetBehavior"
+        app:layout_behavior="wannabit.io.bitcv.wannabit.io.bitcv.dialog.TopSheetBehavior"
         android:background="#161819"
         android:elevation="@dimen/top_sheet_modal_elevation">
         <LinearLayout
@@ -111,7 +111,7 @@
             </RelativeLayout>
         </android.support.v7.widget.Toolbar>
 
-        <wannabit.io.cosmostaion.widget.StopViewPager
+        <wannabit.io.bitcv.widget.StopViewPager
             android:id="@+id/view_pager"
             android:layout_below="@+id/tool_bar"
             android:layout_above="@+id/bottom_tab"

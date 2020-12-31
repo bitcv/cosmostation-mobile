@@ -1,4 +1,4 @@
-package wannabit.io.cosmostaion;
+package wannabit.io.bitcv;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("wannabit.io.cosmostaion", appContext.getPackageName());
+        assertEquals("wannabit.io.bitcv", appContext.getPackageName());
     }
 }

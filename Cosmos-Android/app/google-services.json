@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "625388963560",
+    "project_id": "bacwallet-178ab",
+    "storage_bucket": "bacwallet-178ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625388963560:android:6b4b9139d7bd0fdd9e2b5d",
+        "android_client_info": {
+          "package_name": "wannabit.io.bitcv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625388963560-jtdqqvknpjrakrmtljpgolaagau8la6f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlgczDJwjcaAihoKIK8Nmlbpx4K_Hrcoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625388963560-jtdqqvknpjrakrmtljpgolaagau8la6f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
