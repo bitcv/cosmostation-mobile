@@ -22,6 +22,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
     var irisToken:IrisToken?
     var irisRewards:IrisRewards?
     var bnbToken:BnbToken?
+    var bacToken:BacToken?
     var bnbTic:NSMutableDictionary?
     var okDenom:String?
     var okToken:OkToken?
@@ -42,6 +43,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
         self.tokenDetailTableView.register(UINib(nibName: "HistoryCell", bundle: nil), forCellReuseIdentifier: "HistoryCell")
         self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderCosmosCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderCosmosCell")
         self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderIrisCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderIrisCell")
+        self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderBacCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderBacCell")
         self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderBnbCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderBnbCell")
         self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderKavaCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderKavaCell")
         self.tokenDetailTableView.register(UINib(nibName: "TokenDetailHeaderOkCell", bundle: nil), forCellReuseIdentifier: "TokenDetailHeaderOkCell")
@@ -84,7 +86,9 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
                 keyState.tintColor = COLOR_KAVA
             } else if (chainType == ChainType.OKEX_TEST) {
                 keyState.tintColor = COLOR_OK
-            }
+            } else if (chainType == ChainType.BAC_MAIN) {
+               keyState.tintColor = COLOR_BAC
+           }
         }
     }
     
@@ -118,6 +122,10 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             
         } else if (chainType! == ChainType.BINANCE_MAIN) {
             guard let url = URL(string: EXPLORER_BINANCE_MAIN + "account/" + account!.account_address) else { return }
+            self.onShowSafariWeb(url)
+            
+        }  else if (chainType! == ChainType.BAC_MAIN) {
+            guard let url = URL(string: EXPLORER_BAC_MAIN + "account/" + account!.account_address) else { return }
             self.onShowSafariWeb(url)
             
         } else if (chainType! == ChainType.IOV_MAIN) {
@@ -196,6 +204,9 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
                     balance?.balance_denom == BNB_MAIN_DENOM) {
                     return onSetBnbItem(tableView, indexPath);
                     
+                } else if ((chainType == ChainType.BAC_MAIN) &&
+                    balance?.balance_denom == BAC_MAIN_DENOM) {
+                    return onSetBacItem(tableView, indexPath);
                 } else if (chainType == ChainType.KAVA_MAIN && balance?.balance_denom == KAVA_MAIN_DENOM) {
                     return onSetKavaItem(tableView, indexPath);
                     
@@ -465,6 +476,30 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
         
         return cell!
     }
+    func onSetBacItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
+        let cell:TokenDetailHeaderBacCell? = tableView.dequeueReusableCell(withIdentifier:"TokenDetailHeaderBacCell") as? TokenDetailHeaderBacCell
+        let balances = BaseData.instance.selectBalanceById(accountId: account!.account_id)
+        let bondingList = BaseData.instance.selectBondingById(accountId: account!.account_id)
+        let unbondingList = BaseData.instance.selectUnbondingById(accountId: account!.account_id)
+        
+        let totalAmount = WUtils.getAllKava(balances, bondingList, unbondingList, allRewards, allValidator)
+        let availableAmount = WUtils.availableAmount(balances, BAC_MAIN_DENOM)
+        let delegatedAmount = WUtils.deleagtedAmount(bondingList, allValidator, chainType!)
+        let unbondingAmount = WUtils.unbondingAmount(unbondingList, chainType!)
+        let rewardAmount = WUtils.rewardAmount(allRewards, BAC_MAIN_DENOM, chainType!)
+        
+        cell?.totalAmount.attributedText = WUtils.displayAmount(totalAmount.stringValue, cell!.totalAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+        cell?.availableAmount.attributedText = WUtils.displayAmount(availableAmount.stringValue, cell!.availableAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+        cell?.delegatedAmount.attributedText = WUtils.displayAmount(delegatedAmount.stringValue, cell!.delegatedAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+        cell?.unbondingAmount.attributedText = WUtils.displayAmount(unbondingAmount.stringValue, cell!.unbondingAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+        cell?.rewardAmount.attributedText = WUtils.displayAmount(rewardAmount.stringValue, cell!.rewardAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+        cell?.totalValue.attributedText = WUtils.dpTokenValue(totalAmount, BaseData.instance.getLastPrice(), 0, cell!.totalValue.font)
+        
+        cell?.actionSend  = {
+            self.onSendToken()
+        }
+        return cell!
+    }
     
     func onSetCustomTokenItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
         let cell:TokenDetailHeaderCustomCell? = tableView.dequeueReusableCell(withIdentifier:"TokenDetailHeaderCustomCell") as? TokenDetailHeaderCustomCell
@@ -589,6 +624,31 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             cell?.actionSend  = {
                 self.onSendToken()
             }
+        } else if ((chainType == ChainType.BAC_MAIN) && bacToken != nil) {
+            cell?.tokenInfoBtn.isHidden = false
+            cell?.tokenSymbol.text = bacToken?.symbol.uppercased()
+            cell?.totalAmount.attributedText = WUtils.displayAmount(balance!.getAllAmountBacToken().stringValue, cell!.totalAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
+            cell?.availableAmount.attributedText = WUtils.displayAmount(balance!.balance_amount, cell!.availableAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
+            
+            let url = BAC_TOKEN_IMG_URL + bacToken!.original_symbol + ".png"
+            cell?.tokenImg.af_setImage(withURL: URL(string: url)!)
+            cell?.actionTokenInfo = {
+                if (self.chainType == ChainType.BAC_MAIN) {
+                    guard let url = URL(string: EXPLORER_BAC_MAIN + "asset/" + self.bacToken!.original_symbol) else { return }
+                    let safariViewController = SFSafariViewController(url: url)
+                    safariViewController.modalPresentationStyle = .popover
+                    self.present(safariViewController, animated: true, completion: nil)
+                } else {
+                    guard let url = URL(string: EXPLORER_BAC_TEST + "asset/" + self.bacToken!.original_symbol) else { return }
+                    let safariViewController = SFSafariViewController(url: url)
+                    safariViewController.modalPresentationStyle = .popover
+                    self.present(safariViewController, animated: true, completion: nil)
+                }
+            }
+            cell?.actionSend  = {
+                self.onSendToken()
+            }
+        
         }
         cell?.actionReceive = {
             self.onRecieveToken()
@@ -784,6 +844,14 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             }
             txVC.mBnbToken = self.bnbToken
             txVC.mType = BNB_MSG_TYPE_TRANSFER
+            
+        }  else if (chainType! == ChainType.BAC_MAIN) {
+            if (WUtils.getTokenAmount(balances, BAC_MAIN_DENOM).compare(NSDecimalNumber(decimal:pow(10, BAC_GAS_FEE_DECIMAL))).rawValue < 0) {
+                self.onShowToast(NSLocalizedString("error_not_enough_balance_to_send", comment: ""))
+                return
+            }
+            txVC.mBacToken = self.bacToken
+            txVC.mType = BAC_MSG_TYPE_SEND
             
         } else if (chainType! == ChainType.KAVA_MAIN || chainType! == ChainType.KAVA_TEST) {
             if (balance?.balance_denom == KAVA_MAIN_DENOM) {

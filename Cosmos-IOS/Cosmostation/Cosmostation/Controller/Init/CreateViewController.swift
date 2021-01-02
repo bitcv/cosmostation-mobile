@@ -117,6 +117,13 @@ class CreateViewController: BaseViewController, PasswordViewDelegate{
     
     func onShowChainType() {
         let showAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        let bacAction = UIAlertAction(title: NSLocalizedString("chain_title_bac", comment: ""), style: .default, handler: {_ in
+            self.chainType = ChainType.BAC_MAIN
+            self.onGenNewKey()
+        })
+        bacAction.setValue(UIImage(named: "bacChainImg")?.withRenderingMode(.alwaysOriginal), forKey: "image")
+        
         let cosmosAction = UIAlertAction(title: NSLocalizedString("chain_title_cosmos", comment: ""), style: .default, handler: { _ in
             self.chainType = ChainType.COSMOS_MAIN
             self.onGenNewKey()
@@ -207,6 +214,7 @@ class CreateViewController: BaseViewController, PasswordViewDelegate{
         })
         certikTestAction.setValue(UIImage(named: "certikTestnetImg")?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
+        showAlert.addAction(bacAction)
         showAlert.addAction(cosmosAction)
         showAlert.addAction(irisAction)
         showAlert.addAction(bnbAction)

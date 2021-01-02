@@ -139,7 +139,24 @@ public class Account : NSObject, Codable, NSItemProviderReading, NSItemProviderW
         }
         return result
     }
-    
+    func getBacBalance() -> NSDecimalNumber {
+        var result = NSDecimalNumber.zero
+        for balance in self.account_balances {
+            if (balance.balance_denom == BAC_MAIN_DENOM) {
+                result = WUtils.plainStringToDecimal(balance.balance_amount)
+            }
+        }
+        return result
+    }
+    func getBcvBalance() -> NSDecimalNumber {
+        var result = NSDecimalNumber.zero
+        for balance in self.account_balances {
+            if (balance.balance_denom == BCV_MAIN_DENOM) {
+                result = WUtils.plainStringToDecimal(balance.balance_amount)
+            }
+        }
+        return result
+    }
     func getKavaBalance() -> NSDecimalNumber {
         var result = NSDecimalNumber.zero
         for balance in self.account_balances {

@@ -104,6 +104,12 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             titleAlarmBtn.isHidden = true
             kavaOracle.isHidden = true
             totalCard.backgroundColor = TRANS_BG_COLOR_BNB
+        } else if (chainType! == ChainType.BAC_MAIN) {
+            titleChainImg.image = UIImage(named: "bacChainImg")
+            titleChainName.text = "(BAC Mainnet)"
+            titleAlarmBtn.isHidden = true
+            kavaOracle.isHidden = true
+            totalCard.backgroundColor = TRANS_BG_COLOR_BAC
         } else if (chainType! == ChainType.KAVA_MAIN) {
             titleChainImg.image = UIImage(named: "kavaImg")
             titleChainName.text = "(Kava Mainnet)"
@@ -242,6 +248,10 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             onFetchIovTokenPrice()
             updateFloaty()
             
+        } else if (chainType! == ChainType.BAC_MAIN) {
+            onFetchBacTokenPrice()
+            updateFloaty()
+            
         } else if (chainType! == ChainType.OKEX_TEST) {
             onFetchOkTokenPrice()
             updateFloaty()
@@ -359,6 +369,11 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             totalAmount.attributedText = WUtils.displayAmount2(allBnb.stringValue, totalAmount.font, 0, 6)
             totalValue.attributedText = WUtils.dpBnbValue(allBnb, BaseData.instance.getLastPrice(), totalValue.font)
             
+        } else if (chainType! == ChainType.BAC_MAIN) {
+            let allBac = WUtils.getAllBac(mainTabVC.mBalances, mainTabVC.mBondingList, mainTabVC.mUnbondingList, mainTabVC.mRewardList, mainTabVC.mAllValidator)
+            totalAmount.attributedText = WUtils.displayAmount(allBac.stringValue, totalAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+            totalValue.attributedText = WUtils.dpAtomValue(allBac, BaseData.instance.getLastPrice(), totalValue.font)
+            
         } else if (chainType! == ChainType.KAVA_MAIN || chainType! == ChainType.KAVA_TEST) {
             var allKava = NSDecimalNumber.zero
             for balance in mainTabVC.mBalances {
@@ -427,7 +442,9 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             return onSetIrisItems(tableView, indexPath)
         } else if (chainType! == ChainType.BINANCE_MAIN || chainType! == ChainType.BINANCE_TEST) {
             return onSetBnbItems(tableView, indexPath)
-        } else if (chainType! == ChainType.KAVA_MAIN) {
+        }  else if (chainType! == ChainType.BAC_MAIN) {
+            return onSetBacItems(tableView, indexPath)
+        }else if (chainType! == ChainType.KAVA_MAIN) {
             return onSetKavaItems(tableView, indexPath)
         } else if (chainType! == ChainType.KAVA_TEST) {
             return onSetKavaTestItems(tableView, indexPath)
@@ -474,6 +491,20 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             tokenDetailVC.balance = mainTabVC.mBalances[indexPath.row]
             tokenDetailVC.bnbToken = WUtils.getBnbToken(BaseData.instance.mBnbTokenList, mainTabVC.mBalances[indexPath.row])
             tokenDetailVC.bnbTic = WUtils.getTicData(WUtils.getBnbTicSymbol(mainTabVC.mBalances[indexPath.row].balance_denom), mBnbTics)
+            self.navigationController?.pushViewController(tokenDetailVC, animated: true)
+            
+        } else if (chainType! == ChainType.BAC_MAIN) {
+            tokenDetailVC.balance = mainTabVC.mBalances[indexPath.row]
+            if(mainTabVC.mBalances[indexPath.row].balance_denom == BAC_MAIN_DENOM){
+                tokenDetailVC.bacToken = WUtils.getBacToken(mainTabVC.mBalances[indexPath.row])
+            }
+            else if(mainTabVC.mBalances[indexPath.row].balance_denom == BCV_MAIN_DENOM){
+                tokenDetailVC.bacToken = WUtils.getBcvToken(mainTabVC.mBalances[indexPath.row])
+            }
+            else{
+                tokenDetailVC.bacToken = WUtils.getBacToken(BaseData.instance.mBacTokenList, mainTabVC.mBalances[indexPath.row])
+            }
+            //tokenDetailVC.bnbTic = WUtils.getTicData(WUtils.getBnbTicSymbol(mainTabVC.mBalances[indexPath.row].balance_denom), mBnbTics)
             self.navigationController?.pushViewController(tokenDetailVC, animated: true)
             
         } else if (chainType! == ChainType.IOV_MAIN) {
@@ -696,7 +727,55 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
         }
         return cell!
     }
-    
+    func onSetBacItems(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
+        let cell:TokenCell? = tableView.dequeueReusableCell(withIdentifier:"TokenCell") as? TokenCell
+        let balance = mainTabVC.mBalances[indexPath.row]
+        if (balance.balance_denom == BAC_MAIN_DENOM) {
+            cell?.tokenImg.image = UIImage(named: "bacTokenImg")
+            cell?.tokenSymbol.text = "BAC"
+            cell?.tokenSymbol.textColor = COLOR_BAC
+            cell?.tokenTitle.text = "(" + balance.balance_denom + ")"
+            cell?.tokenDescription.text = "BAC Chain Native Token"
+            let allBac = WUtils.getAllBac(mainTabVC.mBalances, mainTabVC.mBondingList, mainTabVC.mUnbondingList, mainTabVC.mRewardList, mainTabVC.mAllValidator)
+            cell?.tokenAmount.attributedText = WUtils.displayAmount(allBac.stringValue, cell!.tokenAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+            cell?.tokenValue.attributedText = WUtils.dpBacValue(allBac, BaseData.instance.getLastPrice(), cell!.tokenValue.font)
+
+        } else {
+            // TODO no this case yet!
+            
+            for i in 0..<mainTabVC.mBalances.count {
+                if ((mainTabVC.mBalances[i].balance_denom == BAC_MAIN_DENOM)) {
+                    continue;
+                }
+                var bacToken:BacToken?
+                for j in 0..<BaseData.instance.mBacTokenList.count{
+                    if(BaseData.instance.mBacTokenList[j].symbol == mainTabVC.mBalances[i].balance_denom){
+                        bacToken = BaseData.instance.mBacTokenList[j]
+                    }
+                }
+                if ((bacToken == nil) && (mainTabVC.mBalances[i].balance_denom == BCV_MAIN_DENOM)) {
+                    cell?.tokenImg.image = UIImage(named: "bcvTokenImg")
+                    cell?.tokenSymbol.text = "BCV"
+                    cell?.tokenSymbol.textColor = COLOR_BAC
+                    cell?.tokenDescription.text = "BAC Chain Right Token"
+                    cell?.tokenTitle.text = "(" + mainTabVC.mBalances[i].balance_denom + ")"
+                    
+                    
+                    cell?.tokenAmount.attributedText = WUtils.displayAmount(mainTabVC.mBalances[i].balance_amount, cell!.tokenAmount.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                }
+                else if(bacToken != nil){
+                    cell?.tokenImg.image = UIImage(named: "bacTokenImg")
+                    cell?.tokenSymbol.text = bacToken?.symbol
+                    cell?.tokenSymbol.textColor = COLOR_BAC
+                    cell?.tokenDescription.text = bacToken?.description
+                    cell?.tokenTitle.text = "(" + mainTabVC.mBalances[i].balance_denom + ")"
+                    
+                    cell?.tokenAmount.attributedText = WUtils.displayAmount(mainTabVC.mBalances[i].balance_amount, cell!.tokenAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
+                }
+            }
+        }
+        return cell!
+    }
     func onSetSecretItems(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let cell:TokenCell? = tableView.dequeueReusableCell(withIdentifier:"TokenCell") as? TokenCell
         let balance = mainTabVC.mBalances[indexPath.row]
@@ -856,6 +935,9 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
     }
     
     func onFetchOkTokenPrice() {
+        self.onUpdateTotalCard()
+    }
+    func onFetchBacTokenPrice() {
         self.onUpdateTotalCard()
     }
     
@@ -1046,6 +1128,16 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
                 }
                 return $0.balance_denom < $1.balance_denom
             }
+        }else if (chainType! == ChainType.BAC_MAIN) {
+            mainTabVC.mBalances.sort{
+                if ($0.balance_denom == BAC_MAIN_DENOM) {
+                    return true
+                }
+                if ($1.balance_denom == BAC_MAIN_DENOM){
+                    return false
+                }
+                return $0.balance_denom < $1.balance_denom
+            }
         } else if (chainType! == ChainType.KAVA_MAIN || chainType! == ChainType.KAVA_TEST) {
             mainTabVC.mBalances.sort{
                 if ($0.balance_denom == KAVA_MAIN_DENOM) {
@@ -1106,6 +1198,17 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
                     return true
                 }
                 if ($1.balance_denom == BNB_MAIN_DENOM){
+                    return false
+                }
+                return $0.getAllAmountBnbToken().compare($1.getAllAmountBnbToken()).rawValue > 0 ? true : false
+            }
+            
+        } else if (chainType! == ChainType.BAC_MAIN ) {
+            mainTabVC.mBalances.sort{
+                if ($0.balance_denom == BAC_MAIN_DENOM) {
+                    return true
+                }
+                if ($1.balance_denom == BAC_MAIN_DENOM){
                     return false
                 }
                 return $0.getAllAmountBnbToken().compare($1.getAllAmountBnbToken()).rawValue > 0 ? true : false

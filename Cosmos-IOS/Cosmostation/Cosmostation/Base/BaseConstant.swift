@@ -40,6 +40,8 @@ let COSMOS_TEST_API                     = "";
 let IRIS_LCD_URL                        = "https://lcd-iris.cosmostation.io/";
 let IRIS_API                            = "https://api-iris.cosmostation.io/";
 
+let BAC_LCD_URL                             = "https://rpc.bitcv.net"
+
 let BNB_URL                             = "https://dex.binance.org/";
 let BNB_TEST_URL                        = "https://testnet-dex.binance.org/";
 
@@ -186,6 +188,32 @@ let BNB_URL_HISTORY                     = BNB_URL + "api/v1/transactions";
 let BNB_URL_TX                          = BNB_URL + "api/v1/tx/";
 let BNB_URL_CHECK_SWAPID                = BNB_URL + "api/v1/atomic-swaps/";
 
+let BAC_LCD_URL_ACCOUNT_INFO = BAC_LCD_URL + "/auth/accounts/"
+let BAC_LCD_URL_BALANCES = BAC_LCD_URL + "/bank/balances/"
+let BAC_LCD_URL_SUPPLY_BCV = BAC_LCD_URL + "/bank/supply/bcv"
+let BAC_LCD_URL_BLOCKS = BAC_LCD_URL + "/blocks"
+let BAC_LCD_URL_TOKENS = BAC_LCD_URL + "/bank/tokens"
+let BAC_LCD_URL_TOKEN = BAC_LCD_URL + "/bank/token"
+let BAC_LCD_URL_BONDING = BAC_LCD_URL + "/staking/delegators/"
+let BAC_BONDING_TAIL =  "/delegations"
+let BAC_LCD_URL_UNBONDING   = BAC_LCD_URL + "staking/delegators/";
+let BAC_UNBONDING_TAIL  = "/unbonding_delegations";
+let BAC_LCD_URL_VALIDATORS = BAC_LCD_URL + "/staking/validators"
+let BAC_VALIDATOR_TAIL = "/validators"
+let BAC_LCD_URL_BROAD_TX = BAC_LCD_URL + "/txs"
+let BAC_LCD_URL_TX = BAC_LCD_URL + "/txs/"
+let BAC_LCD_URL_USER_HISTORY = BAC_LCD_URL + "/bank/accounts/"
+let BAC_HISTORY_TAIL = "/transfers"
+let BAC_LCD_URL_LATEST = BAC_LCD_URL + "/blocks/latest"
+let BAC_LCD_URL_DELEGATORS_REWARD = "/distribution/delegators";
+let BAC_REWARD_TAIL = "/rewards";
+let BAC_LCD_URL_VALIDATORS_REWARD = "/distribution/validators";
+let BAC_WITHDRAW_ADDRESS_TAIL = "/withdraw_address";
+let BAC_LCD_URL_MINT_PARAM                     = BAC_LCD_URL + "minting/parameters";
+let BAC_LCD_URL_INFLATION                      = BAC_LCD_URL + "minting/inflation";
+let BAC_LCD_URL_PROVISIONS                     = BAC_LCD_URL + "minting/annual-provisions";
+let BAC_LCD_URL_BAC_SUPPLY                     = BAC_LCD_URL + "minting/supply/bac";
+   
 
 //BNB_TEST_URL
 let BNB_TEST_URL_NODE_INFO              = BNB_TEST_URL + "api/v1/node-info";
@@ -487,8 +515,8 @@ let IOV_VAL_URL                         = "https://raw.githubusercontent.com/cos
 let CERTIK_VAL_URL                      = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/moniker/certik/";
 let SECRET_VAL_URL                      = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/moniker/secret/";
 let AKASH_VAL_URL                      = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/moniker/akash/";
-
 let TOKEN_IMG_URL                       = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/thumnail/"
+let BAC_TOKEN_IMG_URL                       = "https://bitcv.kingco.tech/tokenlogo/"
 let KAVA_COIN_IMG_URL                   = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/coin_image/kava/";
 let KAVA_CDP_MARKET_IMG_URL             = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/cdp_market/kava/";
 let KAVA_HARVEST_MARKET_IMG_URL         = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/harvest_market/kava/";
@@ -562,7 +590,7 @@ let DB_UNBONDING_FETCH_TIME         = Expression<Int64>("fetchTime")
 
 
 
-
+let BAC_AUTH_TYPE_ACCOUNT = "/auth/accounts"
 
 let COSMOS_AUTH_TYPE_DELAYEDACCOUNT         = "cosmos-sdk/DelayedVestingAccount";
 let COSMOS_AUTH_TYPE_ACCOUNT                = "cosmos-sdk/Account";
@@ -592,6 +620,25 @@ let COSMOS_MSG_TYPE_EDIT_VALIDATOR          = "cosmos-sdk/MsgEditValidator";
 
 let COSMOS_KEY_TYPE_PUBLIC                  = "tendermint/PubKeySecp256k1";
 let COSMOS_AUTH_TYPE_STDTX                  = "auth/StdTx";
+
+let BAC_MSG_TYPE_ADD_MARGIN = "bacchain/MsgAddMargin"
+let BAC_MSG_TYPE_BEGIN_REDELEGATE = "bacchain/MsgBeginRedelegate"
+let BAC_MSG_TYPE_BURN_BCV_TO_ENERGY = "bacchain/MsgBurnBcvToEnergy"
+let BAC_MSG_TYPE_BURN_BCV_TO_STAKE = "bacchain/MsgBurnBcvToStake"
+let BAC_MSG_TYPE_DELEGATE = "bacchain/MsgDelegate"
+let BAC_MSG_TYPE_DEPOSIT = "bacchain/MsgDeposit"
+let BAC_MSG_TYPE_EDATA =  "bacchain/MsgEdata"
+let BAC_MSG_TYPE_EDIT_VALIDATOR =  "bacchain/MsgEditValidator"
+let BAC_MSG_TYPE_ISSUE_TOKEN =  "bacchain/MsgIssueToken"
+let BAC_MSG_TYPE_MODIFY_WITHDRAW_ADDRESS =  "bacchain/MsgModifyWithdrawAddress"
+let BAC_MSG_TYPE_MULTI_SEND = "bacchain/MsgMultiSend"
+let BAC_MSG_TYPE_REDEEM =  "bacchain/MsgRedeem"
+let BAC_MSG_TYPE_SEND = "bacchain/MsgSend"
+let BAC_MSG_TYPE_SUBMIT_PROPOSAL = "bacchain/MsgSubmitProposal"
+let BAC_MSG_TYPE_UNDELEGATE =  "bacchain/MsgUndelegate"
+let BAC_MSG_TYPE_VOTE =  "bacchain/MsgVote"
+let BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD = "bacchain/MsgWithdrawDelegationReward"
+let BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION = "bacchain/MsgWithdrawValidatorCommission"
 
 
 let IRIS_BANK_TYPE_ACCOUNT                  = "irishub/bank/Account";
@@ -686,6 +733,7 @@ let IOV_BASE_PATH                           = "m/44'/234'/0'/0/"
 let BAND_BASE_PATH                          = "m/44'/494'/0'/0/"
 let SECRET_BASE_PATH                        = "m/44'/529'/0'/0/"
 let OK_BASE_PATH                            = "m/44'/996'/0'/0/"
+let BAC_BASE_PATH                           = "m/44'/572'/0'/0/0"
 let FEE_ATOM_TINY                           = "500";
 let FEE_ATOM_LOW                            = "1000";
 let FEE_ATOM_MID                            = "2000";
@@ -748,6 +796,8 @@ let GAS_FEE_AMOUNT_IRIS_REWARD_MUX          = "5000"
 
 
 let GAS_FEE_BNB_TRANSFER                    = "0.000375"
+let GAS_FEE_BAC_TRANSFER                    = "0.1"
+
 
 let KAVA_GAS_FEE_AMOUNT_LOW                 = "150000"
 let KAVA_GAS_FEE_AMOUNT_SEND                = "200000"
@@ -833,6 +883,8 @@ let TOKEN_HTLC_BINANCE_XRPB                 = "XRP-BF2"
 let TOKEN_HTLC_KAVA_XRPB                    = "xrpb"
 let TOKEN_HTLC_BINANCE_BUSD                 = "BUSD-BD1"
 let TOKEN_HTLC_KAVA_BUSD                    = "busd"
+let TOKEN_HTLC_BAC_BAC                      = "BAC"
+let TOKEN_HTLC_BAC_BCV                      = "BCV"
 
 
 
@@ -861,6 +913,11 @@ let TRANS_BG_COLOR_IRIS                     = UIColor.init(hexString: "0080ff", 
 let TRANS_BG_COLOR_IRIS2                    = UIColor.init(hexString: "0080ff", alpha: 0.4)
 let COLOR_IRIS                              = UIColor.init(hexString: "00A8FF")
 let COLOR_IRIS_DARK                         = UIColor.init(hexString: "003870")
+
+let TRANS_BG_COLOR_BAC                     = UIColor.init(hexString: "0080ff", alpha: 0.15)
+let TRANS_BG_COLOR_BAC2                    = UIColor.init(hexString: "0080ff", alpha: 0.4)
+let COLOR_BAC                              = UIColor.init(hexString: "00A8FF")
+let COLOR_BAC_DARK                         = UIColor.init(hexString: "003870")
 
 let TRANS_BG_COLOR_BNB                      = UIColor.init(hexString: "f0b90b", alpha: 0.15)
 let COLOR_BNB                               = UIColor.init(hexString: "E9BC00")
@@ -914,6 +971,7 @@ let COLOR_STAKE_DROP_BG                     = UIColor.init(hexString: "E1AA4C", 
 
 
 enum ChainType: String {
+    case BAC_MAIN
     case COSMOS_MAIN
     case IRIS_MAIN
     case BINANCE_MAIN
@@ -933,6 +991,7 @@ enum ChainType: String {
     
     static func SUPPRT_CHAIN() -> Array<ChainType> {
         var result = [ChainType]()
+        result.append(BAC_MAIN)
         result.append(COSMOS_MAIN)
         result.append(IRIS_MAIN)
         result.append(BINANCE_MAIN)
@@ -991,6 +1050,9 @@ enum ChainType: String {
             result.append(TOKEN_HTLC_KAVA_XRPB)
             result.append(TOKEN_HTLC_KAVA_BUSD)
             
+        } else if (chain == BAC_MAIN) {
+            result.append(TOKEN_HTLC_BAC_BAC)
+            result.append(TOKEN_HTLC_BAC_BCV)
         } else if (chain == BINANCE_TEST) {
             result.append(TOKEN_HTLC_BINANCE_TEST_BNB)
             result.append(TOKEN_HTLC_BINANCE_TEST_BTC)
@@ -1004,6 +1066,7 @@ enum ChainType: String {
     }
 }
 
+let CHAIN_BAC_S = "SUPPORT_CHAIN_BAC_MAIN"
 let CHAIN_COSMOS_S = "SUPPORT_CHAIN_COSMOS_MAIN"
 let CHAIN_IRIS_S = "SUPPORT_CHAIN_IRIS_MAIN"
 let CHAIN_BINANCE_S = "SUPPORT_CHAIN_BINANCE_MAIN"
@@ -1022,6 +1085,12 @@ let CHAIN_OKEX_TEST_S = "SUPPORT_CHAIN_OKEX_TEST"
 let CHAIN_CERTIK_TEST_S = "SUPPORT_CHAIN_CERTIK_TEST"
 
 
+let BAC_MAIN_DENOM = "nbac"
+let BCV_MAIN_DENOM = "ubcv"
+let BAC_DECIMAL = 9
+let BAC_GAS_FEE_DECIMAL = 8
+let BAC_SUPPLY = 43695126
+let BCV_DECIMAL = 6
 let COSMOS_MAIN_DENOM = "uatom"
 let IRIS_MAIN_DENOM = "iris-atto"
 let IRIS_DP_DENOM = "iris"
@@ -1052,6 +1121,8 @@ let STARNAME       = "asset:iov";
 let BAND           = "asset:band";
 let TEZOS          = "asset:xtz";
 let LISK           = "asset:lsk";
+let BAC            = "asset:bac";
+let BCV            = "asset:bcv";
 
 
 let Font_17_body = UIFont(name: "Helvetica-Light", size: 17)!
@@ -1067,6 +1138,8 @@ let SELECT_POPUP_HTLC_TO_ACCOUNT = 2
 let SELECT_POPUP_STARNAME_ACCOUNT = 3
 
 
+let EXPLORER_BAC_MAIN       = "https://main.bitcv.net/"
+let EXPLORER_BAC_TEST       = "https://test.bitcv.net/"
 let EXPLORER_COSMOS_MAIN    = "https://www.mintscan.io/cosmos/";
 let EXPLORER_IRIS_MAIN      = "https://www.mintscan.io/iris/";
 let EXPLORER_KAVA_MAIN      = "https://www.mintscan.io/kava/";
@@ -1106,3 +1179,4 @@ let BLOCK_TIME_BAND     = NSDecimalNumber.init(string: "3.01")
 let BLOCK_TIME_CERTIK   = NSDecimalNumber.init(string: "5.75")
 let BLOCK_TIME_SECRET   = NSDecimalNumber.init(string: "5.96")
 let BLOCK_TIME_AKASH    = NSDecimalNumber.init(string: "6.21")
+let BLOCK_TIME_BAC    = NSDecimalNumber.init(string: "5.88")

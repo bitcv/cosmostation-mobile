@@ -63,7 +63,9 @@ public class Balance {
         self.balance_amount = amount;
         self.balance_fetch_time = fetch_time;
     }
-    
+    func getAllAmountBacToken() -> NSDecimalNumber {
+        return WUtils.plainStringToDecimal(self.balance_amount)
+    }
     func getAllAmountBnbToken() -> NSDecimalNumber {
         return WUtils.plainStringToDecimal(self.balance_amount).adding(WUtils.plainStringToDecimal(self.balance_locked))
     }

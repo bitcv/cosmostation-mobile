@@ -90,6 +90,7 @@
 "fee_speed_title_2" = "Most validators will process this Tx.";
 "fee_speed_iris_title" = "Support fixed amount fee for Iris.\nIris Hub will refund the remaining gas fee after use.";
 "fee_speed_bnb_title" = "Support fixed fee for Binance Chain";
+"fee_speed_bac_title" = "Support fixed fee for BAC Chain";
 "fee_speed_kava_title" = "Support fixed transfer fee for KAVA now";
 "fee_speed_iov_title" = "Support fixed amount fee for IOV.";
 "fee_speed_ok_title" = "Support fixed amount fee for Okex Chain.";
@@ -122,6 +123,8 @@
 "send_guide_msg_kava" = "First cross-chain DeFi platform based on Tendermint engine. Kava allows users to leverage assets with its cross-chain CDP.";
 "send_guide_title_iov" = "Starname Service";
 "send_guide_msg_iov" = "Built on Tendermint, Starname builds a fast, secure and decentralized universal name service.";
+"send_guide_title_bac" = "BAC CHAIN";
+"send_guide_msg_bac" = "Cross-chain DeFi platform based on Tendermint engine";
 "send_guide_title_band" = "BAND PROTOCOL";
 "send_guide_msg_band" = "Cross-chain oracle platform based on Tendermint. Aggregates and connects real-world data and APIs to smart contracts.";
 "send_guide_title_ok" = "OKEX CHAIN";
@@ -138,6 +141,7 @@
 "send_guide_btn1_kava" = "About USDX";
 "send_guide_btn1_iov" = "Star Name";
 "send_guide_btn1_band" = "Home";
+"send_guide_btn1_bac" = "Home";
 "send_guide_btn1_ok" = "Market";
 "send_guide_btn1_certik" = "Home";
 "send_guide_btn1_secret" = "Home";
@@ -148,6 +152,7 @@
 "send_guide_btn2_kava" = "Blog";
 "send_guide_btn2_iov" = "Blog";
 "send_guide_btn2_band" = "Blog";
+"send_guide_btn2_bac" = "RREx";
 "send_guide_btn2_ok" = "Communities";
 "send_guide_btn2_certik" = "Blog";
 "send_guide_btn2_secret" = "Blog";
@@ -501,6 +506,7 @@
 "error_no_recipient_account" = "Please select account to receive";
 "error_no_more_debt_kava" = "Cannot issue USDX. Maximum network USDX capacity has been reached.";
 "error_bnb_mini_amount" = "Minimum amount required for BEP8 transactions is 1 token. If your balance is less than 1, you must send the entire amount.";
+"error_bac_mini_amount" = "Minimum amount required for BEP8 transactions is 1 token. If your balance is less than 1, you must send the entire amount.";
 "error_invalide_starname" = "Unregistered star name.";
 "error_no_mattched_starname" = "Valide starname, but there is no mattching address with this chain.";
 "error_starname_self_send" = "Valide starname, but self sending is not support.";
@@ -599,6 +605,7 @@
 "chain_title_cosmos" = "Cosmos Mainnet";
 "chain_title_iris" = "Iris Mainnet";
 "chain_title_bnb" = "Binance Mainnet";
+"chain_title_bac" = "BAC Mainnet";
 "chain_title_kava" = "Kava Mainnet";
 "chain_title_iov" = "Starname Mainnet";
 "chain_title_band" = "Band Mainnet";

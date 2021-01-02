@@ -121,6 +121,10 @@ class ReplaceEditAddressViewController: BaseViewController, QrScannerDelegate, S
                 self.onShowToast(NSLocalizedString("error_invalid_address_or_pubkey", comment: ""))
                 return
                 
+            } else if (chainType == ChainType.BAC_MAIN && (!userInput!.starts(with: "bac1") || !WKey.isValidateBech32(userInput!))) {
+                self.onShowToast(NSLocalizedString("error_invalid_address_or_pubkey", comment: ""))
+                return
+                
             } else if (chainType == ChainType.IOV_MAIN && (!userInput!.starts(with: "star1") || !WKey.isValidateBech32(userInput!))) {
                 self.onShowToast(NSLocalizedString("error_invalid_address_or_pubkey", comment: ""))
                 return

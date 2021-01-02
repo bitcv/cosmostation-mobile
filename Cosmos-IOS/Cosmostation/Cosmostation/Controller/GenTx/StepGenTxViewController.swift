@@ -68,6 +68,7 @@ class StepGenTxViewController: UIPageViewController, UIPageViewControllerDelegat
     
     var mIrisToken: IrisToken?
     var mBnbToken: BnbToken?
+    var mBacToken: BacToken?
     var mBnbTics = [String : NSMutableDictionary]()
     
     var mProposeId: String?
@@ -121,13 +122,13 @@ class StepGenTxViewController: UIPageViewController, UIPageViewControllerDelegat
     var mStarnameResources: Array<StarNameResource> = Array<StarNameResource>()
     
     lazy var orderedViewControllers: [UIViewController] = {
-        if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE) {
+        if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE || mType == BAC_MSG_TYPE_DELEGATE) {
             return [self.newVc(viewController: "StepDelegateAmountViewController"),
                     self.newVc(viewController: "StepMemoViewController"),
                     self.newVc(viewController: "StepFeeViewController"),
                     self.newVc(viewController: "StepDelegateCheckViewController")]
             
-        } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE) {
+        } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE || mType == BAC_MSG_TYPE_UNDELEGATE) {
             return [self.newVc(viewController: "StepUndelegateAmountViewController"),
                     self.newVc(viewController: "StepMemoViewController"),
                     self.newVc(viewController: "StepFeeViewController"),
@@ -135,21 +136,24 @@ class StepGenTxViewController: UIPageViewController, UIPageViewControllerDelegat
             
         } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                     mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                    mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                    mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER
+        || mType == BAC_MSG_TYPE_SEND) {
             return [self.newVc(viewController: "StepSendAddressViewController"),
                     self.newVc(viewController: "StepSendAmountViewController"),
                     self.newVc(viewController: "StepMemoViewController"),
                     self.newVc(viewController: "StepFeeViewController"),
                     self.newVc(viewController: "StepSendCheckViewController")]
             
-        } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE) {
+        } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE
+        || mType == BAC_MSG_TYPE_BEGIN_REDELEGATE) {
             return [self.newVc(viewController: "StepRedelegateAmountViewController"),
                     self.newVc(viewController: "StepRedelegateToViewController"),
                     self.newVc(viewController: "StepMemoViewController"),
                     self.newVc(viewController: "StepFeeViewController"),
                     self.newVc(viewController: "StepRedelegateCheckViewController")]
             
-        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY
+        || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
             return [self.newVc(viewController: "StepChangeAddressViewController"),
                     self.newVc(viewController: "StepMemoViewController"),
                     self.newVc(viewController: "StepFeeViewController"),
@@ -363,7 +367,7 @@ class StepGenTxViewController: UIPageViewController, UIPageViewControllerDelegat
         if ((currentIndex <= 3 &&
                 (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == IRIS_MSG_TYPE_REDELEGATE || mType == BNB_MSG_TYPE_TRANSFER ||
                     mType == KAVA_MSG_TYPE_TRANSFER || mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                    mType == CERTIK_MSG_TYPE_TRANSFER) || mType == IOV_MSG_TYPE_REGISTER_ACCOUNT || mType == AKASH_MSG_TYPE_TRANSFER) || currentIndex <= 2) {
+                    mType == CERTIK_MSG_TYPE_TRANSFER) || mType == IOV_MSG_TYPE_REGISTER_ACCOUNT || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) || currentIndex <= 2) {
             setViewControllers([orderedViewControllers[currentIndex + 1]], direction: .forward, animated: true, completion: { (finished) -> Void in
                 self.currentIndex = self.currentIndex + 1
                 let value:[String: Int] = ["step": self.currentIndex ]

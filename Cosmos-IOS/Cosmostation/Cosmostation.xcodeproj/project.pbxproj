@@ -314,6 +314,12 @@
 		6CD65FAC259E014D007BF7F9 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; };
 		6CD65FAD259E014D007BF7F9 /* BitcoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CD65FB0259E022B007BF7F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */; };
+		6CD65FB2259E1D2F007BF7F9 /* BacToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */; };
+		6CD65FB4259E2E66007BF7F9 /* BacAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */; };
+		6CD65FB6259E3EBD007BF7F9 /* WalletBacCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */; };
+		6CD65FB8259E3EE7007BF7F9 /* WalletBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */; };
+		6CD65FE2259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */; };
+		6CD65FE4259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */; };
 		E103DAA32281266D006C2146 /* ValidatorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAA52281266D006C2146 /* ValidatorDetailCell.xib */; };
 		E103DAAA2281274A006C2146 /* ValidatorDetailHistoryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAAC2281274A006C2146 /* ValidatorDetailHistoryHeader.xib */; };
 		E103DAAF22812773006C2146 /* ValidatorDetailHistoryEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAB122812773006C2146 /* ValidatorDetailHistoryEmpty.xib */; };
@@ -853,6 +859,60 @@
 		53DF825783BC00234AD1092F /* Pods-Cosmostation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cosmostation.debug.xcconfig"; path = "Target Support Files/Pods-Cosmostation/Pods-Cosmostation.debug.xcconfig"; sourceTree = "<group>"; };
 		6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = "<group>"; };
 		6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacToken.swift; sourceTree = "<group>"; };
+		6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacAccountInfo.swift; sourceTree = "<group>"; };
+		6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBacCell.swift; sourceTree = "<group>"; };
+		6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletBacCell.xib; sourceTree = "<group>"; };
+		6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailHeaderBacCell.swift; sourceTree = "<group>"; };
+		6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenDetailHeaderBacCell.xib; sourceTree = "<group>"; };
+		6CD65FE525A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpListPromotionCell.strings"; sourceTree = "<group>"; };
+		6CD65FE625A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpListAllCell.strings"; sourceTree = "<group>"; };
+		6CD65FE725A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailTopCell.strings"; sourceTree = "<group>"; };
+		6CD65FE825A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyTopCell.strings"; sourceTree = "<group>"; };
+		6CD65FE925A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyActionCell.strings"; sourceTree = "<group>"; };
+		6CD65FEA25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailAssetsCell.strings"; sourceTree = "<group>"; };
+		6CD65FEB25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AllValidatorCell.strings"; sourceTree = "<group>"; };
+		6CD65FEC25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MyValidatorCell.strings"; sourceTree = "<group>"; };
+		6CD65FED25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OtherValidatorCell.strings"; sourceTree = "<group>"; };
+		6CD65FEE25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ClaimRewardAllCell.strings"; sourceTree = "<group>"; };
+		6CD65FEF25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PromotionCell.strings"; sourceTree = "<group>"; };
+		6CD65FF025A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailMyDetailCell.strings"; sourceTree = "<group>"; };
+		6CD65FF125A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailMyActionCell.strings"; sourceTree = "<group>"; };
+		6CD65FF225A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailCell.strings"; sourceTree = "<group>"; };
+		6CD65FF325A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailHistoryHeader.strings"; sourceTree = "<group>"; };
+		6CD65FF425A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailHistoryEmpty.strings"; sourceTree = "<group>"; };
+		6CD65FF525A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedelegateCell.strings"; sourceTree = "<group>"; };
+		6CD65FF625A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletAddressCell.strings"; sourceTree = "<group>"; };
+		6CD65FF725A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCosmosCell.strings"; sourceTree = "<group>"; };
+		6CD65FF825A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletIrisCell.strings"; sourceTree = "<group>"; };
+		6CD65FF925A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletBnbCell.strings"; sourceTree = "<group>"; };
+		6CD65FFA25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletKavaCell.strings"; sourceTree = "<group>"; };
+		6CD65FFB25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletIovCell.strings"; sourceTree = "<group>"; };
+		6CD65FFC25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCertikCell.strings"; sourceTree = "<group>"; };
+		6CD65FFD25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletUnbondingInfoCellTableViewCell.strings"; sourceTree = "<group>"; };
+		6CD65FFE25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletPriceCell.strings"; sourceTree = "<group>"; };
+		6CD65FFF25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletInflationCell.strings"; sourceTree = "<group>"; };
+		6CD6600025A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCosmosCell.strings"; sourceTree = "<group>"; };
+		6CD6600125A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderIrisCell.strings"; sourceTree = "<group>"; };
+		6CD6600225A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderBnbCell.strings"; sourceTree = "<group>"; };
+		6CD6600325A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderKavaCell.strings"; sourceTree = "<group>"; };
+		6CD6600425A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCustomCell.strings"; sourceTree = "<group>"; };
+		6CD6600525A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GenTx.strings"; sourceTree = "<group>"; };
+		6CD6600625A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RiskCheckPopupViewController.strings"; sourceTree = "<group>"; };
+		6CD6600725A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HtlcResultViewController.strings"; sourceTree = "<group>"; };
+		6CD6600825A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EventStakeDropViewController.strings"; sourceTree = "<group>"; };
+		6CD6600925A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Init.strings"; sourceTree = "<group>"; };
+		6CD6600A25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletManageViewController.strings"; sourceTree = "<group>"; };
+		6CD6600B25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletDetailViewController.strings"; sourceTree = "<group>"; };
+		6CD6600C25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCheckViewController.strings"; sourceTree = "<group>"; };
+		6CD6600D25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/QRScanViewController.strings"; sourceTree = "<group>"; };
+		6CD6600E25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailViewController.strings"; sourceTree = "<group>"; };
+		6CD6600F25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.strings"; sourceTree = "<group>"; };
+		6CD6601025A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TxDetailViewController.strings"; sourceTree = "<group>"; };
+		6CD6601125A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		6CD6601225A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		6CD6601325A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		6CD6601425A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		E103DAA42281266D006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailCell.xib; sourceTree = "<group>"; };
 		E103DAA9228126F3006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailCell.strings; sourceTree = "<group>"; };
 		E103DAAB2281274A006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailHistoryHeader.xib; sourceTree = "<group>"; };
@@ -1583,6 +1643,7 @@
 				E1F7F63123421394000E597F /* IrisToken.swift */,
 				E1F7F633234311F8000E597F /* BnbToken.swift */,
 				283D2EA324F52FE700247424 /* OkToken.swift */,
+				6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */,
 			);
 			path = Dao;
 			sourceTree = "<group>";
@@ -1690,6 +1751,7 @@
 				2866CBA52580DB5E00A91172 /* Provision_V1.swift */,
 				2866CBA82580DB6C00A91172 /* StakingPool_V1.swift */,
 				28CE973225870E29006DEBEE /* Auth_V1.swift */,
+				6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1824,6 +1886,10 @@
 				28B4303824F7996C00BD7BB2 /* TxOkStakeCell.xib */,
 				28060E7525427F2C00F13510 /* EventStakeDropCell.swift */,
 				28060E7625427F2C00F13510 /* EventStakeDropCell.xib */,
+				6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */,
+				6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */,
+				6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */,
+				6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1886,6 +1952,7 @@
 				en,
 				Base,
 				ko,
+				"zh-Hans",
 			);
 			mainGroup = E1945E1B222E7C0600A1436F;
 			packageReferences = (
@@ -1926,6 +1993,7 @@
 				28A7BD762535DB1200969295 /* TxWithdrawHavestCell.xib in Resources */,
 				282FF35A23F52FD40028CC66 /* TxRewardCell.xib in Resources */,
 				285A33DF2447633D0052BD3D /* SelectAccountCell.xib in Resources */,
+				6CD65FE4259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib in Resources */,
 				E103DAC02281296E006C2146 /* QRScanViewController.xib in Resources */,
 				E126CFB42387A7BD002A546F /* TokenDetailHeaderKavaCell.xib in Resources */,
 				282FF34A23F50C540028CC66 /* TxUndelegateCell.xib in Resources */,
@@ -1998,6 +2066,7 @@
 				283E947D25490322007A9291 /* TxRenewStarnameCell.xib in Resources */,
 				28156EA52536DE53006FF06C /* HarvestDetailViewController.xib in Resources */,
 				28A7BD7B2535DB2600969295 /* TxClaimRewardHavestCell.xib in Resources */,
+				6CD65FB8259E3EE7007BF7F9 /* WalletBacCell.xib in Resources */,
 				28A209E0248897F400C2C078 /* TokenDetailVestingDetailCell.xib in Resources */,
 				E16B70DD229F9A78001D6B9C /* RedelegateCell.xib in Resources */,
 				E126CF912387A55A002A546F /* WalletKavaCell.xib in Resources */,
@@ -2209,6 +2278,7 @@
 				E1E15FBF2253663600A10C7B /* AccountPopupCell.swift in Sources */,
 				28156E8E25369622006FF06C /* HarvestListStakeCell.swift in Sources */,
 				285A33E2244862670052BD3D /* HtlcResultViewController.swift in Sources */,
+				6CD65FB6259E3EBD007BF7F9 /* WalletBacCell.swift in Sources */,
 				E171A06B225B04BD00C5756C /* TransactionViewController.swift in Sources */,
 				2842AB72242C7C8A00248EEB /* CdpListAllCell.swift in Sources */,
 				283D2EA824F5388C00247424 /* OkAccountToken.swift in Sources */,
@@ -2235,6 +2305,7 @@
 				E19A32262254AE7A00A05E41 /* ManageHeader.swift in Sources */,
 				2812956E250F81C3007B217E /* SelectCoinCell.swift in Sources */,
 				E151B639224626990026B8C0 /* BorderButton.swift in Sources */,
+				6CD65FE2259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift in Sources */,
 				2866CB9D2580C59A00A91172 /* UnbondingInfo_V1.swift in Sources */,
 				E1945E542231256800A1436F /* BaseConstant.swift in Sources */,
 				28A209DF248897F400C2C078 /* TokenDetailVestingDetailCell.swift in Sources */,
@@ -2265,6 +2336,7 @@
 				2866CBA62580DB5E00A91172 /* Provision_V1.swift in Sources */,
 				E19A322B2254AFE100A05E41 /* ManageAccountCell.swift in Sources */,
 				E1A82DEE2244DE680097CAEE /* MyValidatorViewController.swift in Sources */,
+				6CD65FB2259E1D2F007BF7F9 /* BacToken.swift in Sources */,
 				E1A82DF42244EC440097CAEE /* AllValidatorCell.swift in Sources */,
 				282FF35123F5172E0028CC66 /* TxTransferCell.swift in Sources */,
 				E1069B1022968E05007517DC /* StepRedelegateCheckViewController.swift in Sources */,
@@ -2367,6 +2439,7 @@
 				E16D9B1D2248E6A60019B7BB /* WKey.swift in Sources */,
 				285A33CF2446CD9C0052BD3D /* StepHtlcSend1ViewController.swift in Sources */,
 				2827F4CA255B93240029AE1C /* WalletAkashCell.swift in Sources */,
+				6CD65FB4259E2E66007BF7F9 /* BacAccountInfo.swift in Sources */,
 				E14F7FB6227ADAA300FDDC75 /* QRScanViewController.swift in Sources */,
 				2838501C2448A69D00E5DEF2 /* TxHtlcCreateCell.swift in Sources */,
 				2888B804246CE37200B2EB4A /* StepHtlcRefund3ViewController.swift in Sources */,
@@ -2471,6 +2544,7 @@
 			children = (
 				283A80BF24513DA2008FF813 /* Base */,
 				283A80C224513DA7008FF813 /* ko */,
+				6CD65FE525A028E7007BF7F9 /* zh-Hans */,
 			);
 			name = CdpListPromotionCell.xib;
 			sourceTree = "<group>";
@@ -2480,6 +2554,7 @@
 			children = (
 				283A80C424513F6F008FF813 /* Base */,
 				283A80C724513F74008FF813 /* ko */,
+				6CD65FE625A028E7007BF7F9 /* zh-Hans */,
 			);
 			name = CdpListAllCell.xib;
 			sourceTree = "<group>";
@@ -2489,6 +2564,7 @@
 			children = (
 				283A80C924513FF7008FF813 /* Base */,
 				283A80CC24513FFC008FF813 /* ko */,
+				6CD65FE725A028E7007BF7F9 /* zh-Hans */,
 			);
 			name = CdpDetailTopCell.xib;
 			sourceTree = "<group>";
@@ -2498,6 +2574,7 @@
 			children = (
 				283A80CE24514194008FF813 /* Base */,
 				283A80D124514196008FF813 /* ko */,
+				6CD65FE825A028E7007BF7F9 /* zh-Hans */,
 			);
 			name = CdpDetailMyTopCell.xib;
 			sourceTree = "<group>";
@@ -2507,6 +2584,7 @@
 			children = (
 				283A80D3245141EB008FF813 /* Base */,
 				283A80D6245141F2008FF813 /* ko */,
+				6CD65FE925A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = CdpDetailMyActionCell.xib;
 			sourceTree = "<group>";
@@ -2516,6 +2594,7 @@
 			children = (
 				283A80D82451436A008FF813 /* Base */,
 				283A80DB2451436F008FF813 /* ko */,
+				6CD65FEA25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = CdpDetailAssetsCell.xib;
 			sourceTree = "<group>";
@@ -2525,6 +2604,7 @@
 			children = (
 				283A80DD24514AB8008FF813 /* Base */,
 				283A80E024514ABF008FF813 /* ko */,
+				6CD6600625A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = RiskCheckPopupViewController.xib;
 			sourceTree = "<group>";
@@ -2534,6 +2614,7 @@
 			children = (
 				283A80E224514BD0008FF813 /* Base */,
 				283A80E524514BD3008FF813 /* ko */,
+				6CD6600E25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = CdpDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2543,6 +2624,7 @@
 			children = (
 				283A80E7245158FB008FF813 /* Base */,
 				283A80EA24515901008FF813 /* ko */,
+				6CD6600725A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = HtlcResultViewController.xib;
 			sourceTree = "<group>";
@@ -2552,6 +2634,7 @@
 			children = (
 				2876AD5D240CE4A6005B33F4 /* Base */,
 				2876AD62240CE966005B33F4 /* ko */,
+				6CD65FFD25A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = WalletUnbondingInfoCellTableViewCell.xib;
 			sourceTree = "<group>";
@@ -2561,6 +2644,7 @@
 			children = (
 				2877B8F9240E2A0200EFE369 /* Base */,
 				2877B8FC240E2A0E00EFE369 /* ko */,
+				6CD6601025A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = TxDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2570,6 +2654,7 @@
 			children = (
 				288A14E225199C6200E17808 /* Base */,
 				288A14E725199C6500E17808 /* ko */,
+				6CD65FFC25A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletCertikCell.xib;
 			sourceTree = "<group>";
@@ -2579,6 +2664,7 @@
 			children = (
 				28F4CF732542AD3A0050985D /* Base */,
 				28F4CF772542AD3F0050985D /* ko */,
+				6CD6600825A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = EventStakeDropViewController.xib;
 			sourceTree = "<group>";
@@ -2588,6 +2674,7 @@
 			children = (
 				E103DAA42281266D006C2146 /* Base */,
 				E103DAA9228126F3006C2146 /* ko */,
+				6CD65FF225A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailCell.xib;
 			sourceTree = "<group>";
@@ -2597,6 +2684,7 @@
 			children = (
 				E103DAAB2281274A006C2146 /* Base */,
 				E103DAAE22812750006C2146 /* ko */,
+				6CD65FF325A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailHistoryHeader.xib;
 			sourceTree = "<group>";
@@ -2606,6 +2694,7 @@
 			children = (
 				E103DAB022812773006C2146 /* Base */,
 				E103DAB322812780006C2146 /* ko */,
+				6CD65FF425A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailHistoryEmpty.xib;
 			sourceTree = "<group>";
@@ -2615,6 +2704,7 @@
 			children = (
 				E103DAB5228127A3006C2146 /* Base */,
 				E103DAB8228127AF006C2146 /* ko */,
+				6CD65FF025A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailMyDetailCell.xib;
 			sourceTree = "<group>";
@@ -2624,6 +2714,7 @@
 			children = (
 				E103DABA228127D8006C2146 /* Base */,
 				E103DABF22812849006C2146 /* ko */,
+				6CD65FF125A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailMyActionCell.xib;
 			sourceTree = "<group>";
@@ -2632,6 +2723,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DAC12281296E006C2146 /* Base */,
+				6CD6600D25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = QRScanViewController.xib;
 			sourceTree = "<group>";
@@ -2641,6 +2733,7 @@
 			children = (
 				E103DACA228129FD006C2146 /* Base */,
 				E103DACD22812A17006C2146 /* ko */,
+				6CD6600A25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = WalletManageViewController.xib;
 			sourceTree = "<group>";
@@ -2650,6 +2743,7 @@
 			children = (
 				E103DACF22813248006C2146 /* Base */,
 				E103DAD222813256006C2146 /* ko */,
+				6CD6600B25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = WalletDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2659,6 +2753,7 @@
 			children = (
 				E103DAD4228143D0006C2146 /* Base */,
 				E103DADD2281463E006C2146 /* ko */,
+				6CD6600C25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = WalletCheckViewController.xib;
 			sourceTree = "<group>";
@@ -2668,6 +2763,7 @@
 			children = (
 				E103DADF22814802006C2146 /* Base */,
 				E103DAE222814815006C2146 /* ko */,
+				6CD6600925A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = Init.storyboard;
 			sourceTree = "<group>";
@@ -2677,6 +2773,7 @@
 			children = (
 				E103DAE422814DFC006C2146 /* Base */,
 				E16B70DC229E619A001D6B9C /* ko */,
+				6CD6600525A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = GenTx.storyboard;
 			sourceTree = "<group>";
@@ -2686,6 +2783,7 @@
 			children = (
 				E126CF7E2387A3E1002A546F /* Base */,
 				E126CF812387A3E8002A546F /* ko */,
+				6CD65FF725A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletCosmosCell.xib;
 			sourceTree = "<group>";
@@ -2695,6 +2793,7 @@
 			children = (
 				E126CF832387A48F002A546F /* Base */,
 				E126CF862387A491002A546F /* ko */,
+				6CD65FF625A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletAddressCell.xib;
 			sourceTree = "<group>";
@@ -2704,6 +2803,7 @@
 			children = (
 				E126CF882387A4B4002A546F /* Base */,
 				E126CF8B2387A4BD002A546F /* ko */,
+				6CD65FF825A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletIrisCell.xib;
 			sourceTree = "<group>";
@@ -2713,6 +2813,7 @@
 			children = (
 				E126CF8D2387A50E002A546F /* Base */,
 				E126CF902387A515002A546F /* ko */,
+				6CD65FF925A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletBnbCell.xib;
 			sourceTree = "<group>";
@@ -2722,6 +2823,7 @@
 			children = (
 				E126CF922387A55A002A546F /* Base */,
 				E126CF952387A561002A546F /* ko */,
+				6CD65FFA25A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletKavaCell.xib;
 			sourceTree = "<group>";
@@ -2731,6 +2833,7 @@
 			children = (
 				E126CF972387A5C9002A546F /* Base */,
 				E126CF9A2387A5CE002A546F /* ko */,
+				6CD65FFB25A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletIovCell.xib;
 			sourceTree = "<group>";
@@ -2740,6 +2843,7 @@
 			children = (
 				E126CF9C2387A60D002A546F /* Base */,
 				E126CF9F2387A613002A546F /* ko */,
+				6CD65FFE25A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = WalletPriceCell.xib;
 			sourceTree = "<group>";
@@ -2749,6 +2853,7 @@
 			children = (
 				E126CFA12387A643002A546F /* Base */,
 				E126CFA42387A649002A546F /* ko */,
+				6CD65FFF25A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = WalletInflationCell.xib;
 			sourceTree = "<group>";
@@ -2758,6 +2863,7 @@
 			children = (
 				E126CFA62387A713002A546F /* Base */,
 				E126CFA92387A718002A546F /* ko */,
+				6CD6600025A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderCosmosCell.xib;
 			sourceTree = "<group>";
@@ -2767,6 +2873,7 @@
 			children = (
 				E126CFAB2387A75E002A546F /* Base */,
 				E126CFAE2387A768002A546F /* ko */,
+				6CD6600125A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderIrisCell.xib;
 			sourceTree = "<group>";
@@ -2776,6 +2883,7 @@
 			children = (
 				E126CFB02387A799002A546F /* Base */,
 				E126CFB32387A79D002A546F /* ko */,
+				6CD6600225A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderBnbCell.xib;
 			sourceTree = "<group>";
@@ -2785,6 +2893,7 @@
 			children = (
 				E126CFB52387A7BD002A546F /* Base */,
 				E126CFB82387A7C3002A546F /* ko */,
+				6CD6600325A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderKavaCell.xib;
 			sourceTree = "<group>";
@@ -2794,6 +2903,7 @@
 			children = (
 				E126CFBA2387A7F4002A546F /* Base */,
 				E126CFBD2387A7F8002A546F /* ko */,
+				6CD6600425A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderCustomCell.xib;
 			sourceTree = "<group>";
@@ -2803,6 +2913,7 @@
 			children = (
 				E1271B03224B17230083AF17 /* Base */,
 				E1F2AE4B227E865D00C87F3F /* ko */,
+				6CD6601325A028EC007BF7F9 /* zh-Hans */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -2812,6 +2923,7 @@
 			children = (
 				E15DA48222F1738C000557FC /* Base */,
 				E15DA48522F1738F000557FC /* ko */,
+				6CD65FEF25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = PromotionCell.xib;
 			sourceTree = "<group>";
@@ -2821,6 +2933,7 @@
 			children = (
 				E16B70DE229F9A78001D6B9C /* Base */,
 				E16B70E3229F9FAD001D6B9C /* ko */,
+				6CD65FF525A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = RedelegateCell.xib;
 			sourceTree = "<group>";
@@ -2830,6 +2943,7 @@
 			children = (
 				E17748F622842628003D8CD1 /* Base */,
 				E17748F92284263F003D8CD1 /* ko */,
+				6CD65FEE25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ClaimRewardAllCell.xib;
 			sourceTree = "<group>";
@@ -2839,6 +2953,7 @@
 			children = (
 				E17748FB22842689003D8CD1 /* Base */,
 				E1774900228426DC003D8CD1 /* ko */,
+				6CD65FEB25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = AllValidatorCell.xib;
 			sourceTree = "<group>";
@@ -2848,6 +2963,7 @@
 			children = (
 				E177490222842724003D8CD1 /* Base */,
 				E1E251DC22A66B860008F0DB /* ko */,
+				6CD65FEC25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = MyValidatorCell.xib;
 			sourceTree = "<group>";
@@ -2858,6 +2974,7 @@
 				E1945E2C222E7C0600A1436F /* Base */,
 				E1271B00224B16E20083AF17 /* en */,
 				E1F2AE49227E865D00C87F3F /* ko */,
+				6CD6601125A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -2868,6 +2985,7 @@
 				E1945E31222E7C0800A1436F /* Base */,
 				E1271B01224B16E20083AF17 /* en */,
 				E1F2AE4A227E865D00C87F3F /* ko */,
+				6CD6601225A028EC007BF7F9 /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -2877,6 +2995,7 @@
 			children = (
 				E1E251E222A671180008F0DB /* Base */,
 				E1E251E522A671260008F0DB /* ko */,
+				6CD65FED25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = OtherValidatorCell.xib;
 			sourceTree = "<group>";
@@ -2886,6 +3005,7 @@
 			children = (
 				E1F2AE4F227EC05100C87F3F /* ko */,
 				E1F2AE51227EC06900C87F3F /* en */,
+				6CD6601425A028EC007BF7F9 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2895,6 +3015,7 @@
 			children = (
 				E1F2AE5A227EC5B600C87F3F /* Base */,
 				E13696572292492800F3D5E2 /* ko */,
+				6CD6600F25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

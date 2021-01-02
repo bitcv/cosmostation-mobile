@@ -87,7 +87,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             if (chainType == ChainType.COSMOS_MAIN || chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST ||
                     chainType == ChainType.BAND_MAIN || chainType == ChainType.SECRET_MAIN || chainType == ChainType.IOV_MAIN ||
                     chainType == ChainType.CERTIK_MAIN || chainType == ChainType.IOV_TEST || chainType == ChainType.OKEX_TEST ||
-                    chainType == ChainType.CERTIK_TEST || chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST) {
+                    chainType == ChainType.CERTIK_TEST || chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST || chainType == ChainType.BAC_MAIN) {
                 guard let txHash = mBroadCaseResult?["txhash"] as? String  else {
                     self.onStartMainTab()
                     return
@@ -279,7 +279,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (chainType == ChainType.COSMOS_MAIN || chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST ||
                 chainType == ChainType.BAND_MAIN || chainType == ChainType.SECRET_MAIN || chainType == ChainType.IOV_MAIN ||
                 chainType == ChainType.CERTIK_MAIN || chainType == ChainType.IOV_TEST || chainType == ChainType.CERTIK_TEST ||
-                chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST) {
+                chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST || chainType == ChainType.BAC_MAIN) {
             cell?.feeLayer.isHidden = false
             cell?.usedFeeLayer.isHidden = true
             cell?.limitFeeLayer.isHidden = true
@@ -515,7 +515,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         if (chainType == ChainType.COSMOS_MAIN || chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST ||
                 chainType == ChainType.BAND_MAIN || chainType == ChainType.SECRET_MAIN || chainType == ChainType.IOV_MAIN ||
                 chainType == ChainType.CERTIK_MAIN || chainType == ChainType.IOV_TEST || chainType == ChainType.OKEX_TEST ||
-                chainType == ChainType.CERTIK_TEST || chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST) {
+                chainType == ChainType.CERTIK_TEST || chainType == ChainType.AKASH_MAIN || chainType == ChainType.COSMOS_TEST || chainType == ChainType.BAC_MAIN) {
             var coins :[Coin]?
             if (msg?.type == COSMOS_MSG_TYPE_TRANSFER3) {
                 cell?.fromLabel.text = msg?.value.inputs![0].address
@@ -1219,6 +1219,13 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             activityViewController.popoverPresentationController?.sourceView = self.view
             self.present(activityViewController, animated: true, completion: nil)
             
+        } else if (self.chainType! == ChainType.BAC_MAIN) {
+            let text = EXPLORER_BAC_MAIN + "txs/" + mTxInfo!.hash!
+            let textToShare = [ text ]
+            let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.view
+            self.present(activityViewController, animated: true, completion: nil)
+            
         } else if (self.chainType! == ChainType.BINANCE_MAIN) {
             let text = EXPLORER_BINANCE_MAIN + "txs/" + mTxInfo!.hash!
             let textToShare = [ text ]
@@ -1304,6 +1311,10 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             
         } else if (self.chainType! == ChainType.BINANCE_MAIN) {
             guard let url = URL(string: EXPLORER_BINANCE_MAIN + "txs/" + mTxInfo!.hash!) else { return }
+            self.onShowSafariWeb(url)
+            
+        } else if (self.chainType! == ChainType.BAC_MAIN) {
+            guard let url = URL(string: EXPLORER_BAC_MAIN + "txs/" + mTxInfo!.hash!) else { return }
             self.onShowSafariWeb(url)
             
         } else if (self.chainType! == ChainType.KAVA_MAIN) {
@@ -1406,6 +1417,10 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             
         } else if (self.chainType! == ChainType.BINANCE_MAIN) {
             url = BNB_URL_TX + txHash
+            request = Alamofire.request(url, method: .get, parameters: ["format":"json"], encoding: URLEncoding.default, headers: [:])
+            
+        } else if (self.chainType! == ChainType.BAC_MAIN) {
+            url = BAC_LCD_URL_TX + txHash
             request = Alamofire.request(url, method: .get, parameters: ["format":"json"], encoding: URLEncoding.default, headers: [:])
             
         } else if (self.chainType! == ChainType.BINANCE_TEST) {
@@ -1647,6 +1662,16 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
                     return true
                 }
                 if ($1.denom == OKEX_TEST_DENOM) {
+                    return false
+                }
+                return false
+            })
+        } else if (chainType! == ChainType.BAC_MAIN) {
+            return coins.sorted(by: {
+                if ($0.denom == BAC_MAIN_DENOM) {
+                    return true
+                }
+                if ($1.denom == BAC_MAIN_DENOM) {
                     return false
                 }
                 return false

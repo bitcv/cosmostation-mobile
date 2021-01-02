@@ -37,7 +37,12 @@ public struct IovStarNameResolve: Codable {
                     return nameResource.resource
                 }
                 
-            } else if (chain == ChainType.KAVA_MAIN) {
+            } else if (chain == ChainType.BAC_MAIN) {
+                if (nameResource.uri == "asset:bac" && nameResource.resource.starts(with: "bac")) {
+                    return nameResource.resource
+                }
+                
+            }  else if (chain == ChainType.KAVA_MAIN) {
                 if (nameResource.uri == "asset:kava" && nameResource.resource.starts(with: "kava")) {
                     return nameResource.resource
                 }

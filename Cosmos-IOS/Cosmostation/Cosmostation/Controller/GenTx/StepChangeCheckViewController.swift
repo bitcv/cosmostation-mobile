@@ -122,6 +122,8 @@ class StepChangeCheckViewController: BaseViewController, PasswordViewDelegate {
             url = CERTIK_TEST_ACCOUNT_INFO + account.account_address
         } else if (pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
             url = AKASH_ACCOUNT_INFO + account.account_address
+        } else if (pageHolderVC.chainType! == ChainType.BAC_MAIN){
+            url = BAC_LCD_URL_ACCOUNT_INFO + account.account_address
         }
         let request = Alamofire.request(url!, method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]);
         request.responseJSON { (response) in
@@ -153,7 +155,7 @@ class StepChangeCheckViewController: BaseViewController, PasswordViewDelegate {
                     self.onGenModifyRewardAddressTx()
                     
                 } else if (self.pageHolderVC.chainType! == ChainType.BAND_MAIN || self.pageHolderVC.chainType! == ChainType.SECRET_MAIN || self.pageHolderVC.chainType! == ChainType.IOV_MAIN ||
-                            self.pageHolderVC.chainType! == ChainType.IOV_TEST || self.pageHolderVC.chainType! == ChainType.CERTIK_MAIN || self.pageHolderVC.chainType! == ChainType.CERTIK_TEST) {
+                            self.pageHolderVC.chainType! == ChainType.IOV_TEST || self.pageHolderVC.chainType! == ChainType.CERTIK_MAIN || self.pageHolderVC.chainType! == ChainType.CERTIK_TEST || self.pageHolderVC.chainType! == ChainType.BAC_MAIN) {
                     guard let responseData = res as? NSDictionary,
                         let info = responseData.object(forKey: "result") as? [String : Any] else {
                             _ = BaseData.instance.deleteBalance(account: account)
@@ -263,6 +265,8 @@ class StepChangeCheckViewController: BaseViewController, PasswordViewDelegate {
                         url = CERTIK_TEST_BORAD_TX
                     } else if (self.pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
                         url = AKASH_BORAD_TX
+                    } else if(self.pageHolderVC.chainType! == ChainType.BAC_MAIN) {
+                        url = BAC_LCD_URL_BROAD_TX
                     }
                     let request = Alamofire.request(url, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
                     request.responseJSON { response in

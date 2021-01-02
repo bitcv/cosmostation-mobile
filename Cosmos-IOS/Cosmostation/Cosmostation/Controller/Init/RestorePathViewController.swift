@@ -48,7 +48,9 @@ class RestorePathViewController: BaseViewController, UITableViewDelegate, UITabl
             cell?.pathLabel.text = BASE_PATH.appending(String(indexPath.row))
         } else if (userChain == ChainType.BINANCE_MAIN || userChain == ChainType.BINANCE_TEST) {
             cell?.pathLabel.text = BNB_BASE_PATH.appending(String(indexPath.row))
-        } else if (userChain == ChainType.IOV_MAIN || userChain == ChainType.IOV_TEST) {
+        } else if (userChain == ChainType.BAC_MAIN) {
+            cell?.pathLabel.text = BAC_BASE_PATH.appending(String(indexPath.row))
+        }  else if (userChain == ChainType.IOV_MAIN || userChain == ChainType.IOV_TEST) {
             cell?.pathLabel.text = IOV_BASE_PATH.appending(String(indexPath.row))
         } else if (userChain == ChainType.BAND_MAIN) {
             cell?.pathLabel.text = BAND_BASE_PATH.appending(String(indexPath.row))
@@ -141,6 +143,26 @@ class RestorePathViewController: BaseViewController, UITableViewDelegate, UITabl
                             for bnbBalance in bnbAccountInfo.balances {
                                 if (bnbBalance.symbol == BNB_MAIN_DENOM) {
                                     cell?.denomAmount.attributedText = WUtils.displayAmount2(bnbBalance.free, cell!.denomAmount.font!, 0, 8)
+                                }
+                            }
+                        case .failure(let error):
+                            if (SHOW_LOG) { print("onFetchAccountInfo ", error) }
+                        }
+                    }
+                    
+                } else if (self.userChain == ChainType.BAC_MAIN) {
+                    cell?.denomAmount.attributedText = WUtils.displayAmount2(NSDecimalNumber.zero.stringValue, cell!.denomAmount.font!, 0, 8)
+                    let request = Alamofire.request(BAC_LCD_URL_ACCOUNT_INFO + address, method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:])
+                    request.responseJSON { (response) in
+                        switch response.result {
+                        case .success(let res):
+                            guard let info = res as? [String : Any] else {
+                                return
+                            }
+                            let bacAccountInfo = BacAccountInfo.init(info)
+                            for bacBalance in bacAccountInfo.balances {
+                                if (bacBalance.denom == BAC_MAIN_DENOM) {
+                                    cell?.denomAmount.attributedText = WUtils.displayAmount2(bacBalance.amount, cell!.denomAmount.font!, 0, 8)
                                 }
                             }
                         case .failure(let error):

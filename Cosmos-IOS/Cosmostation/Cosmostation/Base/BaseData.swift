@@ -42,6 +42,7 @@ final class BaseData : NSObject{
     var mHardPrice: NSDecimalNumber = NSDecimalNumber.zero
     
     var mBnbTokenList = Array<BnbToken>()
+    var mBacTokenList = Array<BacToken>()
     
     var mOkTokenList = OkTokenList.init();
     var mOkDeposit = OkDeposit.init();
@@ -562,7 +563,6 @@ final class BaseData : NSObject{
         }
         return result;
     }
-    
     public func selectAccountById(id: Int64) -> Account? {
         do {
             let query = DB_ACCOUNT.filter(DB_ACCOUNT_ID == id)

@@ -28,6 +28,7 @@ class TransactionViewController: UIViewController {
     
     var mIrisToken: IrisToken?
     var mBnbToken: BnbToken?
+    var mBacToken: BacToken?
     var mBnbTics = [String : NSMutableDictionary]()
     
     var mCosmosSendDenom: String?
@@ -65,34 +66,34 @@ class TransactionViewController: UIViewController {
         mAccount = BaseData.instance.selectAccountById(id: BaseData.instance.getRecentAccountId())
         mUserChain = WUtils.getChainType(mAccount!.account_base_chain)
         
-        if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE) {
+        if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE || mType == BAC_MSG_TYPE_DELEGATE) {
             stepDescription.text = NSLocalizedString("delegate_step_1", comment: "")
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_delegate", comment: "")
             
-        } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE) {
+        } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE || mType == BAC_MSG_TYPE_UNDELEGATE) {
             stepDescription.text = NSLocalizedString("undelegate_step_1", comment: "")
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_undelegate", comment: "")
             
-        } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE) {
+        } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE || mType == BAC_MSG_TYPE_BEGIN_REDELEGATE) {
             stepDescription.text = NSLocalizedString("redelegate_step_1", comment: "")
             stepImg.image = UIImage.init(named: "step1Img")
             self.titleLabel.text =  NSLocalizedString("title_redelegate", comment: "")
             
         } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                     mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                    mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                    mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) {
             stepDescription.text = NSLocalizedString("send_step_1", comment: "")
             stepImg.image = UIImage.init(named: "step1Img")
             self.titleLabel.text =  NSLocalizedString("title_send", comment: "")
             
-        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL) {
+        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL || mType == BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD) {
             stepDescription.text = NSLocalizedString("withdraw_single_step_1", comment: "")
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_reward", comment: "")
             
-        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+        } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
             stepDescription.text = NSLocalizedString("reward_address_step_1", comment: "")
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_reword_address_change", comment: "")
@@ -102,7 +103,7 @@ class TransactionViewController: UIViewController {
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_reinvest", comment: "")
             
-        } else if (mType == IRIS_MSG_TYPE_VOTE) {
+        } else if (mType == IRIS_MSG_TYPE_VOTE || mType == BAC_MSG_TYPE_VOTE) {
             stepDescription.text = NSLocalizedString("vote_step_1", comment: "")
             stepImg.image = UIImage.init(named: "4StepImg1")
             self.titleLabel.text =  NSLocalizedString("title_vote", comment: "")
@@ -249,6 +250,7 @@ class TransactionViewController: UIViewController {
             StepVc.mIrisRedelegate = self.mIrisRedelegate
             StepVc.mIrisToken = self.mIrisToken
             StepVc.mBnbToken = self.mBnbToken
+            StepVc.mBacToken = self.mBacToken
             StepVc.mBnbTics = self.mBnbTics
             StepVc.mProposeId = self.mProposeId
             StepVc.mProposalTitle = self.mProposalTitle
@@ -295,15 +297,15 @@ class TransactionViewController: UIViewController {
                     
                 } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                             mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) {
                     stepImg.image = UIImage.init(named: "step1Img")
                     stepDescription.text = NSLocalizedString("send_step_1", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL || mType == BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD) {
                     stepImg.image = UIImage.init(named: "4StepImg1")
                     stepDescription.text = NSLocalizedString("withdraw_single_step_1", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
                     stepImg.image = UIImage.init(named: "4StepImg1")
                     stepDescription.text = NSLocalizedString("reward_address_step_1", comment: "")
                     
@@ -395,29 +397,29 @@ class TransactionViewController: UIViewController {
                 
                 
             } else if (step == 1) {
-                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE) {
+                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE || mType == BAC_MSG_TYPE_DELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg2")
                     stepDescription.text = NSLocalizedString("delegate_step_2", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE || mType == BAC_MSG_TYPE_UNDELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg2")
                     stepDescription.text = NSLocalizedString("delegate_step_2", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE || mType == BAC_MSG_TYPE_BEGIN_REDELEGATE) {
                     stepImg.image = UIImage.init(named: "step2Img")
                     stepDescription.text = NSLocalizedString("redelegate_step_2", comment: "")
                     
                 } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                             mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) {
                     stepImg.image = UIImage.init(named: "step2Img")
                     stepDescription.text = NSLocalizedString("send_step_2", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL || mType == BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD) {
                     stepImg.image = UIImage.init(named: "4StepImg2")
                     stepDescription.text = NSLocalizedString("delegate_step_2", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
                     stepImg.image = UIImage.init(named: "4StepImg2")
                     stepDescription.text = NSLocalizedString("delegate_step_2", comment: "")
                     
@@ -509,29 +511,31 @@ class TransactionViewController: UIViewController {
                 
                 
             } else if (step == 2) {
-                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE) {
+                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE || mType == BAC_MSG_TYPE_DELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg3")
                     stepDescription.text = NSLocalizedString("delegate_step_3", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE || mType == BAC_MSG_TYPE_UNDELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg3")
                     stepDescription.text = NSLocalizedString("delegate_step_3", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE || mType == BAC_MSG_TYPE_BEGIN_REDELEGATE) {
                     stepImg.image = UIImage.init(named: "step3Img")
                     stepDescription.text = NSLocalizedString("redelegate_step_3", comment: "")
                     
                 } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                             mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER
+                || mType == BAC_MSG_TYPE_SEND) {
                     stepImg.image = UIImage.init(named: "step3Img")
                     stepDescription.text = NSLocalizedString("send_step_3", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL || mType == BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD) {
                     stepImg.image = UIImage.init(named: "4StepImg3")
                     stepDescription.text = NSLocalizedString("delegate_step_3", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY
+                || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
                     stepImg.image = UIImage.init(named: "4StepImg3")
                     stepDescription.text = NSLocalizedString("delegate_step_3", comment: "")
                     
@@ -623,29 +627,33 @@ class TransactionViewController: UIViewController {
                 
                 
             } else if (step == 3) {
-                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE) {
+                if (mType == COSMOS_MSG_TYPE_DELEGATE || mType == IRIS_MSG_TYPE_DELEGATE
+                || mType == BAC_MSG_TYPE_DELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg4")
                     stepDescription.text = NSLocalizedString("delegate_step_4", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_UNDELEGATE2 || mType == IRIS_MSG_TYPE_UNDELEGATE
+                || mType == BAC_MSG_TYPE_UNDELEGATE) {
                     stepImg.image = UIImage.init(named: "4StepImg4")
                     stepDescription.text = NSLocalizedString("undelegate_step_4", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE) {
+                } else if (mType == COSMOS_MSG_TYPE_REDELEGATE2 || mType == IRIS_MSG_TYPE_REDELEGATE
+                || mType == BAC_MSG_TYPE_BEGIN_REDELEGATE) {
                     stepImg.image = UIImage.init(named: "step4Img")
                     stepDescription.text = NSLocalizedString("redelegate_step_4", comment: "")
                     
                 } else if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                             mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                            mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) {
                     stepImg.image = UIImage.init(named: "step4Img")
                     stepDescription.text = NSLocalizedString("send_step_4", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_DEL || mType == IRIS_MSG_TYPE_WITHDRAW || mType == IRIS_MSG_TYPE_WITHDRAW_ALL || mType == BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD) {
                     stepImg.image = UIImage.init(named: "4StepImg4")
                     stepDescription.text = NSLocalizedString("withdraw_single_step_4", comment: "")
                     
-                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY) {
+                } else if (mType == COSMOS_MSG_TYPE_WITHDRAW_MIDIFY || mType == IRIS_MSG_TYPE_WITHDRAW_MIDIFY
+                || mType == BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION) {
                     stepImg.image = UIImage.init(named: "4StepImg4")
                     stepDescription.text = NSLocalizedString("reward_address_step_4", comment: "")
                     
@@ -738,7 +746,7 @@ class TransactionViewController: UIViewController {
             } else if (step == 4) {
                 if (mType == COSMOS_MSG_TYPE_TRANSFER2 || mType == IRIS_MSG_TYPE_TRANSFER || mType == BNB_MSG_TYPE_TRANSFER || mType == KAVA_MSG_TYPE_TRANSFER ||
                         mType == IOV_MSG_TYPE_TRANSFER || mType == BAND_MSG_TYPE_TRANSFER || mType == SECRET_MSG_TYPE_TRANSFER || mType == OK_MSG_TYPE_TRANSFER ||
-                        mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER) {
+                        mType == CERTIK_MSG_TYPE_TRANSFER || mType == AKASH_MSG_TYPE_TRANSFER || mType == BAC_MSG_TYPE_SEND) {
                     stepImg.image = UIImage.init(named: "step5Img")
                     stepDescription.text = NSLocalizedString("send_step_5", comment: "")
                     

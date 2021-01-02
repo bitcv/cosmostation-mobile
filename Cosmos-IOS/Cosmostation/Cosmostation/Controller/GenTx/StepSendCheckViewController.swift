@@ -139,7 +139,59 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                 
             }
             
-        } else if (pageHolderVC.chainType! == ChainType.KAVA_MAIN || pageHolderVC.chainType! == ChainType.KAVA_TEST) {
+        }  else if (pageHolderVC.chainType! == ChainType.BAC_MAIN) {
+            mDpDecimal = 9
+            mToSendDenomLabel.text = pageHolderVC.mBacToken?.symbol.uppercased()
+            mCurrentBalanceDenomTitle.text = pageHolderVC.mBacToken?.symbol.uppercased()
+            mRemainBalanceTitle.text = pageHolderVC.mBacToken?.symbol.uppercased()
+            
+            if (pageHolderVC.mBacToken?.original_symbol == BAC_MAIN_DENOM) {
+                currentAva = pageHolderVC.mAccount!.getBacBalance()
+                mToSendAmountLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mToSendAmountLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                mFeeAmountLabel.attributedText = WUtils.displayAmount(feeAmount.stringValue, mFeeAmountLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                mTotalSpendLabel.attributedText = WUtils.displayAmount(feeAmount.adding(toSendAmount).stringValue, mTotalSpendLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                
+                mCurrentAvailable.attributedText = WUtils.displayAmount(currentAva.stringValue, mCurrentAvailable.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                mReminaingAvailable.attributedText = WUtils.displayAmount(currentAva.subtracting(feeAmount).subtracting(toSendAmount).stringValue, mReminaingAvailable.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                
+                mTotalSpendPrice.attributedText = WUtils.dpBacValue(feeAmount.adding(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
+                mReminaingPrice.attributedText = WUtils.dpBacValue(currentAva.subtracting(feeAmount).subtracting(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
+                
+            }  else if (pageHolderVC.mBacToken?.original_symbol == BCV_MAIN_DENOM) {
+                mToSpendDenomTitle.text = pageHolderVC.mBacToken?.symbol.uppercased()
+                currentAva = pageHolderVC.mAccount!.getBcvBalance()
+                mToSendAmountLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mToSendAmountLabel.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                mFeeAmountLabel.attributedText = WUtils.displayAmount(feeAmount.stringValue, mFeeAmountLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                mTotalSpendLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mTotalSpendLabel.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                
+                mCurrentAvailable.attributedText = WUtils.displayAmount(currentAva.stringValue, mCurrentAvailable.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                mReminaingAvailable.attributedText = WUtils.displayAmount(currentAva.subtracting(toSendAmount).stringValue, mReminaingAvailable.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                
+                mTotalSpendPrice.attributedText = WUtils.dpBacValue(feeAmount.adding(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
+                mReminaingPrice.attributedText = WUtils.dpBacValue(currentAva.subtracting(feeAmount).subtracting(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
+                
+            } else {
+                mToSendDenomLabel.textColor = UIColor.white
+                mCurrentBalanceDenomTitle.textColor = UIColor.white
+                mRemainBalanceTitle.textColor = UIColor.white
+                
+                mTotalSpendTitle.isHidden = true
+                mTotalSpendLabel.isHidden = true
+                mToSpendDenomTitle.isHidden = true
+                mTotalSpendPrice.isHidden = true
+                mReminaingPrice.isHidden = true
+                
+                currentAva = pageHolderVC.mAccount!.getTokenBalance(pageHolderVC.mBacToken!.symbol)
+                mToSendAmountLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mToSendAmountLabel.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)
+                mFeeAmountLabel.attributedText = WUtils.displayAmount(feeAmount.stringValue, mFeeAmountLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
+                mTotalSpendLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mTotalSpendLabel.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)
+                
+                mCurrentAvailable.attributedText = WUtils.displayAmount(currentAva.stringValue, mCurrentAvailable.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)
+                mReminaingAvailable.attributedText = WUtils.displayAmount(currentAva.subtracting(toSendAmount).stringValue, mReminaingAvailable.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)
+                
+            }
+            
+        }else if (pageHolderVC.chainType! == ChainType.KAVA_MAIN || pageHolderVC.chainType! == ChainType.KAVA_TEST) {
             mDpDecimal = WUtils.getKavaCoinDecimal(self.pageHolderVC.mKavaSendDenom!)
             mFeeAmountLabel.attributedText = WUtils.displayAmount2(feeAmount.stringValue, mFeeAmountLabel.font, 6, 6)
             if (toSendDenom == KAVA_MAIN_DENOM) {
@@ -297,7 +349,7 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
             if (pageHolderVC.chainType! == ChainType.COSMOS_MAIN || pageHolderVC.chainType! == ChainType.IRIS_MAIN || pageHolderVC.chainType! == ChainType.KAVA_MAIN ||
                     pageHolderVC.chainType! == ChainType.KAVA_TEST || pageHolderVC.chainType! == ChainType.IOV_MAIN || pageHolderVC.chainType! == ChainType.BAND_MAIN ||
                     pageHolderVC.chainType! == ChainType.SECRET_MAIN || pageHolderVC.chainType! == ChainType.IOV_TEST || pageHolderVC.chainType! == ChainType.OKEX_TEST ||
-                    pageHolderVC.chainType! == ChainType.CERTIK_MAIN || pageHolderVC.chainType! == ChainType.IOV_TEST || pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
+                    pageHolderVC.chainType! == ChainType.CERTIK_MAIN || pageHolderVC.chainType! == ChainType.IOV_TEST || pageHolderVC.chainType! == ChainType.AKASH_MAIN || pageHolderVC.chainType! == ChainType.BAC_MAIN) {
                 self.onFetchAccountInfo(pageHolderVC.mAccount!)
                 
             } else if (pageHolderVC.chainType! == ChainType.BINANCE_MAIN || pageHolderVC.chainType! == ChainType.BINANCE_TEST) {
@@ -337,6 +389,8 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
             url = CERTIK_TEST_ACCOUNT_INFO + account.account_address
         } else if (pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
             url = AKASH_ACCOUNT_INFO + account.account_address
+        } else if(pageHolderVC.chainType == ChainType.BAC_MAIN) {
+            url = BAC_LCD_URL_ACCOUNT_INFO + account.account_address
         }
         let request = Alamofire.request(url!, method: .get, parameters: [:], encoding: URLEncoding.default, headers: [:]);
         request.responseJSON { (response) in
@@ -355,7 +409,7 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                     BaseData.instance.updateBalances(account.account_id, WUtils.getBalancesWithAccountInfo(account, accountInfo))
                     self.onGenSendTx()
                     
-                } else if (self.pageHolderVC.chainType! == ChainType.IRIS_MAIN) {
+                } else if (self.pageHolderVC.chainType! == ChainType.IRIS_MAIN||self.pageHolderVC.chainType! == ChainType.BAC_MAIN) {
                     guard let info = res as? [String : Any] else {
                         _ = BaseData.instance.deleteBalance(account: account)
                         self.hideWaittingAlert()
@@ -380,7 +434,8 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                     self.onGenSendTx()
                     
                 } else if (self.pageHolderVC.chainType! == ChainType.BAND_MAIN || self.pageHolderVC.chainType! == ChainType.SECRET_MAIN || self.pageHolderVC.chainType! == ChainType.IOV_MAIN ||
-                            self.pageHolderVC.chainType! == ChainType.IOV_TEST || self.pageHolderVC.chainType! == ChainType.CERTIK_MAIN || self.pageHolderVC.chainType! == ChainType.CERTIK_TEST) {
+                            self.pageHolderVC.chainType! == ChainType.IOV_TEST || self.pageHolderVC.chainType! == ChainType.CERTIK_MAIN || self.pageHolderVC.chainType! == ChainType.CERTIK_TEST
+                ) {
                     guard let responseData = res as? NSDictionary,
                         let info = responseData.object(forKey: "result") as? [String : Any] else {
                         _ = BaseData.instance.deleteBalance(account: account)
@@ -455,7 +510,8 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                 if (self.pageHolderVC.chainType! == ChainType.COSMOS_MAIN || self.pageHolderVC.chainType! == ChainType.KAVA_MAIN || self.pageHolderVC.chainType! == ChainType.KAVA_TEST ||
                         self.pageHolderVC.chainType! == ChainType.BAND_MAIN || self.pageHolderVC.chainType! == ChainType.SECRET_MAIN  || self.pageHolderVC.chainType! == ChainType.IOV_MAIN ||
                         self.pageHolderVC.chainType! == ChainType.IOV_TEST || self.pageHolderVC.chainType! == ChainType.OKEX_TEST || self.pageHolderVC.chainType! == ChainType.CERTIK_MAIN ||
-                        self.pageHolderVC.chainType! == ChainType.CERTIK_TEST || self.pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
+                        self.pageHolderVC.chainType! == ChainType.CERTIK_TEST || self.pageHolderVC.chainType! == ChainType.AKASH_MAIN
+                        || self.pageHolderVC.chainType! == ChainType.BAC_MAIN) {
                     
                     let stdMsg = MsgGenerator.getToSignMsg(WUtils.getChainId(self.pageHolderVC.mAccount!.account_base_chain), String(self.pageHolderVC.mAccount!.account_account_numner), String(self.pageHolderVC.mAccount!.account_sequence_number), msgList, self.pageHolderVC.mFee!, self.pageHolderVC.mMemo!)
                     let encoder = JSONEncoder()
@@ -543,6 +599,8 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                         url = CERTIK_TEST_BORAD_TX
                     } else if (self.pageHolderVC.chainType! == ChainType.AKASH_MAIN) {
                         url = AKASH_BORAD_TX
+                    } else if (self.pageHolderVC.chainType! == ChainType.BAC_MAIN) {
+                        url = BAC_LCD_URL_BROAD_TX
                     }
                     let request = Alamofire.request(url!, method: .post, parameters: params, encoding: JSONEncoding.default, headers: [:])
                     request.responseJSON { response in

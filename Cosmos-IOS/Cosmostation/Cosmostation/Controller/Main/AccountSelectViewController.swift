@@ -117,6 +117,13 @@ class AccountSelectViewController: BaseViewController, UITableViewDelegate, UITa
                     cell?.chainImg.image = UIImage(named: "irisWh")
                     cell?.chainName.text = "IRIS"
                     
+                } else if (selectedChain == ChainType.BAC_MAIN) {
+                    cell?.chainImg.isHidden = false
+                    cell?.chainName.isHidden = false
+                    cell?.chainAll.isHidden = true
+                    cell?.chainImg.image = UIImage(named: "bacChainImg")
+                    cell?.chainName.text = "BAC"
+                    
                 } else if (selectedChain == ChainType.BINANCE_MAIN) {
                     cell?.chainImg.isHidden = false
                     cell?.chainName.isHidden = false

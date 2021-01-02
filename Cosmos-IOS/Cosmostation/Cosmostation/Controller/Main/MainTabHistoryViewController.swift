@@ -61,7 +61,10 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
             self.historyTableView.isHidden = true
             self.comingLabel.text = "Check with Explorer"
             
-        } else if (chainType == ChainType.IOV_MAIN ) {
+        } else if(chainType == ChainType.BAC_MAIN) {
+            onFetchApiHistory(mainTabVC.mAccount.account_address);
+        }
+        else if (chainType == ChainType.IOV_MAIN ) {
             onFetchApiHistory(mainTabVC.mAccount.account_address);
         } else if (chainType == ChainType.OKEX_TEST || chainType == ChainType.IOV_TEST) {
             self.comingLabel.isHidden = false
@@ -174,6 +177,10 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
             titleChainImg.image = UIImage(named: "certikTestnetImg")
             titleChainName.text = "(Certik Testnet)"
             titleAlarmBtn.isHidden = true
+        } else if (chainType! == ChainType.BAC_MAIN){
+            titleChainImg.image = UIImage(named: "bacChainImg")
+            titleChainName.text = "(BAC Mainnet)"
+            titleAlarmBtn.isHidden = true
         }
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {
@@ -215,6 +222,8 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
             onFetchApiHistory(mainTabVC.mAccount.account_address);
         } else if (chainType == ChainType.COSMOS_TEST) {
             self.comingLabel.isHidden = false
+        } else if (chainType == ChainType.BAC_MAIN) {
+            onFetchApiHistory(mainTabVC.mAccount.account_address);
         }
     }
 
@@ -252,6 +261,8 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
             return onSetCertikItem(tableView, indexPath);
         } else if (chainType == ChainType.AKASH_MAIN) {
             return onSetAkashItem(tableView, indexPath);
+        } else if(chainType == ChainType.BAC_MAIN){
+            return onSetBacItem(tableView, indexPath)
         }
         return onSetEmptyItem(tableView, indexPath);
     }
@@ -294,7 +305,20 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
         }
         return cell!
     }
-    
+    func onSetBacItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
+        let cell:HistoryCell? = tableView.dequeueReusableCell(withIdentifier:"HistoryCell") as? HistoryCell
+        let history = mApiHistories[indexPath.row]
+        cell?.txTimeLabel.text = WUtils.txTimetoString(input: history.time)
+        cell?.txTimeGapLabel.text = WUtils.txTimeGap(input: history.time)
+        cell?.txBlockLabel.text = String(history.height) + " block"
+        cell?.txTypeLabel.text = WUtils.historyTitle(history.msg, mainTabVC.mAccount.account_address)
+        if (history.result.code > 0) {
+            cell?.txResultLabel.isHidden = false
+        } else {
+            cell?.txResultLabel.isHidden = true
+        }
+        return cell!
+    }
     func onSetBnbItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
         let cell:HistoryCell? = tableView.dequeueReusableCell(withIdentifier:"HistoryCell") as? HistoryCell
         let history = mBnbHistories[indexPath.row]
@@ -499,6 +523,7 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
     
     func onFetchApiHistory(_ address:String) {
         var url: String?
+        var method:HTTPMethod = .get
         if (chainType == ChainType.COSMOS_MAIN) {
             url = COSMOS_API_HISTORY + address
         } else if (chainType == ChainType.IRIS_MAIN) {
@@ -520,8 +545,11 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
             url = CERTIK_TEST_API_HISTORY + address
         } else if (chainType == ChainType.AKASH_MAIN) {
             url = AKASH_API_HISTORY + address
+        } else if(chainType == ChainType.BAC_MAIN){
+            url = BAC_LCD_URL_USER_HISTORY + address + BAC_HISTORY_TAIL
+            method = .post
         }
-        let request = Alamofire.request(url!, method: .get, parameters: ["limit":"50"], encoding: URLEncoding.default, headers: [:]);
+        let request = Alamofire.request(url!, method: method, parameters: ["limit":"50"], encoding: URLEncoding.default, headers: [:]);
         request.responseJSON { (response) in
             switch response.result {
             case .success(let res):

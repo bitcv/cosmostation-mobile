@@ -133,10 +133,18 @@ class RestoreViewController: BaseViewController , UICollectionViewDelegate, UICo
     
     func onShowChainType() {
         let showAlert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        let bacAction = UIAlertAction(title: NSLocalizedString("chain_title_bac", comment: ""), style: .default, handler: {_ in
+            self.chainType = ChainType.BAC_MAIN
+            self.initViewUpdate()
+        })
+        bacAction.setValue(UIImage(named: "bacChainImg")?.withRenderingMode(.alwaysOriginal), forKey: "image")
+        
         let cosmosAction = UIAlertAction(title: NSLocalizedString("chain_title_cosmos", comment: ""), style: .default, handler: { _ in
             self.chainType = ChainType.COSMOS_MAIN
             self.initViewUpdate()
         })
+        
         cosmosAction.setValue(UIImage(named: "cosmosWhMain")?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
         let irisAction = UIAlertAction(title: NSLocalizedString("chain_title_iris", comment: ""), style: .default, handler: {_ in
@@ -224,6 +232,7 @@ class RestoreViewController: BaseViewController , UICollectionViewDelegate, UICo
         })
         certikTestAction.setValue(UIImage(named: "certikTestnetImg")?.withRenderingMode(.alwaysOriginal), forKey: "image")
         
+        showAlert.addAction(bacAction)
         showAlert.addAction(cosmosAction)
         showAlert.addAction(irisAction)
         showAlert.addAction(bnbAction)

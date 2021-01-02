@@ -81,7 +81,21 @@ class StepFeeViewController: BaseViewController {
             self.minFeeAmountLabel.attributedText = WUtils.displayAmount2(feeAmount.stringValue, minFeeAmountLabel.font, 0, 8)
             self.minFeePriceLabel.attributedText  = WUtils.dpBnbValue(feeAmount, BaseData.instance.getLastPrice(), minFeePriceLabel.font)
             
-        } else if (pageHolderVC.chainType! == ChainType.IOV_MAIN || pageHolderVC.chainType! == ChainType.IOV_TEST) {
+        }  else if (pageHolderVC.chainType! == ChainType.BAC_MAIN) {
+            self.minFeeCardView.isHidden = false
+            self.rateFeeCardView.isHidden = true
+            
+            self.feeSlider.isHidden = true
+            self.feesLabels.isHidden = true
+            
+            self.speedImg.image = UIImage.init(named: "feeImg")
+            self.speedMsg.text = NSLocalizedString("fee_speed_bac_title", comment: "")
+            
+            feeAmount = WUtils.plainStringToDecimal(GAS_FEE_BAC_TRANSFER)
+            self.minFeeAmountLabel.attributedText = WUtils.displayAmount2(feeAmount.stringValue, minFeeAmountLabel.font, 0, 8)
+            self.minFeePriceLabel.attributedText  = WUtils.dpBacValue(feeAmount, BaseData.instance.getLastPrice(), minFeePriceLabel.font)
+            
+        }  else if (pageHolderVC.chainType! == ChainType.IOV_MAIN || pageHolderVC.chainType! == ChainType.IOV_TEST) {
             self.minFeeCardView.isHidden = true
             self.rateFeeCardView.isHidden = false
             
@@ -389,6 +403,23 @@ class StepFeeViewController: BaseViewController {
         } else if (pageHolderVC.chainType! == ChainType.BINANCE_MAIN || pageHolderVC.chainType! == ChainType.BINANCE_TEST) {
             //Notice! useless but make format!
             feeCoin = Coin.init(BNB_MAIN_DENOM, feeAmount.stringValue)
+            var fee = Fee.init()
+            let estGas = WUtils.getEstimateGasAmount(pageHolderVC.chainType!, pageHolderVC.mType!, pageHolderVC.mRewardTargetValidators.count).stringValue
+            fee.gas = estGas
+            
+            var estAmount: Array<Coin> = Array<Coin>()
+            estAmount.append(feeCoin)
+            fee.amount = estAmount
+            
+            pageHolderVC.mFee = fee
+            
+            self.beforeBtn.isUserInteractionEnabled = false
+            self.nextBtn.isUserInteractionEnabled = false
+            pageHolderVC.onNextPage()
+            
+        } else if (pageHolderVC.chainType! == ChainType.BAC_MAIN ) {
+            //Notice! useless but make format!
+            feeCoin = Coin.init(BAC_MAIN_DENOM, feeAmount.multiplying(byPowerOf10: Int16(BAC_DECIMAL)).stringValue)
             var fee = Fee.init()
             let estGas = WUtils.getEstimateGasAmount(pageHolderVC.chainType!, pageHolderVC.mType!, pageHolderVC.mRewardTargetValidators.count).stringValue
             fee.gas = estGas

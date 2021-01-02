@@ -162,6 +162,18 @@ class MsgGenerator {
             
             msg.type = CERTIK_MSG_TYPE_TRANSFER
             msg.value = value
+        } else if (chain == ChainType.BAC_MAIN) {
+            value.from_address = fromAddress
+            value.to_address = toAddress
+            let data = try? JSONEncoder().encode(amount)
+            do {
+                value.amount = try JSONDecoder().decode(AmountType.self, from:data!)
+            } catch {
+                print(error)
+            }
+            
+            msg.type = BAC_MSG_TYPE_SEND
+            msg.value = value
         }
         return msg
     }

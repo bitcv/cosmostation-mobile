@@ -79,7 +79,7 @@ class WUtils {
     static func getBalancesWithAccountInfo(_ account: Account, _ accountInfo: AccountInfo) -> Array<Balance> {
         var result = Array<Balance>()
         if (accountInfo.type == COSMOS_AUTH_TYPE_ACCOUNT || accountInfo.type == COSMOS_AUTH_TYPE_ACCOUNT_LEGACY || accountInfo.type == IRIS_BANK_TYPE_ACCOUNT ||
-            accountInfo.type == COSMOS_AUTH_TYPE_CERTIK_MANUAL) {
+                accountInfo.type == COSMOS_AUTH_TYPE_CERTIK_MANUAL || accountInfo.type == BAC_AUTH_TYPE_ACCOUNT) {
             for coin in accountInfo.value.coins {
                 result.append(Balance.init(account.account_id, coin.denom, coin.amount, Date().millisecondsSince1970))
             }
@@ -97,7 +97,7 @@ class WUtils {
         if(accountInfo.type == COSMOS_AUTH_TYPE_ACCOUNT ||
             accountInfo.type == COSMOS_AUTH_TYPE_ACCOUNT_LEGACY ||
             accountInfo.type == IRIS_BANK_TYPE_ACCOUNT ||
-            accountInfo.type == COSMOS_AUTH_TYPE_CERTIK_MANUAL) {
+            accountInfo.type == COSMOS_AUTH_TYPE_CERTIK_MANUAL || accountInfo.type == BAC_AUTH_TYPE_ACCOUNT) {
             for coin in accountInfo.value.coins {
                 result.append(Balance.init(-1, coin.denom, coin.amount, Date().millisecondsSince1970))
             }
@@ -637,10 +637,10 @@ class WUtils {
         return check
     }
     
-    static func decimalNumberToLocaleString(_ input: NSDecimalNumber, _ deciaml:Int16) -> String {
+    static func decimalNumberToLocaleString(_ input: NSDecimalNumber, _ decimal:Int16) -> String {
         let nf = NumberFormatter()
         nf.minimumFractionDigits = 0
-        nf.maximumFractionDigits = Int(deciaml)
+        nf.maximumFractionDigits = Int(decimal)
         nf.numberStyle = .decimal
         nf.locale = Locale.current
         nf.groupingSeparator = ""
@@ -666,14 +666,14 @@ class WUtils {
         }
     }
     
-    static func displayAmount(_ amount: String?, _ font:UIFont, _ deciaml:Int, _ chain:ChainType) -> NSMutableAttributedString {
+    static func displayAmount(_ amount: String?, _ font:UIFont, _ decimal:Int, _ chain:ChainType) -> NSMutableAttributedString {
         let nf = NumberFormatter()
-        nf.minimumFractionDigits = deciaml
-        nf.maximumFractionDigits = deciaml
+        nf.minimumFractionDigits = decimal
+        nf.maximumFractionDigits = decimal
         nf.numberStyle = .decimal
 
         let amount = localeStringToDecimal(amount)
-        let handler = NSDecimalNumberHandler(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(deciaml), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: true)
+        let handler = NSDecimalNumberHandler(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(decimal), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: true)
 
         var formatted: String?
         if (amount == NSDecimalNumber.zero) {
@@ -686,10 +686,13 @@ class WUtils {
             formatted = nf.string(from: amount.dividing(by: 1000000000000000000).rounding(accordingToBehavior: handler))
         } else if (chain == ChainType.BINANCE_MAIN || chain == ChainType.BINANCE_TEST) {
             formatted = nf.string(from: amount.rounding(accordingToBehavior: handler))
+        } else if (chain == ChainType.BAC_MAIN) {
+            let powv = pow(10, decimal)
+            formatted = nf.string(from: amount.dividing(by: NSDecimalNumber(decimal: powv)).rounding(accordingToBehavior: handler))
         }
 
         let added       = formatted
-        let endIndex    = added!.index(added!.endIndex, offsetBy: -deciaml)
+        let endIndex    = added!.index(added!.endIndex, offsetBy: -decimal)
 
         let preString   = added![..<endIndex]
         let postString  = added![endIndex...]
@@ -746,14 +749,14 @@ class WUtils {
         return formatted!
     }
     
-    static func dpTokenAvailable(_ balances:Array<Balance>, _ font:UIFont, _ deciaml:Int, _ symbol:String, _ chain:ChainType) -> NSMutableAttributedString {
+    static func dpTokenAvailable(_ balances:Array<Balance>, _ font:UIFont, _ decimal:Int, _ symbol:String, _ chain:ChainType) -> NSMutableAttributedString {
         var amount = NSDecimalNumber.zero
         for balance in balances {
             if (balance.balance_denom == symbol) {
                 amount = plainStringToDecimal(balance.balance_amount)
             }
         }
-        return displayAmount(amount.stringValue, font, deciaml, chain);
+        return displayAmount(amount.stringValue, font, decimal, chain);
     }
     
     static func availableAmount(_ balances:Array<Balance>, _ symbol:String) -> NSDecimalNumber {
@@ -804,23 +807,23 @@ class WUtils {
         return plainStringToDecimal(withdraw.quantity)
     }
     
-    static func dpVestingCoin(_ balances:Array<Balance>, _ font:UIFont, _ deciaml:Int, _ symbol:String, _ chain:ChainType) -> NSMutableAttributedString {
+    static func dpVestingCoin(_ balances:Array<Balance>, _ font:UIFont, _ decimal:Int, _ symbol:String, _ chain:ChainType) -> NSMutableAttributedString {
         var amount = NSDecimalNumber.zero
         for balance in balances {
             if (balance.balance_denom == symbol) {
                 amount = plainStringToDecimal(balance.balance_locked)
             }
         }
-        return displayAmount(amount.stringValue, font, deciaml, chain);
+        return displayAmount(amount.stringValue, font, decimal, chain);
     }
     
     
-    static func dpDeleagted(_ bondings:Array<Bonding>, _ validators:Array<Validator>,_ font:UIFont, _ deciaml:Int, _ chain:ChainType) -> NSMutableAttributedString {
+    static func dpDeleagted(_ bondings:Array<Bonding>, _ validators:Array<Validator>,_ font:UIFont, _ decimal:Int, _ chain:ChainType) -> NSMutableAttributedString {
         var amount = NSDecimalNumber.zero
         for bonding in bondings {
             amount = amount.adding(bonding.getBondingAmount(validators))
         }
-        return displayAmount(amount.stringValue, font, deciaml, chain);
+        return displayAmount(amount.stringValue, font, decimal, chain);
     }
     
     static func deleagtedAmount(_ bondings:Array<Bonding>, _ validators:Array<Validator>, _ chain:ChainType) -> NSDecimalNumber {
@@ -831,12 +834,12 @@ class WUtils {
         return amount
     }
     
-    static func dpUnbondings(_ unbondings:Array<Unbonding>, _ font:UIFont, _ deciaml:Int, _ chain:ChainType) -> NSMutableAttributedString {
+    static func dpUnbondings(_ unbondings:Array<Unbonding>, _ font:UIFont, _ decimal:Int, _ chain:ChainType) -> NSMutableAttributedString {
         var amount = NSDecimalNumber.zero
         for unbonding in unbondings {
             amount = amount.adding(plainStringToDecimal(unbonding.unbonding_balance))
         }
-        return displayAmount(amount.stringValue, font, deciaml, chain);
+        return displayAmount(amount.stringValue, font, decimal, chain);
     }
     
     static func unbondingAmount(_ unbondings:Array<Unbonding>, _ chain:ChainType) -> NSDecimalNumber {
@@ -847,7 +850,7 @@ class WUtils {
         return amount
     }
     
-    static func dpRewards(_ rewards:Array<Reward>, _ font:UIFont, _ deciaml:Int, _ symbol:String, _ chain:ChainType) ->  NSMutableAttributedString {
+    static func dpRewards(_ rewards:Array<Reward>, _ font:UIFont, _ decimal:Int, _ symbol:String, _ chain:ChainType) ->  NSMutableAttributedString {
         var amount = NSDecimalNumber.zero
         for reward in rewards {
             for coin in reward.reward_amount {
@@ -856,7 +859,7 @@ class WUtils {
                 }
             }
         }
-        return displayAmount(amount.stringValue, font, deciaml, chain)
+        return displayAmount(amount.stringValue, font, decimal, chain)
     }
     
     static func rewardAmount(_ rewards:Array<Reward>, _ symbol:String, _ chain:ChainType) ->  NSDecimalNumber {
@@ -871,22 +874,22 @@ class WUtils {
         return amount
     }
     
-    static func dpIrisRewards(_ rewards:IrisRewards?, _ font:UIFont, _ deciaml:Int, _ chain:ChainType ) ->  NSMutableAttributedString {
+    static func dpIrisRewards(_ rewards:IrisRewards?, _ font:UIFont, _ decimal:Int, _ chain:ChainType ) ->  NSMutableAttributedString {
         if (rewards != nil && (rewards?.delegations.count)! > 0) {
-            return displayAmount((rewards?.getSimpleIrisReward().stringValue)!, font, deciaml, chain)
+            return displayAmount((rewards?.getSimpleIrisReward().stringValue)!, font, decimal, chain)
         } else {
-            return displayAmount(NSDecimalNumber.zero.stringValue, font, deciaml, chain)
+            return displayAmount(NSDecimalNumber.zero.stringValue, font, decimal, chain)
         }
     }
     
     
     
-    static func dpAllAtom(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:Array<Reward>, _ validators:Array<Validator>, _ font:UIFont, _ deciaml:Int, _ chain:ChainType) ->  NSMutableAttributedString {
-        return displayAmount(getAllAtom(balances, bondings, unbondings, rewards, validators).stringValue, font, deciaml, chain)
+    static func dpAllAtom(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:Array<Reward>, _ validators:Array<Validator>, _ font:UIFont, _ decimal:Int, _ chain:ChainType) ->  NSMutableAttributedString {
+        return displayAmount(getAllAtom(balances, bondings, unbondings, rewards, validators).stringValue, font, decimal, chain)
     }
     
-    static func dpAllIris(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:IrisRewards?, _ validators:Array<Validator>, _ font:UIFont, _ deciaml:Int, _ chain:ChainType) -> NSMutableAttributedString {
-        return displayAmount(getAllIris(balances, bondings, unbondings, rewards, validators).stringValue, font, deciaml, chain)
+    static func dpAllIris(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:IrisRewards?, _ validators:Array<Validator>, _ font:UIFont, _ decimal:Int, _ chain:ChainType) -> NSMutableAttributedString {
+        return displayAmount(getAllIris(balances, bondings, unbondings, rewards, validators).stringValue, font, decimal, chain)
     }
     
     static func dpAllAtomValue(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:Array<Reward>, _ validators:Array<Validator>, _ price:Double?, _ font:UIFont) ->  NSMutableAttributedString {
@@ -942,6 +945,19 @@ class WUtils {
     }
 
     static func dpBnbValue(_ amount:NSDecimalNumber, _ price:Double?, _ font:UIFont) ->  NSMutableAttributedString {
+        if (price == nil) {
+            return dpValue(NSDecimalNumber.zero, font)
+        }
+        var result = NSDecimalNumber.zero
+        if (BaseData.instance.getCurrency() == 5) {
+            result = NSDecimalNumber(value: price!).multiplying(by: amount, withBehavior: WUtils.handler8)
+        } else {
+            result = NSDecimalNumber(value: price!).multiplying(by: amount, withBehavior: WUtils.handler2Down)
+        }
+        return dpValue(result, font)
+    }
+    
+    static func dpBacValue(_ amount:NSDecimalNumber, _ price:Double?, _ font:UIFont) ->  NSMutableAttributedString {
         if (price == nil) {
             return dpValue(NSDecimalNumber.zero, font)
         }
@@ -1050,14 +1066,14 @@ class WUtils {
     }
     
     
-    static func displayGasRate(_ rate: NSDecimalNumber, font:UIFont, _ deciaml:Int) -> NSMutableAttributedString {
+    static func displayGasRate(_ rate: NSDecimalNumber, font:UIFont, _ decimal:Int) -> NSMutableAttributedString {
         let nf = NumberFormatter()
-        nf.minimumFractionDigits = deciaml
-        nf.maximumFractionDigits = deciaml
+        nf.minimumFractionDigits = decimal
+        nf.maximumFractionDigits = decimal
         nf.numberStyle = .decimal
         
         let formatted   = nf.string(from: rate)!
-        let endIndex    = formatted.index(formatted.endIndex, offsetBy: -(deciaml))
+        let endIndex    = formatted.index(formatted.endIndex, offsetBy: -(decimal))
         
         let preString   = formatted[..<endIndex]
         let postString  = formatted[endIndex...]
@@ -1431,7 +1447,28 @@ class WUtils {
         }
         return amount
     }
-    
+    static func getAllBac(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:Array<Reward>, _ validators:Array<Validator>) -> NSDecimalNumber {
+        var amount = NSDecimalNumber.zero
+        for balance in balances {
+            if (balance.balance_denom == BAC_MAIN_DENOM) {
+                amount = NSDecimalNumber.init(string: balance.balance_amount)
+            }
+        }
+        for bonding in bondings {
+            amount = amount.adding(bonding.getBondingAmount(validators))
+        }
+        for unbonding in unbondings {
+            amount = amount.adding(NSDecimalNumber.init(string: unbonding.unbonding_balance))
+        }
+        for reward in rewards {
+            for coin in reward.reward_amount {
+                if (coin.denom == BAC_MAIN_DENOM) {
+                    amount = amount.adding(NSDecimalNumber.init(string: coin.amount).rounding(accordingToBehavior: handler0Down))
+                }
+            }
+        }
+        return amount
+    }
     static func getAllSecret(_ balances:Array<Balance>, _ bondings:Array<Bonding>, _ unbondings:Array<Unbonding>,_ rewards:Array<Reward>, _ validators:Array<Validator>) -> NSDecimalNumber {
         var amount = NSDecimalNumber.zero
         for balance in balances {
@@ -1718,11 +1755,71 @@ class WUtils {
         }
         return nil
     }
+    static func getBacToken(_ bacTokens:Array<BacToken>, _ balance:Balance) -> BacToken? {
+        for bacToken in bacTokens {
+            if (bacToken.symbol == balance.balance_denom) {
+                return bacToken
+            }
+        }
+        return nil
+    }
+    
+    static func getBacToken(_ balance:Balance) -> BacToken? {
+        let symbol = balance.balance_denom
+        if(symbol == BAC_MAIN_DENOM){
+            let bcvDict = [
+                "inner_name" : BAC_MAIN_DENOM,
+                "outer_name" :"BAC",
+                "precision" : BAC_DECIMAL,
+                "supply_num" : BAC_SUPPLY,
+                "description" : "BAC Chain Main Token",
+                "mintable" : false
+            ] as [String : Any]
+            return BacToken(bcvDict)
+        }
+        return nil
+    }
+    
+    static func getBcvToken(_ balance:Balance) -> BacToken? {
+        let symbol = balance.balance_denom
+        if(symbol == BCV_MAIN_DENOM){
+            let bcvDict = [
+                "inner_name" : BCV_MAIN_DENOM,
+                "outer_name" :"BCV",
+                "precision" : BCV_DECIMAL,
+                "supply_num" : pow(10,12),
+                "description" : "BAC Chain Right Token",
+                "mintable" : false
+            ] as [String : Any]
+            return BacToken(bcvDict)
+        }
+        return nil
+    }
+    
+   
+    
+    static func getBacToken(_ bacTokens:Array<BacToken>, _ denom:String) -> BacToken? {
+        for bacToken in bacTokens {
+            if (bacToken.symbol == denom) {
+                return bacToken
+            }
+        }
+        return nil
+    }
     
     static func getBnbMainToken(_ bnbTokens:Array<BnbToken>) -> BnbToken? {
         for bnbToken in bnbTokens {
             if (bnbToken.symbol == BNB_MAIN_DENOM) {
                 return bnbToken
+            }
+        }
+        return nil
+    }
+    
+    static func getBacMainToken(_ bacTokens:Array<BacToken>) -> BacToken?{
+        for bacToken in bacTokens {
+            if (bacToken.symbol == BAC_MAIN_DENOM) {
+                return bacToken
             }
         }
         return nil
@@ -1737,14 +1834,14 @@ class WUtils {
         return nil
     }
     
-    static func displayIrisToken(_ amount: String, _ font:UIFont, _ deciaml:Int16, _ deciaml2:Int16) -> NSMutableAttributedString {
+    static func displayIrisToken(_ amount: String, _ font:UIFont, _ decimal:Int16, _ deciaml2:Int16) -> NSMutableAttributedString {
         let nf = NumberFormatter()
-        nf.minimumFractionDigits = Int(deciaml)
-        nf.maximumFractionDigits = Int(deciaml)
+        nf.minimumFractionDigits = Int(decimal)
+        nf.maximumFractionDigits = Int(decimal)
         nf.numberStyle = .decimal
         
         let amount = localeStringToDecimal(amount)
-        let handler = NSDecimalNumberHandler(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(deciaml), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: true)
+        let handler = NSDecimalNumberHandler(roundingMode: NSDecimalNumber.RoundingMode.down, scale: Int16(decimal), raiseOnExactness: false, raiseOnOverflow: false, raiseOnUnderflow: false, raiseOnDivideByZero: true)
         
         var formatted: String?
         if (amount == NSDecimalNumber.zero) {
@@ -1753,7 +1850,7 @@ class WUtils {
             formatted = nf.string(from: amount.dividing(by: NSDecimalNumber(decimal: pow(10,Int(deciaml2)))).rounding(accordingToBehavior: handler))
         }
         let added       = formatted
-        let endIndex    = added!.index(added!.endIndex, offsetBy: -deciaml)
+        let endIndex    = added!.index(added!.endIndex, offsetBy: -decimal)
         
         let preString   = added![..<endIndex]
         let postString  = added![endIndex...]
@@ -1832,7 +1929,16 @@ class WUtils {
             }
             amountLabel.attributedText = displayAmount2(coin.amount, amountLabel.font, 8, 8)
             
-        } else if (chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST) {
+        }  else if (chainType == ChainType.BAC_MAIN) {
+            if (coin.denom == BAC_MAIN_DENOM) {
+                WUtils.setDenomTitle(chainType, denomLabel)
+            } else {
+                denomLabel.textColor = .white
+                denomLabel.text = coin.denom.uppercased()
+            }
+            amountLabel.attributedText = displayAmount2(coin.amount, amountLabel.font, 8, 8)
+            
+        }  else if (chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST) {
             if (coin.denom == KAVA_MAIN_DENOM) {
                 WUtils.setDenomTitle(chainType, denomLabel)
             } else if (coin.denom == KAVA_HARD_DENOM) {
@@ -1936,6 +2042,15 @@ class WUtils {
                 denomLabel.text = denom.uppercased()
             }
             amountLabel.attributedText = displayAmount2(amount, amountLabel.font, 18, 18)
+            
+        } else if (chainType == ChainType.BAC_MAIN ) {
+            if (denom == BAC_MAIN_DENOM) {
+                WUtils.setDenomTitle(chainType, denomLabel)
+            } else {
+                denomLabel.textColor = .white
+                denomLabel.text = denom.uppercased()
+            }
+            amountLabel.attributedText = displayAmount2(amount, amountLabel.font, 8, 8)
             
         } else if (chainType == ChainType.BINANCE_MAIN || chainType == ChainType.BINANCE_TEST) {
             if (denom == BNB_MAIN_DENOM) {
@@ -2105,6 +2220,9 @@ class WUtils {
         } else if (chain == ChainType.AKASH_MAIN) {
             return COLOR_AKASH
         }
+        else if(chain == ChainType.BAC_MAIN) {
+            return COLOR_BAC
+        }
         return COLOR_ATOM
     }
     
@@ -2127,6 +2245,8 @@ class WUtils {
             return COLOR_CERTIK_DARK
         } else if (chain == ChainType.AKASH_MAIN) {
             return COLOR_AKASH_DARK
+        } else if (chain == ChainType.BAC_MAIN){
+            return COLOR_BAC_DARK
         }
         
         else if (chain == ChainType.COSMOS_TEST || chain == ChainType.KAVA_TEST || chain == ChainType.BINANCE_TEST ||
@@ -2155,6 +2275,8 @@ class WUtils {
             return TRANS_BG_COLOR_CERTIK
         } else if (chain == ChainType.AKASH_MAIN) {
             return TRANS_BG_COLOR_AKASH
+        } else if (chain == ChainType.BAC_MAIN) {
+            return TRANS_BG_COLOR_BAC
         }
         
         else if (chain == ChainType.COSMOS_TEST || chain == ChainType.KAVA_TEST || chain == ChainType.BINANCE_TEST || chain == ChainType.IOV_TEST || chain == ChainType.OKEX_TEST || chain == ChainType.CERTIK_TEST) {
@@ -2184,6 +2306,8 @@ class WUtils {
             return "CTK"
         } else if (chain == ChainType.AKASH_MAIN) {
             return "AKT"
+        } else if(chain == ChainType.BAC_MAIN) {
+            return "BAC"
         }
         return ""
     }
@@ -2219,6 +2343,9 @@ class WUtils {
         } else if (chain == ChainType.AKASH_MAIN) {
             label.text = "AKT"
             label.textColor = COLOR_AKASH
+        } else if(chain == ChainType.BAC_MAIN) {
+            label.text = "BAC"
+            label.textColor = COLOR_BAC
         }
     }
     
@@ -2241,6 +2368,8 @@ class WUtils {
             return ChainType.CERTIK_MAIN
         } else if (chainS == CHAIN_AKASH_S) {
             return ChainType.AKASH_MAIN
+        } else if (chainS == CHAIN_BAC_S) {
+            return ChainType.BAC_MAIN
         }
         
         else if (chainS == CHAIN_COSMOS_TEST_S) {
@@ -2278,6 +2407,8 @@ class WUtils {
             return CHAIN_CERTIK_S
         } else if (chain == ChainType.AKASH_MAIN) {
             return CHAIN_AKASH_S
+        } else if(chain == ChainType.BAC_MAIN){
+            return CHAIN_BAC_S
         }
         
         else if (chain == ChainType.COSMOS_TEST) {
@@ -2303,6 +2434,8 @@ class WUtils {
             return 2
         } else if (chainS == CHAIN_BINANCE_S) {
             return 3
+        } else if (chainS == CHAIN_BAC_S){
+            return 4
         }
         return 0
     }
@@ -2358,6 +2491,8 @@ class WUtils {
             return "shentu-1"
         } else if (chainS == CHAIN_AKASH_S) {
             return "akashnet-1"
+        } else if (chainS == CHAIN_BAC_S) {
+            return "bacchain-mainnet-1.0"
         }
         
         else if (chainS == CHAIN_COSMOS_TEST_S) {
@@ -2395,6 +2530,8 @@ class WUtils {
             return "shentu-1"
         } else if (chain == ChainType.AKASH_MAIN) {
             return "akashnet-1"
+        } else if (chain == ChainType.BAC_MAIN) {
+            return "bacchain-mainnet-1.0"
         }
         
         else if (chain == ChainType.COSMOS_TEST) {
@@ -2484,6 +2621,9 @@ class WUtils {
             
         } else if (chain == ChainType.BINANCE_MAIN || chain == ChainType.BINANCE_TEST) {
             //Notice! useless but make format!
+            result = NSDecimalNumber.init(string: String(GAS_FEE_AMOUNT_MID))
+        
+        } else if (chain == ChainType.BAC_MAIN) {
             result = NSDecimalNumber.init(string: String(GAS_FEE_AMOUNT_MID))
         
         } else if (chain == ChainType.KAVA_MAIN || chain == ChainType.KAVA_TEST) {
@@ -2859,6 +2999,9 @@ class WUtils {
         } else if (chain == ChainType.BINANCE_MAIN) {
             label.text = NSLocalizedString("chain_title_bnb", comment: "")
             img?.image = UIImage(named: "binanceChImg")
+        } else if (chain == ChainType.BAC_MAIN) {
+            label.text = NSLocalizedString("chain_title_bac", comment: "")
+            img?.image = UIImage(named: "bacChainImg")
         } else if (chain == ChainType.KAVA_MAIN) {
             label.text = NSLocalizedString("chain_title_kava", comment: "")
            img?.image = UIImage(named: "kavaImg")
@@ -2884,6 +3027,8 @@ class WUtils {
             return NSLocalizedString("chain_title_iris", comment: "")
         } else if (chain == ChainType.BINANCE_MAIN) {
             return NSLocalizedString("chain_title_bnb", comment: "")
+        } else if (chain == ChainType.BAC_MAIN) {
+            return NSLocalizedString("chain_title_bac", comment: "")
         } else if (chain == ChainType.KAVA_MAIN) {
             return NSLocalizedString("chain_title_kava", comment: "")
         } else if (chain == ChainType.IOV_MAIN) {
@@ -2993,6 +3138,8 @@ class WUtils {
             return UIImage.init(named: "tezosChainImg")
         } else if (resource.uri == LISK) {
             return UIImage.init(named: "liskChainImg")
+        } else if (resource.uri == BAC) {
+            return UIImage.init(named: "liskChainImg")
         } else {
             return UIImage.init(named: "defaultChainImg")
         }
@@ -3027,7 +3174,9 @@ class WUtils {
             return "Tezos";
         } else if (resource.uri == LISK) {
             return "Lisk";
-        } else {
+        } else if (resource.uri == BAC) {
+            return "BAC";
+        }  else {
             return resource.uri;
         }
     }
@@ -3048,6 +3197,7 @@ class WUtils {
         result.append(StarNameResource.init(TEZOS))
         result.append(StarNameResource.init(LISK))
         result.append(StarNameResource.init(LUNA))
+        result.append(StarNameResource.init(BAC))
         return result
     }
     
@@ -3064,6 +3214,8 @@ class WUtils {
             return ChainType.KAVA_MAIN
         } else if (uri == BAND) {
             return ChainType.BAND_MAIN
+        }else if (uri == BAC) {
+            return ChainType.BAC_MAIN
         }
         return nil
     }
@@ -3087,6 +3239,10 @@ class WUtils {
                 result.addresses.append(resource)
             } else if (WUtils.getChainType(account.account_base_chain) == ChainType.BINANCE_MAIN) {
                 resource.ticker = "bnb"
+                resource.address = account.account_address
+                result.addresses.append(resource)
+            }  else if (WUtils.getChainType(account.account_base_chain) == ChainType.BAC_MAIN) {
+                resource.ticker = "bac"
                 resource.address = account.account_address
                 result.addresses.append(resource)
             } else if (WUtils.getChainType(account.account_base_chain) == ChainType.IOV_MAIN) {
@@ -3127,6 +3283,9 @@ class WUtils {
             
         } else if (chain == ChainType.AKASH_MAIN) {
             return BLOCK_TIME_AKASH
+            
+        }else if (chain == ChainType.BAC_MAIN) {
+            return BLOCK_TIME_BAC
             
         }
         return NSDecimalNumber.init(string: "6")

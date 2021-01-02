@@ -134,6 +134,13 @@ class WalletManageViewController: BaseViewController, UITableViewDelegate, UITab
                     cell?.chainImg.image = UIImage(named: "binanceChImg")
                     cell?.chainName.text = "BINANCE"
                     
+                }  else if (selectedChain == ChainType.BAC_MAIN) {
+                    cell?.chainImg.isHidden = false
+                    cell?.chainName.isHidden = false
+                    cell?.chainAll.isHidden = true
+                    cell?.chainImg.image = UIImage(named: "bacChainImg")
+                    cell?.chainName.text = "BAC"
+                    
                 } else if (selectedChain == ChainType.KAVA_MAIN) {
                     cell?.chainImg.isHidden = false
                     cell?.chainName.isHidden = false

@@ -91,7 +91,17 @@ class AddAddressViewController: BaseViewController, QrScannerDelegate {
                 return;
             }
             
-        } else if (userInput.starts(with: "kava1")) {
+        } else if (userInput.starts(with: "bac1")) {
+            if (WKey.isValidateBech32(userInput)) {
+                self.onGenWatchAccount(ChainType.BAC_MAIN, userInput)
+                return;
+            } else {
+                self.onShowToast(NSLocalizedString("error_invalid_address_or_pubkey", comment: ""))
+                self.addAddressInputText.text = ""
+                return;
+            }
+            
+        }  else if (userInput.starts(with: "kava1")) {
             if (WKey.isValidateBech32(userInput)) {
                 if (ChainType.SUPPRT_CHAIN().contains(ChainType.KAVA_TEST)) {
                     self.onShowKavaChainSelect(userInput)

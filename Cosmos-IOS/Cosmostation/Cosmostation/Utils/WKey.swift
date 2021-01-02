@@ -58,6 +58,9 @@ class WKey {
         } else if (chainType == ChainType.BINANCE_MAIN || chainType == ChainType.BINANCE_TEST) {
             return try! masterKey.derived(at: 44, hardened: true).derived(at: 714, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(account.account_path)!)
             
+        }  else if (chainType == ChainType.BAC_MAIN) {
+            return try! masterKey.derived(at: 44, hardened: true).derived(at: 572, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(account.account_path)!)
+            
         } else if (chainType == ChainType.BAND_MAIN) {
             return try! masterKey.derived(at: 44, hardened: true).derived(at: 494, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(account.account_path)!)
             
@@ -89,6 +92,8 @@ class WKey {
             result = try! SegwitAddrCoder.shared.encode2(hrp: "iaa", program: ripemd160)
         } else if (chain == ChainType.BINANCE_MAIN) {
             result = try! SegwitAddrCoder.shared.encode2(hrp: "bnb", program: ripemd160)
+        } else if (chain == ChainType.BAC_MAIN) {
+            result = try! SegwitAddrCoder.shared.encode2(hrp: "bac", program: ripemd160)
         } else if (chain == ChainType.KAVA_MAIN || chain == ChainType.KAVA_TEST) {
             result = try! SegwitAddrCoder.shared.encode2(hrp: "kava", program: ripemd160)
         } else if (chain == ChainType.BAND_MAIN) {
@@ -118,7 +123,10 @@ class WKey {
             } else if (chain == ChainType.BINANCE_MAIN || chain == ChainType.BINANCE_TEST) {
                 childKey = try masterKey.derived(at: 44, hardened: true).derived(at: 714, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(path))
                 
-            } else if (chain == ChainType.KAVA_MAIN || chain == ChainType.KAVA_TEST) {
+            } else if (chain == ChainType.BAC_MAIN) {
+                childKey = try masterKey.derived(at: 44, hardened: true).derived(at: 572, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(path))
+                
+            }  else if (chain == ChainType.KAVA_MAIN || chain == ChainType.KAVA_TEST) {
                 if (newbip) {
                     childKey = try masterKey.derived(at: 44, hardened: true).derived(at: 459, hardened: true).derived(at: 0, hardened: true).derived(at: 0).derived(at: UInt32(path))
                 } else {
