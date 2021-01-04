@@ -27,6 +27,7 @@ import wannabit.io.bitcv.utils.WKey;
 import wannabit.io.bitcv.utils.WLog;
 import wannabit.io.bitcv.utils.WUtil;
 
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.COSMOS_MAIN;
@@ -111,6 +112,10 @@ public class StarNameResourceAddActivity extends BaseActivity implements View.On
                     return;
 
                 } else if (chain.equals(IOV_MAIN) && (!userinput.startsWith("star1") || !WKey.isValidBech32(userinput))) {
+                    Toast.makeText(getBaseContext(), R.string.error_invalid_address_pubkey, Toast.LENGTH_SHORT).show();
+                    return;
+
+                }else if (chain.equals(BAC_MAIN) && (!userinput.startsWith("bac1") || !WKey.isValidBech32(userinput))) {
                     Toast.makeText(getBaseContext(), R.string.error_invalid_address_pubkey, Toast.LENGTH_SHORT).show();
                     return;
 

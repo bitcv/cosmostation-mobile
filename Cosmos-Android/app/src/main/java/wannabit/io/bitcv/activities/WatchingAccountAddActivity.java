@@ -30,6 +30,7 @@ import wannabit.io.bitcv.task.UserTask.GenerateEmptyAccountTask;
 import wannabit.io.bitcv.utils.WKey;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -120,6 +121,16 @@ public class WatchingAccountAddActivity extends BaseActivity implements View.OnC
             } else if (mUserInput.startsWith("bnb1")) {
                 if (WKey.isValidBech32(mUserInput)) {
                     onGenNewAccount(BNB_MAIN, mUserInput);
+                    return;
+
+                } else {
+                    Toast.makeText(getBaseContext(), R.string.error_invalid_address, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+            } else if (mUserInput.startsWith("bac1")) {
+                if (WKey.isValidBech32(mUserInput)) {
+                    onGenNewAccount(BAC_MAIN, mUserInput);
                     return;
 
                 } else {

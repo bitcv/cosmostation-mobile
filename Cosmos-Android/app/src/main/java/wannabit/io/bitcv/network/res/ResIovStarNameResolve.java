@@ -37,6 +37,11 @@ public class ResIovStarNameResolve {
                         return  resource.resource;
                     }
 
+                } else if (chain.equals(BaseChain.BAC_MAIN)) {
+                    if (resource.uri.equals("asset:bac") && resource.resource.startsWith("bac")) {
+                        return  resource.resource;
+                    }
+
                 } else if (chain.equals(BaseChain.KAVA_MAIN)) {
                     if (resource.uri.equals("asset:kava") && resource.resource.startsWith("kava")) {
                         return  resource.resource;

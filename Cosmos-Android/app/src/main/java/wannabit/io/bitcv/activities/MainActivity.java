@@ -65,6 +65,7 @@ import wannabit.io.bitcv.widget.TintableImageView;
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_TEST;
@@ -78,9 +79,11 @@ import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.CONST_PW_PURPOSE;
 import static wannabit.io.bitcv.base.BaseConstant.CONST_PW_SIMPLE_CHECK;
+import static wannabit.io.bitcv.base.BaseConstant.FEE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BAND;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BNB;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_CERTIK;
@@ -299,6 +302,12 @@ public class MainActivity extends BaseActivity implements FetchCallBack {
             mToolbarChainName.setTextColor(getResources().getColor(R.color.colorBnb));
             mFloatBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorBnb));
 
+        }  else if (mBaseChain.equals(BAC_MAIN)) {
+            mToolbarChainImg.setImageDrawable(getResources().getDrawable(R.drawable.bac_chain_img));
+            mToolbarChainName.setText(getString(R.string.str_bac_net));
+            mToolbarChainName.setTextColor(getResources().getColor(R.color.colorBac));
+            mFloatBtn.setBackgroundTintList(getResources().getColorStateList(R.color.colorBac));
+
         } else if (mBaseChain.equals(KAVA_MAIN)) {
             mToolbarChainImg.setImageDrawable(getResources().getDrawable(R.drawable.kava_img));
             mToolbarChainName.setText(getString(R.string.str_kava_net));
@@ -487,6 +496,13 @@ public class MainActivity extends BaseActivity implements FetchCallBack {
                 hasbalance  = true;
             }
             intent.putExtra("bnbToken", WUtil.getBnbMainToken(getBaseDao().mBnbTokens));
+
+        } else if (mBaseChain.equals(BAC_MAIN)) {
+            if (WDp.getAvailableCoin(balances, BAC_MAIN_DENOM).compareTo(new BigDecimal(FEE_BAC_SEND)) > 0) {
+                hasbalance  = true;
+            }
+
+            intent.putExtra("bacToken", WUtil.getBacMainToken(getBaseDao().mBacTokens));
 
         } else if (mBaseChain.equals(IOV_MAIN)) {
             if (WDp.getAvailableCoin(balances, TOKEN_IOV).compareTo(new BigDecimal("100000")) > 0) {
@@ -907,7 +923,13 @@ public class MainActivity extends BaseActivity implements FetchCallBack {
                     holder.chainImg.setImageDrawable(getResources().getDrawable(R.drawable.certik_chain_img));
                     holder.chainName.setText(getString(R.string.str_certik_main));
 
-                } else if (chain.equals(SECRET_MAIN)) {
+                } else if (chain.equals(BAC_MAIN)) {
+                    holder.chainLayer.setVisibility(View.VISIBLE);
+                    holder.allLayer.setVisibility(View.GONE);
+                    holder.chainImg.setImageDrawable(getResources().getDrawable(R.drawable.bac_chain_img));
+                    holder.chainName.setText(getString(R.string.str_bac));
+
+                }else if (chain.equals(SECRET_MAIN)) {
                     holder.chainLayer.setVisibility(View.VISIBLE);
                     holder.allLayer.setVisibility(View.GONE);
                     holder.chainImg.setImageDrawable(getResources().getDrawable(R.drawable.chainsecret));

@@ -68,7 +68,16 @@
         <item name="android:textColor">@color/colorBnb</item>
         <item name="android:textSize">@dimen/text_size_9</item>
     </style>
-
+    <style name="font_ss_9_bac" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorBac</item>
+        <item name="android:textSize">@dimen/text_size_9</item>
+    </style>
+    <style name="font_ss_9_bcv" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/colorBcv</item>
+        <item name="android:textSize">@dimen/text_size_9</item>
+    </style>
     <style name="font_ss_9_iov" parent="@android:style/TextAppearance">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:textColor">@color/colorIov</item>

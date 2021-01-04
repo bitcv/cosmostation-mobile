@@ -15,6 +15,7 @@ import wannabit.io.bitcv.base.BaseActivity;
 import wannabit.io.bitcv.base.BaseChain;
 
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BINANCE_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BINANCE_TEST;
@@ -92,6 +93,17 @@ public class WebActivity extends BaseActivity {
                 mWebview.loadUrl(EXPLORER_BINANCE_MAIN + "assets/" + mAsset);
             else
                 mWebview.loadUrl(EXPLORER_BINANCE_MAIN);
+
+        } else if (mBasechain.equals(BaseChain.BAC_MAIN)) {
+            mShare.setBackgroundTintList(getResources().getColorStateList(R.color.colorBnb));
+            if (!TextUtils.isEmpty(mTxid))
+                mWebview.loadUrl(EXPLORER_BAC_MAIN + "txs/" + mTxid);
+            else if (!TextUtils.isEmpty(mAddress))
+                mWebview.loadUrl(EXPLORER_BAC_MAIN + "address/" + mAddress);
+            else if (!TextUtils.isEmpty(mAsset))
+                mWebview.loadUrl(EXPLORER_BAC_MAIN + "asset/" + mAsset);
+            else
+                mWebview.loadUrl(EXPLORER_BAC_MAIN);
 
         } else if (mBasechain.equals(BaseChain.KAVA_MAIN)) {
             mShare.setBackgroundTintList(getResources().getColorStateList(R.color.colorKava));

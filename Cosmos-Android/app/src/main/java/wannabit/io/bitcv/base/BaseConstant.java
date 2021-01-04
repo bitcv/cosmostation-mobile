@@ -167,6 +167,7 @@ public class BaseConstant {
     public final static int TASK_FETCH_API_ADDRESS_HISTORY              = 2300;
     public final static int TASK_FETCH_API_TOKEN_HISTORY                = 2301;
     public final static int TASK_FETCH_API_STAKE_HISTORY                = 2302;
+    public final static int TASK_FETCH_BAC_TOKENS                      = 2303;
 
     public final static String COSMOS_AUTH_TYPE_STDTX                       = "auth/StdTx";
 
@@ -218,6 +219,27 @@ public class BaseConstant {
     public final static String IRIS_PROPOAL_TYPE_SoftwareUpgradeProposal    = "irishub/gov/SoftwareUpgradeProposal";
     public final static String IRIS_PROPOAL_TYPE_SystemHaltProposal         = "irishub/gov/SystemHaltProposal";
     public final static String IRIS_PROPOAL_TYPE_CommunityTaxUsageProposal  = "irishub/gov/CommunityTaxUsageProposal";
+    
+    public final static String BAC_MSG_TYPE_ADD_MARGIN = "bacchain/MsgAddMargin";
+    public final static String BAC_MSG_TYPE_BEGIN_REDELEGATE = "bacchain/MsgBeginRedelegate";
+    public final static String BAC_MSG_TYPE_BURN_BCV_TO_ENERGY = "bacchain/MsgBurnBcvToEnergy";
+    public final static String BAC_MSG_TYPE_BURN_BCV_TO_STAKE = "bacchain/MsgBurnBcvToStake";
+    public final static String BAC_MSG_TYPE_DELEGATE = "bacchain/MsgDelegate";
+    public final static String BAC_MSG_TYPE_DEPOSIT = "bacchain/MsgDeposit";
+    public final static String BAC_MSG_TYPE_EDATA =  "bacchain/MsgEdata";
+    public final static String BAC_MSG_TYPE_EDIT_VALIDATOR =  "bacchain/MsgEditValidator";
+    public final static String BAC_MSG_TYPE_ISSUE_TOKEN =  "bacchain/MsgIssueToken";
+    public final static String BAC_MSG_TYPE_MODIFY_WITHDRAW_ADDRESS =  "bacchain/MsgModifyWithdrawAddress";
+    public final static String BAC_MSG_TYPE_MULTI_SEND = "bacchain/MsgMultiSend";
+    public final static String BAC_MSG_TYPE_REDEEM =  "bacchain/MsgRedeem";
+    public final static String BAC_MSG_TYPE_SEND = "bacchain/MsgSend";
+    public final static String BAC_MSG_TYPE_SUBMIT_PROPOSAL = "bacchain/MsgSubmitProposal";
+    public final static String BAC_MSG_TYPE_UNDELEGATE =  "bacchain/MsgUndelegate";
+    public final static String BAC_MSG_TYPE_VOTE =  "bacchain/MsgVote";
+    public final static String BAC_MSG_TYPE_WITHDRAW_DELEGATION_REWARD = "bacchain/MsgWithdrawDelegationReward";
+    public final static String BAC_MSG_TYPE_WITHDRAW_VALIDATOR_COMMISSION = "bacchain/MsgWithdrawValidatorCommission";
+    public final static String BAC_MSG_ACCOUNT_INFO = "auth/Account";
+
 
     public final static String KAVA_MSG_TYPE_POST_PRICE                     = "pricefeed/MsgPostPrice";
     public final static String KAVA_MSG_TYPE_CREATE_CDP                     = "cdp/MsgCreateCDP";
@@ -368,7 +390,21 @@ public class BaseConstant {
 
     public final static String TOKEN_IOV_TEST       = "uvoi";
     public final static String TOKEN_OK_TEST        = "tokt";
-
+    public final static String BAC_MAIN_DENOM            = "nbac";
+    public final static String BCV_MAIN_DENOM            = "ubcv";
+    public final static String BAC_TOKEN_SUPPLY     = "43695126";
+    public final static String BCV_TOKEN_SUPPLY     = "1200000000";
+    public final static String BAC_TOKEN_ISSUE_TIME       ="2020-04-01";
+    public final static String BCV_TOKEN_ISSUE_TIME       = "2018-01-18";
+    public final static String BAC_TOKEN_DESCRIPTION      = "BAC Chain Main Token";
+    public final static String BCV_TOKEN_DESCRIPTION      = "BCV Chain Right Token";
+    public final static String BAC_TOKEN_HOME    = "https://www.bitcv.net";
+    public final static String BCV_TOKEN_HOME   = "https://bitcv.app";
+    public final static String  BAC_TOKEN_SYMBOL = "BAC";
+    public final static String  BCV_TOKEN_SYMBOL = "BCV";
+    public final static Integer  BAC_TOKEN_DECIMAL = 9;
+    public final static Integer BAC_GAS_FEE_DECIMAL = 8;
+    public final static Integer BCV_TOKEN_DECIMAL = 6;
 
     //HTLC swap support Token Types
     public final static String  TOKEN_HTLC_BINANCE_BNB               = "BNB";
@@ -398,6 +434,8 @@ public class BaseConstant {
     public final static String KEY_BAND_PATH        = "44'/494'/0'/0/";
     public final static String KEY_NEW_OK_PATH      = "44'/996'/0'/0/";
     public final static String KEY_NEW_SECRET_PATH  = "44'/529'/0'/0/";
+    public final static String KEY_BAC_PATH         = "44'/572'/0'/0/0";
+    public final static String BAC_HD_PATH          = "M/44H/572H/0H/0/0";
     public final static String characterFilter      = "[^\\p{L}\\p{M}\\p{N}\\p{P}\\p{Z}\\p{Cf}\\p{Cs}\\s]";
 
 
@@ -446,6 +484,9 @@ public class BaseConstant {
 
     public final static String FEE_BNB_SEND                     = "0.000375";
     public final static String FEE_BEP3_RELAY_FEE               = "0.00001";
+    public final static String GAS_FEE_BAC_TRANSFER                    = "0.1";
+
+    public final static String FEE_BAC_SEND                     = "0.1";
 
     public final static String FEE_IOV_GAS_RATE_AVERAGE         = "1.00";
     public final static String FEE_IOV_GAS_AMOUNT_SEND          = "100000";
@@ -492,6 +533,7 @@ public class BaseConstant {
     public final static String CGC_ATOM = "cosmos";
     public final static String CGC_IRIS = "iris-network";
     public final static String CGC_BNB  = "binancecoin";
+    public final static String CGC_BAC  = "bitassetchain";
     public final static String CGC_KAVA = "kava";
     public final static String CGC_BAND = "band-protocol";
     public final static String CGC_IOV = "starname";
@@ -536,8 +578,10 @@ public class BaseConstant {
     public final static String SECRET_VAL_URL            = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/moniker/secret/";
     public final static String AKASH_VAL_URL            = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/moniker/akash/";
     public final static String OKEX_COIN_IMG_URL        = "https://raw.githubusercontent.com/cosmostation/cosmostation_token_resource/master/coin_image/okex/";
+    public final static String BAC_VAL_URL              =    "https://bitcv.kingco.tech/tokenlogo/";
 
-
+    public final static String EXPLORER_BAC_MAIN       = "https://main.bitcv.net/";
+    public final static String EXPLORER_BAC_TEST       = "https://test.bitcv.net/";
     public final static String EXPLORER_COSMOS_MAIN     = "https://www.mintscan.io/cosmos/";
     public final static String EXPLORER_IRIS_MAIN       = "https://www.mintscan.io/iris/";
     public final static String EXPLORER_KAVA_MAIN       = "https://www.mintscan.io/kava/";
@@ -577,4 +621,5 @@ public class BaseConstant {
     public final static BigDecimal BLOCK_TIME_CERTIK = new BigDecimal("5.75");
     public final static BigDecimal BLOCK_TIME_SECRET = new BigDecimal("5.96");
     public final static BigDecimal BLOCK_TIME_AKASH = new BigDecimal("6.21");
+    public final static BigDecimal BLOCK_TIME_BAC = new BigDecimal("5.88");
 }

@@ -10,6 +10,7 @@ public enum BaseChain {
     IRIS_MAIN("irishub"),
     IOV_MAIN("iov-mainnet-2"),
     BNB_MAIN("Binance-Chain-Tigris"),
+    BAC_MAIN("bacchain-mainnet-1.0"),
     KAVA_LEGACY1("kava-1"),
     KAVA_LEGACY2("kava-2"),
     KAVA_LEGACY3("kava-3"),
@@ -57,6 +58,9 @@ public enum BaseChain {
         }
         if (chainName.equals(BNB_MAIN.chainName)) {
             return BNB_MAIN;
+        }
+        if(chainName.equals(BAC_MAIN.chainName)){
+            return BAC_MAIN;
         }
         if (chainName.equals(IOV_MAIN.chainName)) {
             return IOV_MAIN;
@@ -122,6 +126,9 @@ public enum BaseChain {
         if (chain.equals(BNB_MAIN.chainName)) {
             return BNB_MAIN.chainName;
         }
+        if(chain.equals(BAC_MAIN.chainName)){
+            return BAC_MAIN.chainName;
+        }
         if (chain.equals(IOV_MAIN.chainName)) {
             return IOV_MAIN.chainName;
         }
@@ -183,6 +190,7 @@ public enum BaseChain {
         result.add(SECRET_MAIN);
         result.add(CERTIK_MAIN);
         result.add(AKASH_MAIN);
+        result.add(BAC_MAIN);
 
 //        result.add(BNB_TEST);
 //        result.add(KAVA_TEST);

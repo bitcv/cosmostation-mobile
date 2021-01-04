@@ -11,6 +11,25 @@
         android:background="@drawable/dialog_bg"
         android:orientation="vertical">
         <LinearLayout
+            android:id="@+id/bac_main_net"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="@dimen/space_4">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:src="@drawable/bac_chain_img"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_8"
+                android:text="@string/str_bac_main_net"
+                style="@style/font_ss_14_gray8"/>
+        </LinearLayout>
+        <LinearLayout
             android:id="@+id/main_net"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

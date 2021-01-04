@@ -68,6 +68,7 @@ import wannabit.io.bitcv.utils.WUtil;
 import wannabit.io.bitcv.widget.StopViewPager;
 
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;

@@ -54,6 +54,7 @@ import wannabit.io.bitcv.activities.PasswordCheckActivity;
 import wannabit.io.bitcv.activities.PasswordSetActivity;
 import wannabit.io.bitcv.activities.RestoreActivity;
 import wannabit.io.bitcv.crypto.CryptoHelper;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.dialog.Dialog_Buy_Select_Fiat;
 import wannabit.io.bitcv.dialog.Dialog_Buy_Without_Key;
 import wannabit.io.bitcv.dialog.Dialog_Push_Enable;
@@ -85,6 +86,7 @@ import wannabit.io.bitcv.network.res.ResOkTokenList;
 import wannabit.io.bitcv.network.res.ResOkUnbonding;
 import wannabit.io.bitcv.network.res.ResStakingPool;
 import wannabit.io.bitcv.task.FetchTask.AccountInfoTask;
+import wannabit.io.bitcv.task.FetchTask.BacTokenListTask;
 import wannabit.io.bitcv.task.FetchTask.BandOracleStatusTask;
 import wannabit.io.bitcv.task.FetchTask.BnbMiniTokenListTask;
 import wannabit.io.bitcv.task.FetchTask.BnbTokenListTask;
@@ -135,6 +137,7 @@ import wannabit.io.bitcv.task.TaskResult;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_TEST;
@@ -193,6 +196,7 @@ public class BaseActivity extends AppCompatActivity implements TaskListener {
 
     public ResLcdIrisReward mIrisReward;
     public ArrayList<IrisToken>             mIrisTokens = new ArrayList<>();
+    public ArrayList<BacToken>             mBacTokens = new ArrayList<>();
 
     protected int                           mTaskCount;
     private FetchCallBack mFetchCallback;
@@ -502,6 +506,11 @@ public class BaseActivity extends AppCompatActivity implements TaskListener {
             new SingleStakingPoolTask(getBaseApplication(), this, BaseChain.getChain(mAccount.baseChain)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
 
+        } else if (mBaseChain.equals(BaseChain.BAC_MAIN)) {
+            mTaskCount = 3;
+            new ValidatorInfoBondedTask(getBaseApplication(), this, BaseChain.getChain(mAccount.baseChain)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new AccountInfoTask(getBaseApplication(), this, mAccount).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            new BacTokenListTask(getBaseApplication(), this).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
         } else if (mBaseChain.equals(BaseChain.IRIS_MAIN)) {
             mTaskCount = 7;
             new ValidatorInfoBondedTask(getBaseApplication(), this, BaseChain.getChain(mAccount.baseChain)).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -699,7 +708,9 @@ public class BaseActivity extends AppCompatActivity implements TaskListener {
             ArrayList<Validator> temp = (ArrayList<Validator>)result.resultData;
             if (mBaseChain.equals(COSMOS_MAIN) || mBaseChain.equals(KAVA_MAIN) || mBaseChain.equals(KAVA_TEST) ||
                     mBaseChain.equals(BAND_MAIN) || mBaseChain.equals(IOV_MAIN) || mBaseChain.equals(IOV_TEST) ||
-                    mBaseChain.equals(CERTIK_MAIN) || mBaseChain.equals(CERTIK_TEST) || mBaseChain.equals(AKASH_MAIN) || mBaseChain.equals(SECRET_MAIN) || mBaseChain.equals(BaseChain.OK_TEST)) {
+                    mBaseChain.equals(CERTIK_MAIN) || mBaseChain.equals(CERTIK_TEST) || mBaseChain.equals(AKASH_MAIN)
+                    || mBaseChain.equals(SECRET_MAIN) || mBaseChain.equals(BaseChain.OK_TEST)
+                    || mBaseChain.equals(BAC_MAIN)) {
                 if (temp != null) { mTopValidators = temp; }
             } else if (mBaseChain.equals(BaseChain.IRIS_MAIN)) {
                 mTopValidators = WUtil.getTopVals(temp);
@@ -782,6 +793,8 @@ public class BaseActivity extends AppCompatActivity implements TaskListener {
         } else if (result.taskType == BaseConstant.TASK_FETCH_IRIS_TOKENS) {
             mIrisTokens = (ArrayList<IrisToken>)result.resultData;
 
+        } else if (result.taskType == BaseConstant.TASK_FETCH_BAC_TOKENS) {
+            mBacTokens = (ArrayList<BacToken>)result.resultData;
         } else if (result.taskType == BaseConstant.TASK_FETCH_KAVA_CDP_PARAM) {
             if (result.isSuccess && result.resultData != null) {
                 final ResCdpParam.Result cdpParam = (ResCdpParam.Result)result.resultData;

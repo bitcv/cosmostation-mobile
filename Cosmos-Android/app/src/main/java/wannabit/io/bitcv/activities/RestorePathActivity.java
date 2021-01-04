@@ -39,6 +39,7 @@ import wannabit.io.bitcv.utils.WKey;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -173,7 +174,10 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
                     holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgAkash));
                 } else if (mChain.equals(SECRET_MAIN)) {
                     holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgSecret));
+                } else if(mChain.equals(BAC_MAIN)){
+                    holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
                 }
+
             } else  {
                 if(temp.hasPrivateKey) {
                     holder.newState.setText(getString(R.string.str_imported));
@@ -202,6 +206,8 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
                         holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgAkash));
                     } else if (mChain.equals(SECRET_MAIN)) {
                         holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgSecret));
+                    } else if(mChain.equals(BAC_MAIN)) {
+                        holder.cardNewWallet.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
                     }
                 }
             }
@@ -270,7 +276,23 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
                     public void onFailure(Call<ResBnbAccountInfo> call, Throwable t) { }
                 });
 
-            } else if (mChain.equals(KAVA_MAIN)) {
+            } else if (mChain.equals(BAC_MAIN)) {
+
+                holder.bacLayer.setVisibility(View.VISIBLE);
+                holder.bacAmount.setText(WDp.getDpAmount2(getBaseContext(), BigDecimal.ZERO, 18, 18));
+                ApiClient.getBacChain(getBaseContext()).getAccountInfo(address).enqueue(new Callback<ResLcdAccountInfo>() {
+                    @Override
+                    public void onResponse(Call<ResLcdAccountInfo> call, Response<ResLcdAccountInfo> response) {
+                        if(response.isSuccessful() && response.body() != null && response.body().value.coins != null) {
+                            ArrayList<Balance> balance = WUtil.getBalancesFromLcd(-1, response.body());
+                            if(balance != null && balance.size() > 0 && balance.get(0) != null)
+                                holder.irisAmount.setText(WDp.getDpAmount2(getBaseContext(), balance.get(0).balance, BaseConstant.BAC_TOKEN_DECIMAL, 18));
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<ResLcdAccountInfo> call, Throwable t) { }
+                });
+            }  else if (mChain.equals(KAVA_MAIN)) {
                 holder.kavaLayer.setVisibility(View.VISIBLE);
                 holder.kavaAmount.setText(WDp.getDpAmount2(getBaseContext(), BigDecimal.ZERO, 0, 6));
                 ApiClient.getKavaChain(getBaseContext()).getAccountInfo(address).enqueue(new Callback<ResLcdKavaAccountInfo>() {
@@ -459,8 +481,8 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
 
         public class NewWalletHolder extends RecyclerView.ViewHolder {
             CardView cardNewWallet;
-            RelativeLayout atomLayer, photonLayer, irisLayer, bnbLayer, kavaLayer, iovLayer, bandLayer, okLayer, certikLayer, akashLayer, secretLayer;
-            TextView newPath, newState, newAddress, atomAmount, photonAmount, irisAmount, bnbAmount, kavaAmount, iovAmount, bandAmount, okAmount, certikAmount, akashAmount, secretAmount;
+            RelativeLayout atomLayer, photonLayer, irisLayer, bnbLayer, bacLayer, bcvLayer, kavaLayer, iovLayer, bandLayer, okLayer, certikLayer, akashLayer, secretLayer;
+            TextView newPath, newState, newAddress, atomAmount, photonAmount, irisAmount, bnbAmount,bacAmount, bcvAmount, kavaAmount, iovAmount, bandAmount, okAmount, certikAmount, akashAmount, secretAmount;
 
             public NewWalletHolder(View v) {
                 super(v);
@@ -476,6 +498,10 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
                 irisAmount          = itemView.findViewById(R.id.iris_amount);
                 bnbLayer            = itemView.findViewById(R.id.bnb_layer);
                 bnbAmount           = itemView.findViewById(R.id.bnb_amount);
+                bacLayer            = itemView.findViewById(R.id.bac_layer);
+                bacAmount           = itemView.findViewById(R.id.bac_amount);
+                bcvLayer            = itemView.findViewById(R.id.bcv_layer);
+                bcvAmount           = itemView.findViewById(R.id.bcv_amount);
                 kavaLayer           = itemView.findViewById(R.id.kava_layer);
                 kavaAmount          = itemView.findViewById(R.id.kava_amount);
                 iovLayer            = itemView.findViewById(R.id.iov_layer);

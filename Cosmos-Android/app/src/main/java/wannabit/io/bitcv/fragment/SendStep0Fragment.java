@@ -38,6 +38,7 @@ import wannabit.io.bitcv.utils.WKey;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -155,6 +156,14 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
 
             } else if (getSActivity().mBaseChain.equals(BNB_MAIN)) {
                 if (userInput.startsWith("bnb1") && WKey.isValidBech32(userInput)) {
+                    getSActivity().mTagetAddress = userInput;
+                    getSActivity().onNextStep();
+                } else {
+                    Toast.makeText(getContext(), R.string.error_invalid_address_target, Toast.LENGTH_SHORT).show();
+                }
+
+            }else if (getSActivity().mBaseChain.equals(BAC_MAIN)) {
+                if (userInput.startsWith("bac1") && WKey.isValidBech32(userInput)) {
                     getSActivity().mTagetAddress = userInput;
                     getSActivity().onNextStep();
                 } else {

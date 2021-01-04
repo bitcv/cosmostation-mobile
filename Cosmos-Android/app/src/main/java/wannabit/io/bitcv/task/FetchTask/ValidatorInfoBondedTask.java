@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import retrofit2.Response;
 import wannabit.io.bitcv.model.type.Validator;
 import wannabit.io.bitcv.network.ApiClient;
+import wannabit.io.bitcv.network.res.ResLcdBacValidator;
 import wannabit.io.bitcv.network.res.ResLcdValidators;
 import wannabit.io.bitcv.utils.WLog;
 import wannabit.io.bitcv.base.BaseApplication;
@@ -15,6 +16,7 @@ import wannabit.io.bitcv.task.TaskListener;
 import wannabit.io.bitcv.task.TaskResult;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_TEST;
@@ -79,6 +81,19 @@ public class ValidatorInfoBondedTask extends CommonTask {
                 } while (needMore);
                 mResult.resultData = allResult;
 
+            } else if (mChain.equals(BAC_MAIN)) {
+                Response<ArrayList<ResLcdBacValidator>> response = ApiClient.getBacChain(mApp).getBondedValidatorDetailList().execute();
+                WLog.w(response.toString());
+                if (!response.isSuccessful()) {
+                    mResult.isSuccess = false;
+                    mResult.errorCode = BaseConstant.ERROR_CODE_NETWORK;
+                    return mResult;
+                }
+
+                if (response.body() != null && response.body().size()  > 0) {
+                    mResult.resultData = response.body();
+                    mResult.isSuccess = true;
+                }
             } else if (mChain.equals(KAVA_MAIN)) {
                 Response<ResLcdValidators> response = ApiClient.getKavaChain(mApp).getBondedValidatorDetailList().execute();
                 if (!response.isSuccessful()) {

@@ -9,11 +9,13 @@ import org.bitcoinj.crypto.ChildNumber;
 import org.bitcoinj.crypto.DeterministicHierarchy;
 import org.bitcoinj.crypto.DeterministicKey;
 import org.bitcoinj.crypto.HDKeyDerivation;
+import org.bitcoinj.crypto.HDUtils;
 import org.bitcoinj.crypto.MnemonicCode;
 import org.bitcoinj.crypto.MnemonicException;
 import org.bouncycastle.crypto.digests.RIPEMD160Digest;
 
 import java.io.ByteArrayOutputStream;
+import java.math.BigInteger;
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.SecureRandom;
@@ -26,6 +28,7 @@ import wannabit.io.bitcv.base.BaseChain;
 import wannabit.io.bitcv.base.BaseConstant;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -126,10 +129,16 @@ public class WKey {
                 return  ImmutableList.of(new ChildNumber(44, true), new ChildNumber(118, true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO);
             }
         }
+        else if(chain.equals(BAC_MAIN)) {
+            return ImmutableList.of(new ChildNumber(44, true), new ChildNumber(572,true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO, ChildNumber.ZERO);
+        }
         return  ImmutableList.of(new ChildNumber(44, true), new ChildNumber(118, true), ChildNumber.ZERO_HARDENED, ChildNumber.ZERO);
     }
 
     public static DeterministicKey getKeyWithPathfromEntropy(BaseChain chain, String entropy, int path, boolean newBip44) {
+        if(chain.equals(BAC_MAIN)){
+            return WKey.getBacPrimaryKeyWithEntropy(entropy, path, newBip44);
+        }
         DeterministicKey masterKey = HDKeyDerivation.createMasterPrivateKey(getHDSeed(WUtil.HexStringToByteArray(entropy)));
         return new DeterministicHierarchy(masterKey).deriveChild(WKey.getParentPath(chain, newBip44), true, true,  new ChildNumber(path));
     }
@@ -195,6 +204,8 @@ public class WKey {
                 result = bech32Encode("iaa".getBytes(), converted);
             } else if (chain.equals(BNB_MAIN)){
                 result = bech32Encode("bnb".getBytes(), converted);
+            } else if (chain.equals(BAC_MAIN)){
+                result = bech32Encode("bac".getBytes(), converted);
             } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)){
                 result = bech32Encode("kava".getBytes(), converted);
             } else if (chain.equals(BAND_MAIN)){
@@ -239,6 +250,8 @@ public class WKey {
             return bech32Encode("secret".getBytes(), bech32Decode(dpOpAddress).data);
         } else if (chain.equals(AKASH_MAIN)) {
             return bech32Encode("akash".getBytes(), bech32Decode(dpOpAddress).data);
+        } else if (chain.equals(BAC_MAIN)){
+            return bech32Encode("bac".getBytes(), bech32Decode(dpOpAddress).data);
         } else {
             return "";
         }
@@ -263,6 +276,8 @@ public class WKey {
             return bech32Encode("secretvaloper".getBytes(), bech32Decode(dpOpAddress).data);
         } else if (chain.equals(AKASH_MAIN)) {
             return bech32Encode("akashvaloper".getBytes(), bech32Decode(dpOpAddress).data);
+        } else if (chain.equals(BAC_MAIN)){
+            return bech32Encode("bac".getBytes(), bech32Decode(dpOpAddress).data);
         } else {
             return "";
         }
@@ -270,10 +285,39 @@ public class WKey {
 
 
     public static String getDpAddressFromEntropy(BaseChain chain, byte[] entropy, boolean newBip){
+        if(chain.equals(BAC_MAIN)){
+            return getBacDpAddressWithPath(WUtil.ByteArrayToHexString(getHDSeed(entropy)), 0, newBip);
+        }
         return getDpAddressWithPath(WUtil.ByteArrayToHexString(getHDSeed(entropy)), chain, 0, newBip);
+    }
+    public static DeterministicKey getBacPrimaryKeyWithEntropy(String entropy, int path,boolean newBip44){
+
+        String seed = WUtil.ByteArrayToHexString(getHDSeed(WUtil.HexStringToByteArray(entropy)));
+        return getBacPrimaryKeyWithSeed(seed, path, newBip44);
+    }
+    public static DeterministicKey getBacPrimaryKeyWithSeed(String seed, int path, boolean newBip){
+        byte[] bSeed = WUtil.HexStringToByteArray(seed);
+        DeterministicKey primaryKey = HDKeyDerivation.createMasterPrivateKey(bSeed);
+        List<ChildNumber> paths = WKey.getParentPath(BAC_MAIN, newBip);
+        int idx = 0;
+        for(ChildNumber cn:paths){
+            primaryKey = HDKeyDerivation.deriveChildKey(primaryKey, cn);
+            idx ++;
+            if(idx >= paths.size() - path){
+                break;
+            }
+        }
+        return primaryKey;
+    }
+    public static String getBacDpAddressWithPath(String seed, int path, Boolean newBip) {
+        DeterministicKey primaryKey = getBacPrimaryKeyWithSeed(seed, path, newBip);
+        return getDpAddress(BAC_MAIN, primaryKey.getPublicKeyAsHex());
     }
 
     public static String getDpAddressWithPath(String seed, BaseChain chain, int path, Boolean newBip) {
+        if(chain.equals(BAC_MAIN)){
+            return getBacDpAddressWithPath(seed, path, newBip);
+        }
         DeterministicKey childKey   = new DeterministicHierarchy(HDKeyDerivation.createMasterPrivateKey(WUtil.HexStringToByteArray(seed))).deriveChild(WKey.getParentPath(chain, newBip), true, true,  new ChildNumber(path));
         return getDpAddress(chain, childKey.getPublicKeyAsHex());
     }

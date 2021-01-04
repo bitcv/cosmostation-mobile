@@ -17,6 +17,7 @@ import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.base.BaseFragment;
 import wannabit.io.bitcv.widget.WalletAddressHolder;
 import wannabit.io.bitcv.widget.WalletAkashHolder;
+import wannabit.io.bitcv.widget.WalletBacHolder;
 import wannabit.io.bitcv.widget.WalletBandHolder;
 import wannabit.io.bitcv.widget.WalletBinanceHolder;
 import wannabit.io.bitcv.widget.WalletCertikHolder;
@@ -33,6 +34,7 @@ import wannabit.io.bitcv.widget.WalletStarnameHolder;
 import wannabit.io.bitcv.widget.WalletUndelegationHolder;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -172,6 +174,7 @@ public class MainSendFragment extends BaseFragment {
         private static final int TYPE_CERTIK            = 8;
         private static final int TYPE_SECRET            = 9;
         private static final int TYPE_AKASH             = 10;
+        private static final int TYPE_BAC               = 11;
         private static final int TYPE_STAKE_DROP        = 30;
         private static final int TYPE_UNDELEGATIONS     = 40;
         private static final int TYPE_PRICE             = 80;
@@ -204,6 +207,9 @@ public class MainSendFragment extends BaseFragment {
 
             } else if (viewType == TYPE_OKEX) {
                 return new WalletOkexHolder(getLayoutInflater().inflate(R.layout.item_wallet_okex, viewGroup, false));
+
+            } else if (viewType == TYPE_BAC) {
+                return new WalletBacHolder(getLayoutInflater().inflate(R.layout.item_wallet_bac, viewGroup, false));
 
             } else if (viewType == TYPE_CERTIK) {
                 return new WalletCertikHolder(getLayoutInflater().inflate(R.layout.item_wallet_certik, viewGroup, false));
@@ -269,6 +275,7 @@ public class MainSendFragment extends BaseFragment {
                 } else if (position == 1) {
                     if (getMainActivity().mBaseChain.equals(COSMOS_MAIN)) { return TYPE_COSMOS; }
                     else if (getMainActivity().mBaseChain.equals(IRIS_MAIN)) { return TYPE_IRIS; }
+                    else if (getMainActivity().mBaseChain.equals(BAC_MAIN)) { return TYPE_BAC; }
                     else if (getMainActivity().mBaseChain.equals(KAVA_MAIN)) { return TYPE_KAVA; }
                     else if (getMainActivity().mBaseChain.equals(IOV_MAIN)) { return TYPE_STARNAME; }
                     else if (getMainActivity().mBaseChain.equals(BAND_MAIN)) { return TYPE_BAND; }

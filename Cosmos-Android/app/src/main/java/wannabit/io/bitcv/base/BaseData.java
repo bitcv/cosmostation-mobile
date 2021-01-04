@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import wannabit.io.bitcv.crypto.EncResult;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.model.type.Validator;
 import wannabit.io.bitcv.network.res.ResBandOracleStatus;
 import wannabit.io.bitcv.network.res.ResBnbFee;
@@ -50,6 +51,7 @@ import wannabit.io.bitcv.dao.Password;
 import wannabit.io.bitcv.dao.UnBondingState;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -101,6 +103,8 @@ public class BaseData {
 
     public ArrayList<BnbToken>                                              mBnbTokens = new ArrayList<>();
     public ArrayList<ResBnbFee>                                             mBnbFees = new ArrayList<>();
+
+    public ArrayList<BacToken>                                              mBacTokens = new ArrayList<>();
 
     public ResOkAccountInfo mOkAccountInfo;
     public ResOkStaking mOkStaking;

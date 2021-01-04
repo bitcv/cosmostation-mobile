@@ -27,6 +27,7 @@ import wannabit.io.bitcv.utils.WUtil;
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_TEST;
@@ -90,6 +91,8 @@ public class MnemonicCheckActivity extends BaseActivity {
             mMnemonicLayer.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgSecret));
         } else if (getChain(toCheck.baseChain).equals(AKASH_MAIN)) {
             mMnemonicLayer.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgAkash));
+        } else if (getChain(toCheck.baseChain).equals(BAC_MAIN)) {
+            mMnemonicLayer.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
         }
 
         else if (getChain(toCheck.baseChain).equals(BNB_TEST) || getChain(toCheck.baseChain).equals(KAVA_TEST) || getChain(toCheck.baseChain).equals(IOV_TEST) ||
@@ -106,6 +109,8 @@ public class MnemonicCheckActivity extends BaseActivity {
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_iris));
             } else if (getChain(toCheck.baseChain).equals(BNB_MAIN)) {
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_bnb));
+            } else if (getChain(toCheck.baseChain).equals(BAC_MAIN)) {
+                mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_bac));
             } else if (getChain(toCheck.baseChain).equals(KAVA_MAIN)) {
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_kava));
             } else if (getChain(toCheck.baseChain).equals(IOV_MAIN)) {

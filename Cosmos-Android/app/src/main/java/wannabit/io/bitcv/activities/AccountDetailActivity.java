@@ -36,6 +36,7 @@ import wannabit.io.bitcv.task.TaskResult;
 import wannabit.io.bitcv.utils.WDp;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -297,6 +298,14 @@ public class AccountDetailActivity extends BaseActivity implements View.OnClickL
             mCardRewardAddress.setVisibility(View.VISIBLE);
             mChainImg.setImageDrawable(getResources().getDrawable(R.drawable.akash_chain_img));
 
+        } else if(mBaseChain.equals(BAC_MAIN)){
+            mCardName.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
+            mCardAlarm.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
+            mCardAlarm.setVisibility(View.GONE);
+            mCardBody.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
+            mCardRewardAddress.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
+            mCardRewardAddress.setVisibility(View.VISIBLE);
+            mChainImg.setImageDrawable(getResources().getDrawable(R.drawable.bac_chain_img));
         }
 
 

@@ -20,6 +20,7 @@ import wannabit.io.bitcv.base.BaseActivity;
 import wannabit.io.bitcv.base.BaseChain;
 import wannabit.io.bitcv.base.BaseConstant;
 import wannabit.io.bitcv.base.BaseFragment;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.dao.BnbToken;
 import wannabit.io.bitcv.dao.IrisToken;
 import wannabit.io.bitcv.fragment.SendStep0Fragment;
@@ -49,6 +50,8 @@ public class SendActivity extends BaseActivity {
 
     public IrisToken                    mIrisToken;
     public BnbToken                     mBnbToken;
+    public BacToken                      mBacToken;
+
     public HashMap<String, ResBnbTic>   mBnbTics = new HashMap<>();
     public String                       mKavaDenom;
     public String                       mIovDenom;
@@ -75,6 +78,8 @@ public class SendActivity extends BaseActivity {
 
         mIrisToken = getIntent().getParcelableExtra("irisToken");
         mBnbToken = getIntent().getParcelableExtra("bnbToken");
+        mBacToken = getIntent().getParcelableExtra("bacToken");
+
         mBnbTics = (HashMap<String, ResBnbTic>)getIntent().getSerializableExtra("bnbTics");
         mKavaDenom = getIntent().getStringExtra("kavaDenom");
         mIovDenom = getIntent().getStringExtra("iovDenom");
@@ -92,6 +97,8 @@ public class SendActivity extends BaseActivity {
             if (mIrisToken == null) onBackPressed();
         } else if (mBaseChain.equals(BaseChain.BNB_MAIN)) {
             if (mBnbToken == null) onBackPressed();
+        } else if (mBaseChain.equals(BaseChain.BAC_MAIN)) {
+            if (mBacToken == null) onBackPressed();
         } else if (mBaseChain.equals(BaseChain.IOV_MAIN) || mBaseChain.equals(BaseChain.IOV_TEST)) {
             if (TextUtils.isEmpty(mIovDenom)) onBackPressed();
         } else if (mBaseChain.equals(BaseChain.KAVA_MAIN) || mBaseChain.equals(BaseChain.KAVA_TEST)) {

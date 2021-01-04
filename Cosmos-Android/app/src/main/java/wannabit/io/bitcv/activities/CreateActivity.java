@@ -28,6 +28,7 @@ import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
@@ -136,6 +137,8 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
             mCardMnemonics.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgIris));
         } else if (mChain.equals(BNB_MAIN)) {
             mCardMnemonics.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBinance));
+        }  else if (mChain.equals(BAC_MAIN)) {
+            mCardMnemonics.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
         } else if (mChain.equals(KAVA_MAIN)) {
             mCardMnemonics.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgKava));
         } else if (mChain.equals(IOV_MAIN)) {
@@ -158,6 +161,8 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_iris));
             } else if (mChain.equals(BNB_MAIN)) {
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_bnb));
+            } else if (mChain.equals(BAC_MAIN)) {
+                mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_bac));
             } else if (mChain.equals(KAVA_MAIN)) {
                 mWordsLayer[i].setBackground(getDrawable(R.drawable.box_round_kava));
             } else if (mChain.equals(IOV_MAIN)) {

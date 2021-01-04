@@ -32,6 +32,7 @@ import wannabit.io.bitcv.activities.MainActivity;
 import wannabit.io.bitcv.activities.TokenDetailActivity;
 import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.base.BaseFragment;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.dao.Balance;
 import wannabit.io.bitcv.dao.BnbToken;
 import wannabit.io.bitcv.dao.IrisToken;
@@ -45,6 +46,7 @@ import wannabit.io.bitcv.utils.WLog;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -58,11 +60,27 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DESCRIPTION;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_ISSUE_TIME;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SUPPLY;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SYMBOL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_VAL_URL;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DESCRIPTION;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_ISSUE_TIME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_SUPPLY;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_SYMBOL;
 import static wannabit.io.bitcv.base.BaseConstant.KAVA_COIN_IMG_URL;
 import static wannabit.io.bitcv.base.BaseConstant.OKEX_COIN_IMG_URL;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BAND;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BNB;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_CERTIK;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_HARD;
@@ -222,6 +240,11 @@ public class MainTokensFragment extends BaseFragment implements View.OnClickList
             onUpdateTotalCard();
             onFetchBnbTokenPrice();
 
+        } else if (getMainActivity().mBaseChain.equals(BAC_MAIN)) {
+            mCardTotal.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgBac));
+            onUpdateTotalCard();
+
+
         } else if (getMainActivity().mBaseChain.equals(KAVA_MAIN)) {
             mCardTotal.setCardBackgroundColor(getResources().getColor(R.color.colorTransBgKava));
             onUpdateTotalCard();
@@ -324,7 +347,17 @@ public class MainTokensFragment extends BaseFragment implements View.OnClickList
             mTotalAmount.setText(WDp.getDpAmount2(getContext(), totalBnbAmount, 0, 6));
             mTotalValue.setText(WDp.getValueOfBnb(getContext(), getBaseDao(), totalBnbAmount));
 
-        } else if (getMainActivity().mBaseChain.equals(KAVA_MAIN) || getMainActivity().mBaseChain.equals(KAVA_TEST)) {
+        } else if (getMainActivity().mBaseChain.equals(BAC_MAIN) ) {
+            BigDecimal totalBacAmount = BigDecimal.ZERO;
+            for (Balance balance:mBalances) {
+                if (balance.symbol.equals(BAC_MAIN_DENOM)) {
+                    totalBacAmount = totalBacAmount.add(balance.balance);
+                }
+            }
+            mTotalAmount.setText(WDp.getDpAmount2(getContext(), totalBacAmount, BAC_TOKEN_DECIMAL, 6));
+            mTotalValue.setText("");
+
+        }else if (getMainActivity().mBaseChain.equals(KAVA_MAIN) || getMainActivity().mBaseChain.equals(KAVA_TEST)) {
             BigDecimal totalKavaAmount = BigDecimal.ZERO;
             for (Balance balance:mBalances) {
                 if (balance.symbol.equals(TOKEN_KAVA)) {
@@ -438,6 +471,8 @@ public class MainTokensFragment extends BaseFragment implements View.OnClickList
                 onBindIrisItem(viewHolder, position);
             } else if (getMainActivity().mBaseChain.equals(BNB_MAIN) || getMainActivity().mBaseChain.equals(BNB_TEST)) {
                 onBindBnbItem(viewHolder, position);
+            }  else if (getMainActivity().mBaseChain.equals(BAC_MAIN)) {
+                onBindBacItem(viewHolder, position);
             } else if (getMainActivity().mBaseChain.equals(KAVA_MAIN)) {
                 onBindKavaItem(viewHolder, position);
             } else if (getMainActivity().mBaseChain.equals(KAVA_TEST)) {
@@ -546,7 +581,73 @@ public class MainTokensFragment extends BaseFragment implements View.OnClickList
             }
         });
     }
+    private void onBindBacItem(TokensAdapter.AssetHolder holder, final int position) {
+        final Balance balance = mBalances.get(position);
+        //ArrayList<BacToken> bacTokens = getMainActivity().mBacTokens;
+        BacToken itoken = WUtil.getBacToken(getMainActivity().mBacTokens, balance);
+        if (balance.symbol.equals(BAC_MAIN_DENOM)) {
+            holder.itemSymbol.setText(getString(R.string.str_bac_c));
+            holder.itemSymbol.setTextColor(WDp.getChainColor(getContext(), BAC_MAIN));
+            holder.itemInnerSymbol.setText("(" + balance.symbol + ")");
+            holder.itemFullName.setText("BAC Chain Main Token");
+            Picasso.get().cancelRequest(holder.itemImg);
+            holder.itemImg.setImageDrawable(getResources().getDrawable(R.drawable.bac_token_img));
 
+            BigDecimal totalAmount = WDp.getAllBac(getMainActivity().mBalances, getMainActivity().mBondings, getMainActivity().mUnbondings, getMainActivity().mRewards, getMainActivity().mAllValidators);
+            holder.itemBalance.setText(WDp.getDpAmount2(getContext(), totalAmount, BAC_TOKEN_DECIMAL, 6));
+            holder.itemValue.setText("0");
+            itoken = new BacToken(BAC_TOKEN_SYMBOL, BAC_MAIN_DENOM, BAC_TOKEN_SUPPLY, BAC_TOKEN_DECIMAL, BAC_TOKEN_HOME,
+                    BAC_TOKEN_DESCRIPTION, BAC_TOKEN_ISSUE_TIME);
+        }  else {
+            holder.itemSymbol.setTextColor(getResources().getColor(R.color.colorWhite));
+
+            holder.itemInnerSymbol.setText("(" + balance.symbol + ")");
+            if (balance.symbol.equals(BCV_MAIN_DENOM)) {
+                holder.itemFullName.setText("BAC Chain Right Token");
+            } else {
+                holder.itemFullName.setText(balance.symbol.toUpperCase() + " on BAC Chain");
+            }
+
+            Picasso.get().cancelRequest(holder.itemImg);
+            holder.itemImg.setImageDrawable(getResources().getDrawable(R.drawable.token_ic));
+            try {
+                Picasso.get().load(BAC_VAL_URL +balance.symbol+".png")
+                        .fit().placeholder(R.drawable.token_ic).error(R.drawable.token_ic)
+                        .into(holder.itemImg);
+
+            } catch (Exception e) { }
+
+            BigDecimal tokenTotalAmount = WDp.getBacTokenAll(getBaseDao(), mBalances, balance.symbol);
+            if (balance.symbol.equals(BCV_MAIN_DENOM)) {
+                itoken = new BacToken(BCV_TOKEN_SYMBOL, BCV_MAIN_DENOM, BCV_TOKEN_SUPPLY, BCV_TOKEN_DECIMAL, BCV_TOKEN_HOME,
+                        BCV_TOKEN_DESCRIPTION, BCV_TOKEN_ISSUE_TIME);
+                holder.itemSymbol.setText(BCV_TOKEN_SYMBOL);
+                holder.itemBalance.setText(WDp.getDpAmount2(getContext(), tokenTotalAmount, BCV_TOKEN_DECIMAL, 6));
+            }
+            else{
+
+                holder.itemSymbol.setText(itoken.symbol.toUpperCase());
+                holder.itemBalance.setText(WDp.getDpAmount2(getContext(), tokenTotalAmount, itoken.decimal, 6));
+            }
+
+            //BigDecimal tokenTotalValue = WDp.kavaTokenDollorValue(getBaseDao(), balance.symbol, tokenTotalAmount);
+           // BigDecimal convertedKavaAmount = tokenTotalValue.divide(getBaseDao().getLastKavaDollorTic(), WUtil.getKavaCoinDecimal(TOKEN_KAVA), RoundingMode.DOWN);
+           // holder.itemValue.setText(WDp.getValueOfKava(getContext(), getBaseDao(), convertedKavaAmount.movePointRight(WUtil.getKavaCoinDecimal(TOKEN_KAVA))));
+
+        }
+        final BacToken token = itoken;
+        holder.itemRoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getMainActivity(), TokenDetailActivity.class);
+                intent.putExtra("bacToken", token);
+                intent.putExtra("balance", balance);
+                intent.putExtra("allValidators", getMainActivity().mAllValidators);
+                intent.putExtra("rewards", getMainActivity().mRewards);
+                startActivity(intent);
+            }
+        });
+    }
     private void onBindBnbItem(TokensAdapter.AssetHolder holder, final int position) {
         Balance balance = mBalances.get(position);
         BnbToken token = WUtil.getBnbToken(getBaseDao().mBnbTokens, balance);

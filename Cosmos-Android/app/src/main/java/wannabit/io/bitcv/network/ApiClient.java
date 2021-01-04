@@ -332,6 +332,22 @@ public class ApiClient {
     }
 
 
+    //Services for OkTest chain
+    private static BacChain service_bac_main = null;
+    public static BacChain getBacChain(Context c) {
+        if (service_bac_main == null) {
+            synchronized (ApiClient.class) {
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(c.getString(R.string.url_lcd_bac_main))
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+                service_bac_main = retrofit.create(BacChain.class);
+            }
+        }
+        return service_bac_main;
+    }
+
+
 
 
     //Services for Certik mainnet

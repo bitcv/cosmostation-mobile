@@ -36,6 +36,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
 
 import okhttp3.OkHttpClient;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.network.res.ResBnbAccountInfo;
 import wannabit.io.bitcv.network.res.ResBnbTic;
 import wannabit.io.bitcv.network.res.ResCdpParam;
@@ -69,6 +70,7 @@ import wannabit.io.bitcv.model.type.Validator;
 import wannabit.io.bitcv.model.type.Vote;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -82,7 +84,9 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MSG_ACCOUNT_INFO;
 import static wannabit.io.bitcv.base.BaseConstant.BLOCK_TIME_AKASH;
+import static wannabit.io.bitcv.base.BaseConstant.BLOCK_TIME_BAC;
 import static wannabit.io.bitcv.base.BaseConstant.BLOCK_TIME_BAND;
 import static wannabit.io.bitcv.base.BaseConstant.BLOCK_TIME_CERTIK;
 import static wannabit.io.bitcv.base.BaseConstant.BLOCK_TIME_COSMOS;
@@ -104,7 +108,9 @@ import static wannabit.io.bitcv.base.BaseConstant.PERSISTENCE_COSMOS_EVENT_START
 import static wannabit.io.bitcv.base.BaseConstant.PERSISTENCE_KAVA_EVENT_END;
 import static wannabit.io.bitcv.base.BaseConstant.PERSISTENCE_KAVA_EVENT_START;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BAND;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BNB;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_CERTIK;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_HARD;
@@ -139,7 +145,7 @@ public class WUtil {
         if (lcd.type.equals(BaseConstant.COSMOS_AUTH_TYPE_ACCOUNT) ||
                 lcd.type.equals(BaseConstant.COSMOS_AUTH_TYPE_ACCOUNT_LEGACY) ||
                 lcd.type.equals(BaseConstant.IRIS_BANK_TYPE_ACCOUNT) ||
-                lcd.result.type.equals(COSMOS_AUTH_TYPE_CERTIK_MANUAL)) {
+                lcd.result.type.equals(COSMOS_AUTH_TYPE_CERTIK_MANUAL) || lcd.type.equals(BAC_MSG_ACCOUNT_INFO)) {
             result.address = lcd.value.address;
             result.sequenceNumber = Integer.parseInt(lcd.value.sequence);
             result.accountNumber = Integer.parseInt(lcd.value.account_number);
@@ -226,7 +232,7 @@ public class WUtil {
         if(lcd.type.equals(BaseConstant.COSMOS_AUTH_TYPE_ACCOUNT) ||
                 lcd.type.equals(BaseConstant.COSMOS_AUTH_TYPE_ACCOUNT_LEGACY) ||
                 lcd.type.equals(BaseConstant.IRIS_BANK_TYPE_ACCOUNT) ||
-                lcd.result.type.equals(COSMOS_AUTH_TYPE_CERTIK_MANUAL)) {
+                lcd.result.type.equals(COSMOS_AUTH_TYPE_CERTIK_MANUAL) || lcd.type.equals(BAC_MSG_ACCOUNT_INFO)) {
             if (lcd.value.coins != null && lcd.value.coins.size() > 0){
                 for(Coin coin : lcd.value.coins) {
                     Balance temp = new Balance();
@@ -420,7 +426,8 @@ public class WUtil {
         ArrayList<BondingState> result = new ArrayList<>();
         if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(BAND_MAIN) ||
                 chain.equals(KAVA_TEST) || chain.equals(IOV_MAIN) || chain.equals(IOV_TEST) ||
-                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN) || chain.equals(AKASH_MAIN)) {
+                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)
+                || chain.equals(AKASH_MAIN) || chain.equals(BAC_MAIN)) {
             for(ResLcdBonding val : list) {
                 String valAddress = "";
                 if(!TextUtils.isEmpty(val.validator_addr))
@@ -457,7 +464,8 @@ public class WUtil {
 
         if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(BAND_MAIN) ||
                 chain.equals(KAVA_TEST) || chain.equals(IOV_MAIN) || chain.equals(IOV_TEST) ||
-                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN) || chain.equals(AKASH_MAIN)) {
+                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)
+                || chain.equals(AKASH_MAIN) || chain.equals(BAC_MAIN)) {
             return new BondingState(accountId, valAddress, new BigDecimal(lcd.shares), System.currentTimeMillis());
 
         } else if (chain.equals(IRIS_MAIN)) {
@@ -472,7 +480,9 @@ public class WUtil {
         ArrayList<UnBondingState> result = new ArrayList<>();
         if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(BAND_MAIN) ||
                 chain.equals(KAVA_TEST) || chain.equals(IOV_MAIN) || chain.equals(IOV_TEST) ||
-                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN) || chain.equals(AKASH_MAIN)) {
+                chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST)
+                || chain.equals(SECRET_MAIN) || chain.equals(AKASH_MAIN)
+        || chain.equals(BAC_MAIN)) {
             for(ResLcdUnBonding val : list) {
                 String valAddress = "";
                 if(!TextUtils.isEmpty(val.validator_addr))
@@ -864,7 +874,8 @@ public class WUtil {
                 if(o1.description.moniker.equalsIgnoreCase("Cosmostation")) return -1;
                 if(o2.description.moniker.equalsIgnoreCase("Cosmostation")) return 1;
                 if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)
-                        || chain.equals(BAND_MAIN) || chain.equals(IOV_MAIN) || chain.equals(IOV_TEST) || chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)) {
+                        || chain.equals(BAND_MAIN) || chain.equals(IOV_MAIN)
+                        || chain.equals(IOV_TEST) || chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)) {
                     if (Float.parseFloat(o1.commission.commission_rates.rate) > Float.parseFloat(o2.commission.commission_rates.rate)) return 1;
                     else if (Float.parseFloat(o1.commission.commission_rates.rate) < Float.parseFloat(o2.commission.commission_rates.rate)) return -1;
                     else return 0;
@@ -895,7 +906,9 @@ public class WUtil {
                     else if (Integer.parseInt(o1.id) > Integer.parseInt(o2.id)) return -1;
                     else return 0;
 
-                } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST) || chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)) {
+                } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST) || chain.equals(CERTIK_MAIN)
+                        || chain.equals(CERTIK_TEST) || chain.equals(SECRET_MAIN)
+                || chain.equals(BAC_MAIN)) {
                     if (Integer.parseInt(o1.id) < Integer.parseInt(o2.id)) return 1;
                     else if (Integer.parseInt(o1.id) > Integer.parseInt(o2.id)) return -1;
                     else return 0;
@@ -969,6 +982,10 @@ public class WUtil {
                     if(o1.symbol.equals(TOKEN_BNB)) return -1;
                     if(o2.symbol.equals(TOKEN_BNB)) return 1;
 
+                } else if (chain.equals(BAC_MAIN)) {
+                    if(o1.symbol.equals(BAC_MAIN_DENOM)) return -1;
+                    if(o2.symbol.equals(BAC_MAIN_DENOM)) return 1;
+
                 } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
                     if(o1.symbol.equals(TOKEN_KAVA)) return -1;
                     if(o2.symbol.equals(TOKEN_KAVA)) return 1;
@@ -1024,7 +1041,11 @@ public class WUtil {
                     if(o1.symbol.equals(TOKEN_IOV)) return -1;
                     if(o2.symbol.equals(TOKEN_IOV)) return 1;
 
-                } else if (chain.equals(BAND_MAIN)) {
+                }  else if (chain.equals(BAC_MAIN)) {
+                    if(o1.symbol.equals(BAC_MAIN_DENOM)) return -1;
+                    if(o2.symbol.equals(BAC_MAIN_DENOM)) return 1;
+
+                }else if (chain.equals(BAND_MAIN)) {
                     if(o1.symbol.equals(TOKEN_BAND)) return -1;
                     if(o2.symbol.equals(TOKEN_BAND)) return 1;
 
@@ -1184,7 +1205,10 @@ public class WUtil {
         } else if (chain.equals(BNB_MAIN) || chain.equals(BNB_TEST)) {
             return BaseConstant.CGC_BNB;
 
-        } else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
+        } else if (chain.equals(BAC)) {
+            return BaseConstant.CGC_BAC;
+
+        }else if (chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST)) {
             return BaseConstant.CGC_KAVA;
 
         } else if (chain.equals(BAND_MAIN)) {
@@ -1209,7 +1233,7 @@ public class WUtil {
     public static int getMaxMemoSize(BaseChain chain) {
         if (chain.equals(COSMOS_MAIN) || chain.equals(KAVA_MAIN) || chain.equals(KAVA_TEST) ||
                 chain.equals(IOV_MAIN) || chain.equals(BAND_MAIN) || chain.equals(IOV_TEST) ||
-                chain.equals(OK_TEST) || chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(AKASH_MAIN) || chain.equals(SECRET_MAIN)) {
+                chain.equals(OK_TEST) || chain.equals(BAC_MAIN) || chain.equals(CERTIK_MAIN) || chain.equals(CERTIK_TEST) || chain.equals(AKASH_MAIN) || chain.equals(SECRET_MAIN)) {
             return BaseConstant.MEMO_ATOM;
 
         } else if (chain.equals(IRIS_MAIN)) {
@@ -1326,6 +1350,26 @@ public class WUtil {
         return null;
     }
 
+    public static BacToken getBacToken(ArrayList<BacToken> all, Balance balance) {
+        if (all == null || balance == null) return null;
+        for (BacToken token:all) {
+            if (token.symbol.equals(balance.symbol)) {
+                return token;
+            }
+        }
+        return null;
+    }
+
+    public static BacToken getBacToken(ArrayList<BacToken> all, String symbol) {
+        if (all == null || symbol == null) return null;
+        for (BacToken token:all) {
+            if (token.symbol.equals(symbol)) {
+                return token;
+            }
+        }
+        return null;
+    }
+
 
     public static BnbToken getBnbMainToken(ArrayList<BnbToken> all) {
         if (all == null) return null;
@@ -1337,6 +1381,24 @@ public class WUtil {
         return null;
     }
 
+    public static BacToken getBacMainToken(ArrayList<BacToken> all) {
+        if (all == null) return null;
+        for (BacToken token:all) {
+            if (token.original_symbol.equals(BAC_MAIN_DENOM)) {
+                return token;
+            }
+        }
+        return null;
+    }
+    public static BacToken getBcvMainToken(ArrayList<BacToken> all) {
+        if (all == null) return null;
+        for (BacToken token:all) {
+            if (token.original_symbol.equals(BCV_MAIN_DENOM)) {
+                return token;
+            }
+        }
+        return null;
+    }
     public static IrisToken getIrisToken(ArrayList<IrisToken> all, Balance balance) {
         if (all == null || balance == null) return null;
         for (IrisToken token:all) {
@@ -1568,6 +1630,8 @@ public class WUtil {
     public static String ETHEREUM       = "asset:eth";
     public static String STARNAME       = "asset:iov";
     public static String BAND           = "asset:band";
+    public static String BAC           = "asset:bac";
+    public static String BCV           = "asset:bcv";
     public static String TEZOS          = "asset:xtz";
     public static String LISK           = "asset:lsk";
 
@@ -1588,6 +1652,8 @@ public class WUtil {
         result.add(new StarNameResource(TEZOS));
         result.add(new StarNameResource(LISK));
         result.add(new StarNameResource(LUNA));
+        result.add(new StarNameResource(BAC));
+        result.add(new StarNameResource(BCV));
         return result;
 
     }
@@ -1634,6 +1700,12 @@ public class WUtil {
 
         } else if (res.uri.equals(LISK)) {
             return c.getResources().getDrawable(R.drawable.lisk_chain_img);
+
+        }else if (res.uri.equals(BAC)) {
+            return c.getResources().getDrawable(R.drawable.bac_chain_img);
+
+        }else if (res.uri.equals(BCV)) {
+            return c.getResources().getDrawable(R.drawable.bac_chain_img);
 
         }
         return c.getResources().getDrawable(R.drawable.default_chain_img);
@@ -1682,6 +1754,13 @@ public class WUtil {
         } else if (res.uri.equals(LISK)) {
             return "Lisk";
 
+        }else if (res.uri.equals(BAC)) {
+            return "BAC";
+
+        }
+        else if (res.uri.equals(BCV)) {
+            return "BCV";
+
         }
         return res.uri;
 
@@ -1700,6 +1779,8 @@ public class WUtil {
             return KAVA_MAIN;
         } else if (uri.equals(BAND)) {
             return BAND_MAIN;
+        }else if (uri.equals(BAC)) {
+            return BAC_MAIN;
         }
         return null;
     }
@@ -1736,6 +1817,11 @@ public class WUtil {
 
             } else if (BaseChain.getChain(account.baseChain).equals(BAND_MAIN)) {
                 resource.ticker = "band";
+                resource.address = account.address;
+                result.addresses.add(resource);
+
+            } else if (BaseChain.getChain(account.baseChain).equals(BAC_MAIN)) {
+                resource.ticker = "bac";
                 resource.address = account.address;
                 result.addresses.add(resource);
 
@@ -1793,6 +1879,9 @@ public class WUtil {
         } else if (chain.equals(AKASH_MAIN)) {
             return BLOCK_TIME_AKASH;
 
+        } else if (chain.equals(BAC_MAIN)) {
+            return BLOCK_TIME_BAC;
+
         }
         return new BigDecimal("6");
     }
@@ -1832,6 +1921,9 @@ public class WUtil {
         } else if (chain.equals(SECRET_MAIN)) {
             return new Intent(Intent.ACTION_VIEW , Uri.parse("https://scrt.network"));
 
+        } else if (chain.equals(SECRET_MAIN)) {
+            return new Intent(Intent.ACTION_VIEW , Uri.parse("https://www.bitcv.net"));
+
         }
         return null;
     }
@@ -1870,6 +1962,9 @@ public class WUtil {
 
         } else if (chain.equals(SECRET_MAIN)) {
             return new Intent(Intent.ACTION_VIEW , Uri.parse("https://blog.scrt.network"));
+
+        } else if (chain.equals(BAC_MAIN)) {
+            return new Intent(Intent.ACTION_VIEW , Uri.parse("https://rrex.com"));
 
         }
         return null;

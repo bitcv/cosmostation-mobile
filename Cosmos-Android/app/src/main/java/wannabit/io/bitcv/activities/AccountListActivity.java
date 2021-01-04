@@ -214,6 +214,12 @@ public class AccountListActivity extends BaseActivity implements View.OnClickLis
                     holder.chainImg.setImageDrawable(getResources().getDrawable(R.drawable.binance_ch_img));
                     holder.chainName.setText(getString(R.string.str_binance));
 
+                } else if (chain.equals(BaseChain.BAC_MAIN)) {
+                    holder.chainLayer.setVisibility(View.VISIBLE);
+                    holder.allLayer.setVisibility(View.GONE);
+                    holder.chainImg.setImageDrawable(getResources().getDrawable(R.drawable.bac_chain_img));
+                    holder.chainName.setText(getString(R.string.str_bac));
+
                 } else if (chain.equals(BaseChain.KAVA_MAIN)) {
                     holder.chainLayer.setVisibility(View.VISIBLE);
                     holder.allLayer.setVisibility(View.GONE);

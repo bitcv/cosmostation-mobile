@@ -56,6 +56,7 @@ import wannabit.io.bitcv.model.type.Validator;
 
 import static android.text.Spanned.SPAN_INCLUSIVE_INCLUSIVE;
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -69,11 +70,15 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.DAY_SEC;
 import static wannabit.io.bitcv.base.BaseConstant.MONTH_SEC;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BAND;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BNB;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_CERTIK;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_HARD;
@@ -170,10 +175,25 @@ public class WDp {
         } else if (chain.equals(BNB_MAIN) || chain.equals(BNB_TEST)) {
             if (coin.denom.equals(TOKEN_BNB)) {
                 DpMainDenom(c, chain.getChain(), denomTv);
+
             } else {
                 denomTv.setText(coin.denom.toUpperCase());
             }
             amountTv.setText(getDpAmount2(c, new BigDecimal(coin.amount), 8, 8));
+
+        } else if (chain.equals(BAC_MAIN)) {
+            if (coin.denom.equals(BAC_MAIN_DENOM)) {
+                DpMainDenom(c, chain.getChain(), denomTv);
+                amountTv.setText(getDpAmount2(c, new BigDecimal(coin.amount), BAC_TOKEN_DECIMAL, 8));
+            } else if(coin.denom.equals(BCV_MAIN_DENOM)) {
+                denomTv.setText(coin.denom.toUpperCase());
+                amountTv.setText(getDpAmount2(c, new BigDecimal(coin.amount), BCV_TOKEN_DECIMAL, 8));
+            }
+            else{
+                denomTv.setText(coin.denom.toUpperCase());
+                amountTv.setText(getDpAmount2(c, new BigDecimal(coin.amount), BAC_TOKEN_DECIMAL, 8));
+            }
+
 
         } else if (chain.equals(BAND_MAIN)) {
             DpMainDenom(c, chain.getChain(), denomTv);
@@ -538,7 +558,15 @@ public class WDp {
         }
         return sum;
     }
-
+    public static BigDecimal getBacTokenAll(BaseData baseData, ArrayList<Balance> balances, String denom) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (Balance balance : balances) {
+            if (balance.symbol.equals(denom)) {
+                sum = sum.add(balance.balance);
+            }
+        }
+        return sum;
+    }
     public static BigDecimal getKavaTokenAll(BaseData baseData, ArrayList<Balance> balances, String denom) {
         BigDecimal sum = BigDecimal.ZERO;
         for (Balance balance : balances) {
@@ -724,7 +752,30 @@ public class WDp {
         }
         return sum;
     }
-
+    public static BigDecimal getAllBac(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for(Balance balance : balances) {
+            if(balance.symbol.equals(BAC_MAIN_DENOM)) {
+                sum = sum.add(balance.balance);
+            }
+        }
+        if (bondings != null) {
+            for(BondingState bonding : bondings) {
+                sum = sum.add(bonding.getBondingAmount(selectValidator(validators, bonding.validatorAddress)));
+            }
+        }
+        if (unbondings != null) {
+            for(UnBondingState unbonding : unbondings) {
+                sum = sum.add(unbonding.balance);
+            }
+        }
+        if (rewards != null) {
+            for(Reward reward : rewards) {
+                sum = sum.add(reward.getRewardAmount(BAC_MAIN_DENOM));
+            }
+        }
+        return sum;
+    }
     public static BigDecimal getAllBand(ArrayList<Balance> balances, ArrayList<BondingState> bondings, ArrayList<UnBondingState> unbondings, ArrayList<Reward> rewards, ArrayList<Validator> validators) {
         BigDecimal sum = BigDecimal.ZERO;
         for(Balance balance : balances) {
@@ -1570,6 +1621,8 @@ public class WDp {
         } else if (chain.equals(OK_TEST)) {
             return BaseConstant.KEY_NEW_OK_PATH + String.valueOf(position);
 
+        } else if (chain.equals(BAC_MAIN)){
+            return BaseConstant.KEY_BAC_PATH + String.valueOf(position);
         } else if (chain.equals(SECRET_MAIN)) {
             if (newBip) {
                 return BaseConstant.KEY_NEW_SECRET_PATH + String.valueOf(position);
@@ -1908,6 +1961,8 @@ public class WDp {
             return c.getResources().getColor(R.color.colorSecret);
         } else if (chain.equals(AKASH_MAIN)) {
             return c.getResources().getColor(R.color.colorAkash);
+        } else if (chain.equals(BAC_MAIN)) {
+            return c.getResources().getColor(R.color.colorBac);
         }  else {
             return c.getResources().getColor(R.color.colorGray0);
         }
@@ -1934,7 +1989,9 @@ public class WDp {
             return c.getResources().getColor(R.color.colorTransBgSecret);
         } else if (chain.equals(AKASH_MAIN)) {
             return c.getResources().getColor(R.color.colorTransBgAkash);
-        }  else {
+        }  else if (chain.equals(BAC_MAIN)) {
+            return c.getResources().getColor(R.color.colorTransBgBac);
+        } else {
             return c.getResources().getColor(R.color.colorTransBgAkash);
         }
 
@@ -1959,6 +2016,8 @@ public class WDp {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_secret);
         } else if (chain.equals(AKASH_MAIN)) {
             return c.getResources().getColorStateList(R.color.color_tab_myvalidator_akash);
+        } else if (chain.equals(BAC_MAIN)) {
+            return c.getResources().getColorStateList(R.color.color_tab_myvalidator_bac);
         }
         return null;
     }
@@ -1982,6 +2041,8 @@ public class WDp {
             return c.getResources().getColorStateList(R.color.colorSecret);
         } else if (chain.equals(AKASH_MAIN)) {
             return c.getResources().getColorStateList(R.color.colorAkash);
+        }  else if (chain.equals(BAC_MAIN)) {
+            return c.getResources().getColorStateList(R.color.colorBac);
         }
         return null;
     }
@@ -2010,6 +2071,10 @@ public class WDp {
         } else if (BaseChain.getChain(chain).equals(BAND_MAIN)) {
             textview.setTextColor(c.getResources().getColor(R.color.colorBand));
             textview.setText(c.getString(R.string.s_band));
+
+        } else if (BaseChain.getChain(chain).equals(BAC_MAIN)) {
+            textview.setTextColor(c.getResources().getColor(R.color.colorBac));
+            textview.setText(c.getString(R.string.s_bac));
 
         } else if (BaseChain.getChain(chain).equals(OK_TEST)) {
             textview.setTextColor(c.getResources().getColor(R.color.colorOK));
