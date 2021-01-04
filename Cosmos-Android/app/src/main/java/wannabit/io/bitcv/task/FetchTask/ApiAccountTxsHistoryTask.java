@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import retrofit2.Response;
 import wannabit.io.bitcv.network.ApiClient;
 import wannabit.io.bitcv.network.res.ResApiTxList;
+import wannabit.io.bitcv.network.res.ResBacHistories;
 import wannabit.io.bitcv.utils.WLog;
 import wannabit.io.bitcv.base.BaseApplication;
 import wannabit.io.bitcv.base.BaseChain;
@@ -109,6 +110,14 @@ public class ApiAccountTxsHistoryTask extends CommonTask {
                     WLog.w("HistoryTask : NOk");
                 }
 
+            } else if(mChain.equals(BaseChain.BAC_MAIN)){
+                Response<ResBacHistories> response = ApiClient.getBacChainApi(mApp).getTradeList(mAddress, "0", "10").execute();
+                if (response.isSuccessful() && response.body() != null) {
+                    mResult.resultData = response.body().data;
+                    mResult.isSuccess = true;
+                } else {
+                    WLog.w("HistoryTask : NOk");
+                }
             }
 
         } catch (Exception e) {

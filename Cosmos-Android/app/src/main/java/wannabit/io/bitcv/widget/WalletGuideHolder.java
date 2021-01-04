@@ -14,6 +14,7 @@ import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -116,6 +117,13 @@ public class WalletGuideHolder extends WalletHolder {
             itemGuideMsg.setText(R.string.str_front_guide_msg_secret);
             itemBtnGuide1.setText(R.string.str_faq_secret);
             itemBtnGuide2.setText(R.string.str_guide_secret);
+
+        } else if (mainActivity.mBaseChain.equals(BAC_MAIN)) {
+            itemGuideImg.setImageDrawable(mainActivity.getResources().getDrawable(R.drawable.bac_chain_img));
+            itemGuideTitle.setText(R.string.str_front_guide_title_bac);
+            itemGuideMsg.setText(R.string.str_front_guide_msg_bac);
+            itemBtnGuide1.setText(R.string.str_home_bac);
+            itemBtnGuide2.setText(R.string.str_rrex_bac);
 
         }
 

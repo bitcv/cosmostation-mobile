@@ -97,7 +97,7 @@ public class WebActivity extends BaseActivity {
         } else if (mBasechain.equals(BaseChain.BAC_MAIN)) {
             mShare.setBackgroundTintList(getResources().getColorStateList(R.color.colorBnb));
             if (!TextUtils.isEmpty(mTxid))
-                mWebview.loadUrl(EXPLORER_BAC_MAIN + "txs/" + mTxid);
+                mWebview.loadUrl(EXPLORER_BAC_MAIN + "tx/" + mTxid);
             else if (!TextUtils.isEmpty(mAddress))
                 mWebview.loadUrl(EXPLORER_BAC_MAIN + "address/" + mAddress);
             else if (!TextUtils.isEmpty(mAsset))

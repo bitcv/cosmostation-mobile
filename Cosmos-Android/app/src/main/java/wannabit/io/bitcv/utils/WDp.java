@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import wannabit.io.bitcv.model.type.BacHistory;
 import wannabit.io.bitcv.network.res.ResBnbNodeInfo;
 import wannabit.io.bitcv.network.res.ResBnbSwapInfo;
 import wannabit.io.bitcv.network.res.ResCdpParam;
@@ -70,6 +71,9 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MSG_TYPE_EDATA;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MSG_TYPE_ISSUE_TOKEN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MSG_TYPE_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.DAY_SEC;
@@ -1592,7 +1596,24 @@ public class WDp {
         return result;
 
     }
+    public static String DpBacTxType(Context c, BacHistory history, String address) {
+        String result = c.getString(R.string.tx_known);
+        if (history.txType.equals(BAC_MSG_TYPE_EDATA)) {
+            result = c.getString(R.string.tx_deposit);
 
+        } else if (history.txType.equals(BAC_MSG_TYPE_ISSUE_TOKEN)) {
+            result = c.getString(R.string.tx_issue_token);
+
+        } else if (history.txType.equals(BAC_MSG_TYPE_SEND)) {
+            if (!TextUtils.isEmpty(history.from) && address.equals(history.from)) {
+                result = c.getString(R.string.tx_send);
+            } else {
+                result = c.getString(R.string.tx_receive);
+            }
+        }
+        return result;
+
+    }
     public static String getHistoryDpCnt(ArrayList<Msg> msgs) {
         String result = "";
         if(msgs.size() > 2) {

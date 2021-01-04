@@ -18,6 +18,7 @@ import wannabit.io.bitcv.network.req.ReqStarNameAccountInDomain;
 import wannabit.io.bitcv.network.req.ReqStarNameByOwner;
 import wannabit.io.bitcv.network.req.ReqStarNameDomainInfo;
 import wannabit.io.bitcv.network.req.ReqStarNameResolve;
+import wannabit.io.bitcv.network.res.ResBacHistories;
 import wannabit.io.bitcv.network.res.ResBroadTx;
 import wannabit.io.bitcv.network.res.ResIovConfig;
 import wannabit.io.bitcv.network.res.ResIovFee;
@@ -126,5 +127,7 @@ public interface BacChain {
     @GET("/gov/proposals/{proposalId}/votes/{address}")
     Call<ResMyVote> getMyVote(@Path("proposalId") String proposalId, @Path("address") String address);
 
+    @GET("/api/txs")
+    Call<ResBacHistories> getTradeList(@Query("address") String address, @Query("page") String page, @Query("limit") String limit);
 
 }

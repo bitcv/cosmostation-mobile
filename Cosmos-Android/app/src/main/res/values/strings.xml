@@ -46,7 +46,7 @@
     <string name="url_api_ok_test" translatable="false"></string>
 
     <string name="url_lcd_bac_main" translatable="false">https://rpc.bitcv.net/</string>
-    <string name="url_api_bac_main" translatable="false">https://rpc.bitcv.net/</string>
+    <string name="url_api_bac_main" translatable="false">https://main.bitcv.net/</string>
 
 
 
@@ -266,6 +266,8 @@
     <string name="str_guide_certik">Blog</string>
     <string name="str_faq_akash">Home</string>
     <string name="str_guide_akash">Blog</string>
+    <string name="str_home_bac">Home</string>
+    <string name="str_rrex_bac">RREx</string>
     <string name="str_faq_secret">Home</string>
     <string name="str_guide_secret">Blog</string>
     <string name="str_telegram">Telegram</string>
@@ -417,6 +419,7 @@
     <string name="str_front_guide_title"><![CDATA[COSMOS HUB]]></string>
     <string name="str_front_guide_title_iris"><![CDATA[IRIS HUB]]></string>
     <string name="str_front_guide_title_binance"><![CDATA[BINANCE CHAIN]]></string>
+    <string name="str_front_guide_title_bac"><![CDATA[Bit Asset CHAIN]]></string>
     <string name="str_front_guide_title_kava"><![CDATA[KAVA CHAIN]]></string>
     <string name="str_front_guide_title_iov"><![CDATA[Starname Service]]></string>
     <string name="str_front_guide_title_band"><![CDATA[BAND PROTOCOL]]></string>
@@ -424,6 +427,7 @@
     <string name="str_front_guide_title_certik"><![CDATA[CERTIK CHAIN]]></string>
     <string name="str_front_guide_title_akash"><![CDATA[AKASH NETWORK]]></string>
     <string name="str_front_guide_title_secret"><![CDATA[SECRET NETWORK]]></string>
+    <string name="str_front_guide_msg_bac">Digital asset application public chain with leading efficiency and complete system</string>
     <string name="str_front_guide_msg">Decentralized network of blockchains powered by Tendermint BFT and ABCI.</string>
     <string name="str_front_guide_msg_iris">Interchain service infrastructure for a distributed business ecosystem.</string>
     <string name="str_front_guide_msg_bnb">Fast and secure decentralized digital asset exchange based on Tendermint built by Binance.</string>

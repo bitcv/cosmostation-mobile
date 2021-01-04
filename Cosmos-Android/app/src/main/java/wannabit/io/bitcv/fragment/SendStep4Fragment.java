@@ -350,7 +350,7 @@ public class SendStep4Fragment extends BaseFragment implements View.OnClickListe
             else{
                 mTotalSpendAmount.setText(WDp.getDpAmount2(getContext(), toSendAmount,
                         mDpDecimal, 6));
-                mRemainingBalance.setText(WDp.getDpAmount2(getContext(), currentBalance.subtract(feeAmount), token.decimal, 6));
+                mRemainingBalance.setText(WDp.getDpAmount2(getContext(), currentBalance.subtract(toSendAmount), token.decimal, 6));
             }
 
 

@@ -25,7 +25,9 @@ import wannabit.io.bitcv.activities.WebActivity;
 import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.base.BaseConstant;
 import wannabit.io.bitcv.base.BaseFragment;
+import wannabit.io.bitcv.model.type.BacHistory;
 import wannabit.io.bitcv.model.type.BnbHistory;
+import wannabit.io.bitcv.network.BacChain;
 import wannabit.io.bitcv.network.res.ResApiTxList;
 import wannabit.io.bitcv.task.FetchTask.ApiAccountTxsHistoryTask;
 import wannabit.io.bitcv.task.FetchTask.HistoryTask;
@@ -35,6 +37,7 @@ import wannabit.io.bitcv.utils.WDp;
 import wannabit.io.bitcv.utils.WLog;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -66,6 +69,7 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
     private TextView                        mNotYet;
 
     private ArrayList<BnbHistory>           mBnbHistory = new ArrayList<>();
+    private ArrayList<BacHistory>           mBacHistory = new ArrayList<>();
     private ArrayList<ResApiTxList.Data>    mApiTxHistory = new ArrayList<>();
 
     public static MainHistoryFragment newInstance(Bundle bundle) {
@@ -193,7 +197,7 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
             mNotYet.setVisibility(View.VISIBLE);
             mNotYet.setText("Check with Explorer");
 
-        } else if (getMainActivity().mBaseChain.equals(AKASH_MAIN)) {
+        } else if (getMainActivity().mBaseChain.equals(AKASH_MAIN) || getMainActivity().mBaseChain.equals(BAC_MAIN)) {
             new ApiAccountTxsHistoryTask(getBaseApplication(), this, getMainActivity().mAccount.address, getMainActivity().mBaseChain).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
 
         }
@@ -217,6 +221,19 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
 
             }
 
+        } else if(getMainActivity().mBaseChain.equals(BAC_MAIN)) {
+            ArrayList<BacHistory> hits = (ArrayList<BacHistory>)result.resultData;
+            if (hits != null && hits.size() > 0) {
+                WLog.w("hit size " + hits.size());
+                mBacHistory = hits;
+                mHistoryAdapter.notifyDataSetChanged();
+                mEmptyHistory.setVisibility(View.GONE);
+                mRecyclerView.setVisibility(View.VISIBLE);
+
+            } else {
+                mEmptyHistory.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.GONE);
+            }
         } else if (result.taskType == BaseConstant.TASK_FETCH_API_ADDRESS_HISTORY) {
             ArrayList<ResApiTxList.Data> hits = (ArrayList<ResApiTxList.Data>)result.resultData;
             if (hits != null && hits.size() > 0) {
@@ -340,6 +357,33 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
                         }
                     }
                 });
+            } else if (getMainActivity().mBaseChain.equals(BAC_MAIN)) {
+                final BacHistory history = mBacHistory.get(position);
+                viewHolder.historyType.setText(WDp.DpBacTxType(getContext(), history, getMainActivity().mAccount.address));
+                viewHolder.history_time.setText(history.timeStamp);
+                String to = history.to;
+                viewHolder.history_time_gap.setText(to.substring(0, 4)+"..."+to.substring(to.length()-4));
+                String hash = history.txHash;
+                viewHolder.history_block.setText(history.blockHeight + ":" + hash.substring(0, 4)+"..."+hash.substring(hash.length()-4));
+                if(history.state == 0){
+                    viewHolder.historySuccess.setText("Success");
+                }
+                else {
+                    viewHolder.historySuccess.setText("Fail");
+                }
+                //viewHolder.historySuccess.setVisibility(View.GONE);
+                viewHolder.historyRoot.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        if (history.txType.equals("HTL_TRANSFER") || history.txType.equals("CLAIM_HTL") || history.txType.equals("REFUND_HTL") ||
+//                                history.txType.equals("NEW_ORDER") || history.txType.equals("CANCEL_ORDER") || history.txType.equals("TRANSFER")) {
+
+                        Intent webintent = new Intent(getBaseActivity(), WebActivity.class);
+                        webintent.putExtra("txid", history.txHash);
+                        webintent.putExtra("chain", getMainActivity().mBaseChain.getChain());
+                        startActivity(webintent);
+                    }
+                });
             }
         }
 
@@ -354,6 +398,8 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
             } else if (getMainActivity().mBaseChain.equals(BAND_MAIN) || getMainActivity().mBaseChain.equals(IOV_MAIN) || getMainActivity().mBaseChain.equals(CERTIK_MAIN) ||
                     getMainActivity().mBaseChain.equals(CERTIK_TEST) || getMainActivity().mBaseChain.equals(AKASH_MAIN)) {
                 return mApiTxHistory.size();
+            } else if(getMainActivity().mBaseChain.equals(BAC_MAIN)){
+                return mBacHistory.size();
             }
             return 0;
         }

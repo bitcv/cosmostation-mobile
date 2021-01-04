@@ -1921,7 +1921,7 @@ public class WUtil {
         } else if (chain.equals(SECRET_MAIN)) {
             return new Intent(Intent.ACTION_VIEW , Uri.parse("https://scrt.network"));
 
-        } else if (chain.equals(SECRET_MAIN)) {
+        } else if (chain.equals(BAC_MAIN)) {
             return new Intent(Intent.ACTION_VIEW , Uri.parse("https://www.bitcv.net"));
 
         }
