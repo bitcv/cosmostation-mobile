@@ -285,7 +285,13 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             if(result != null) {
                 if(result.getContents() != null) {
-                    mAddressInput.setText(result.getContents().trim());
+                    String addr = result.getContents().trim();
+                    int idx = addr.indexOf("?");
+                    if(idx != -1)
+                    {
+                        addr = addr.substring(0, idx);
+                    }
+                    mAddressInput.setText(addr);
                     mAddressInput.setSelection(mAddressInput.getText().length());
                 }
             } else {

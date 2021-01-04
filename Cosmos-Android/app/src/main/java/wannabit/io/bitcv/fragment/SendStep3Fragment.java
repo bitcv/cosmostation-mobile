@@ -31,6 +31,7 @@ import wannabit.io.bitcv.utils.WDp;
 import wannabit.io.bitcv.utils.WLog;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -44,6 +45,8 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_AKASH_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_AKASH_GAS_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
@@ -60,6 +63,7 @@ import static wannabit.io.bitcv.base.BaseConstant.FEE_IRIS_GAS_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_KAVA_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_OK_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_OK_GAS_RATE_AVERAGE;
+import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.SECRET_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.SECRET_GAS_FEE_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
@@ -333,6 +337,21 @@ public class SendStep3Fragment extends BaseFragment implements View.OnClickListe
             mGasFeeAmount.setText(WDp.getDpAmount2(getContext(), mFeeAmount, 6, 6));
             mGasFeePrice.setText(WDp.getPriceApproximatelyDp(getSActivity(), BigDecimal.ZERO, getBaseDao().getCurrencySymbol(), getBaseDao().getCurrency()));
 
+        } else if (getSActivity().mBaseChain.equals(BAC_MAIN)) {
+            mFeeLayer1.setVisibility(View.GONE);
+            mFeeLayer2.setVisibility(View.VISIBLE);
+            mFeeLayer3.setVisibility(View.GONE);
+
+            mSpeedImg.setImageDrawable(getResources().getDrawable(R.drawable.fee_img));
+            mSpeedMsg.setText(getString(R.string.str_fee_speed_title_akash));
+
+            mGasAmount.setText(GAS_FEE_BAC_SEND);
+            mGasRate.setText(WDp.getDpString(GAS_FEE_BAC_SEND, 3));
+            mFeeAmount = new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL).setScale(0);
+
+            mGasFeeAmount.setText(WDp.getDpAmount2(getContext(), mFeeAmount, BAC_TOKEN_DECIMAL, 6));
+            mGasFeePrice.setText(WDp.getPriceApproximatelyDp(getSActivity(), BigDecimal.ZERO, getBaseDao().getCurrencySymbol(), getBaseDao().getCurrency()));
+
         }
         return rootView;
     }
@@ -484,6 +503,17 @@ public class SendStep3Fragment extends BaseFragment implements View.OnClickListe
                 amount.add(gasCoin);
                 fee.amount = amount;
                 fee.gas = FEE_AKASH_GAS_AMOUNT_SEND;
+                getSActivity().mTargetFee = fee;
+
+            } else if (getSActivity().mBaseChain.equals(BAC_MAIN)) {
+                Fee fee = new Fee();
+                Coin gasCoin = new Coin();
+                gasCoin.denom = BAC_MAIN_DENOM;
+                gasCoin.amount = mFeeAmount.toPlainString();
+                ArrayList<Coin> amount = new ArrayList<>();
+                amount.add(gasCoin);
+                fee.amount = amount;
+                fee.gas = new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL).toString();
                 getSActivity().mTargetFee = fee;
 
             }

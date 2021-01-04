@@ -29,6 +29,7 @@ import wannabit.io.bitcv.utils.WDp;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -42,7 +43,11 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_GAS_FEE_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
+import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BAND;
@@ -136,6 +141,19 @@ public class SendStep1Fragment extends BaseFragment implements View.OnClickListe
             } else {
                 mMaxAvailable = getSActivity().mAccount.getIrisTokenBalance(getSActivity().mIrisToken.base_token.symbol);
                 mAvailableAmount.setText(WDp.getDpAmount(getContext(), mMaxAvailable, mDpDecimal, getSActivity().mBaseChain));
+            }
+
+        } else if (getSActivity().mBaseChain.equals(BAC_MAIN)) {
+            mDpDecimal = getSActivity().mBacToken.decimal;
+            setDpDecimals(mDpDecimal);
+            mDenomTitle.setText(getSActivity().mBacToken.symbol.toUpperCase());
+            if (getSActivity().mBacToken.original_symbol.equals(BAC_MAIN_DENOM)) {
+                mMaxAvailable = getSActivity().mAccount.getBacBalance().subtract(new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL));
+                mAvailableAmount.setText(WDp.getDpAmount2(getContext(), mMaxAvailable, BAC_TOKEN_DECIMAL, 6));
+                mDenomTitle.setTextColor(getResources().getColor(R.color.colorBac));
+            } else {
+                mMaxAvailable = getSActivity().mAccount.getBacTokenBalance(getSActivity().mBacToken.original_symbol);
+                mAvailableAmount.setText(WDp.getDpAmount2(getContext(), mMaxAvailable, mDpDecimal, 6));
             }
 
         } else if (getSActivity().mBaseChain.equals(BNB_MAIN) || getSActivity().mBaseChain.equals(BNB_TEST)) {
@@ -356,6 +374,9 @@ public class SendStep1Fragment extends BaseFragment implements View.OnClickListe
             } else if (getSActivity().mBaseChain.equals(AKASH_MAIN)) {
                 mAmountInput.setText(mMaxAvailable.divide(new BigDecimal("2000000"), 6, RoundingMode.DOWN).toPlainString());
 
+            } else if(getSActivity().mBaseChain.equals(BAC_MAIN)) {
+                int decimal = getSActivity().mBacToken.decimal;
+                mAmountInput.setText(mMaxAvailable.divide(new BigDecimal("2"), 6, RoundingMode.DOWN).movePointLeft(decimal).toPlainString());
             }
 
         } else if (v.equals(mAddMax)) {
@@ -411,6 +432,9 @@ public class SendStep1Fragment extends BaseFragment implements View.OnClickListe
                     onShowEmptyBlanaceWarnDialog();
                 }
 
+            } else if(getSActivity().mBaseChain.equals(BAC_MAIN)) {
+                int decimal = getSActivity().mBacToken.decimal;
+                mAmountInput.setText(mMaxAvailable.movePointLeft(decimal).toPlainString());
             }
 
         } else if (v.equals(mClearAll)) {
@@ -528,6 +552,13 @@ public class SendStep1Fragment extends BaseFragment implements View.OnClickListe
                 mToSendCoins.add(certik);
                 return true;
 
+            } else if(getSActivity().mBaseChain.equals(BAC_MAIN)) {
+                BigDecimal sendTemp = new BigDecimal(mAmountInput.getText().toString().trim());
+                if (sendTemp.compareTo(BigDecimal.ZERO) <= 0) return false;
+                if (sendTemp.compareTo(mMaxAvailable.movePointLeft(mDpDecimal).setScale(mDpDecimal, RoundingMode.CEILING)) > 0) return false;
+                Coin bactoken = new Coin(getSActivity().mBacToken.original_symbol, sendTemp.movePointRight(mDpDecimal).setScale(0).toPlainString());
+                mToSendCoins.add(bactoken);
+                return true;
             }
             return false;
 

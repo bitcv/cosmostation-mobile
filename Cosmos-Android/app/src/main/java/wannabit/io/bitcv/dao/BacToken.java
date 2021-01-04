@@ -9,6 +9,21 @@ import wannabit.io.bitcv.base.BaseConstant;
 import wannabit.io.bitcv.model.type.Coin;
 import wannabit.io.bitcv.model.type.Validator;
 
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DESCRIPTION;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_ISSUE_TIME;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SUPPLY;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SYMBOL;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DESCRIPTION;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_ISSUE_TIME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_SUPPLY;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_SYMBOL;
+
 
 public class BacToken implements  Parcelable {
     public static int BAC_TOKEN_TYPE_BEP2 = 1;
@@ -50,10 +65,22 @@ public class BacToken implements  Parcelable {
 
     public int type = 0;
 
-    public BacToken() {
+    public BacToken(String symbol){
+        if(symbol == BAC_TOKEN_SYMBOL) {
+            this.setValue(
+                    BAC_TOKEN_SYMBOL, BAC_MAIN_DENOM, BAC_TOKEN_SUPPLY, BAC_TOKEN_DECIMAL, BAC_TOKEN_HOME,
+                    BAC_TOKEN_DESCRIPTION, BAC_TOKEN_ISSUE_TIME);
+        }else if(symbol == BCV_TOKEN_SYMBOL){
+            this.setValue(BCV_TOKEN_SYMBOL, BCV_MAIN_DENOM, BCV_TOKEN_SUPPLY, BCV_TOKEN_DECIMAL, BCV_TOKEN_HOME,
+                    BCV_TOKEN_DESCRIPTION, BCV_TOKEN_ISSUE_TIME);
+        }
     }
     public BacToken(String symbol, String original_symbol, String total_supply, int decimal, String website, String description, String timestamp)
     {
+        this.setValue(symbol, original_symbol, total_supply, decimal, website, description, timestamp);
+
+    }
+    public void setValue(String symbol, String original_symbol, String total_supply, int decimal, String website, String description, String timestamp){
         this.owner = "SYSTEM";
         this.exchange_addr = "SYSTEM";
         this.symbol = symbol;
@@ -66,7 +93,6 @@ public class BacToken implements  Parcelable {
         this.description = description;
         this.exchange_rate = "0";
         this.timestamp = timestamp;
-
     }
     public BacToken(String owner, String exchange_addr, String symbol, String original_symbol,  String total_supply,
                     Coin margin, int decimal, String website, String description, String exchange_rate, String timestamp) {

@@ -16,6 +16,8 @@ import wannabit.io.bitcv.activities.VoteListActivity;
 import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.utils.WDp;
 
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_IRIS_ATTO;
 
 public class WalletBacHolder extends WalletHolder {
@@ -35,17 +37,17 @@ public class WalletBacHolder extends WalletHolder {
     }
 
     public void onBindHolder(@NotNull MainActivity mainActivity) {
-        final BigDecimal availableAmount = WDp.getAvailableCoin(mainActivity.mBalances, TOKEN_IRIS_ATTO);
+        final BigDecimal availableAmount = WDp.getAvailableCoin(mainActivity.mBalances, BAC_MAIN_DENOM);
         final BigDecimal delegateAmount = WDp.getAllDelegatedAmount(mainActivity.mBondings, mainActivity.mAllValidators, mainActivity.mBaseChain);
         final BigDecimal unbondingAmount = WDp.getUnbondingAmount(mainActivity.mUnbondings);
         final BigDecimal rewardAmount =  BigDecimal.ZERO ;
         final BigDecimal totalAmount = availableAmount.add(delegateAmount).add(unbondingAmount).add(rewardAmount);
 
-        mTvBacTotal.setText(WDp.getDpAmount2(mainActivity, totalAmount, 18, 6));
-        mTvBacAvailable.setText(WDp.getDpAmount2(mainActivity, availableAmount, 18, 6));
-        mTvBacDelegated.setText(WDp.getDpAmount2(mainActivity, delegateAmount, 18, 6));
-        mTvBacUnBonding.setText(WDp.getDpAmount2(mainActivity, unbondingAmount, 18, 6));
-        mTvBacRewards.setText(WDp.getDpAmount2(mainActivity, rewardAmount, 18, 6));
+        mTvBacTotal.setText(WDp.getDpAmount2(mainActivity, totalAmount, BAC_TOKEN_DECIMAL, 6));
+        mTvBacAvailable.setText(WDp.getDpAmount2(mainActivity, availableAmount, BAC_TOKEN_DECIMAL, 6));
+        mTvBacDelegated.setText(WDp.getDpAmount2(mainActivity, delegateAmount, BAC_TOKEN_DECIMAL, 6));
+        mTvBacUnBonding.setText(WDp.getDpAmount2(mainActivity, unbondingAmount, BAC_TOKEN_DECIMAL, 6));
+        mTvBacRewards.setText(WDp.getDpAmount2(mainActivity, rewardAmount, BAC_TOKEN_DECIMAL, 6));
       //  mTvBacValue.setText(WDp.getValueOfBac(mainActivity, mainActivity.getBaseDao(), totalAmount));
 
         mainActivity.getBaseDao().onUpdateLastTotalAccount(mainActivity.mAccount, totalAmount.toPlainString());

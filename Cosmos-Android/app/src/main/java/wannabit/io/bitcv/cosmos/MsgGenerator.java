@@ -35,6 +35,7 @@ import wannabit.io.bitcv.utils.WLog;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.CERTIK_TEST;
@@ -98,6 +99,14 @@ public class MsgGenerator {
             value.outputs = outputs;
 
             result.type = BaseConstant.IRIS_MSG_TYPE_TRANSFER;
+            result.value = value;
+
+        }  else if (chain.equals(BAC_MAIN)) {
+            value.from_address = fromAddr;
+            value.to_address = toAddr;
+            value.amount = coins;
+
+            result.type = BaseConstant.BAC_MSG_TYPE_SEND;
             result.value = value;
 
         } else if (chain.equals(OK_TEST)) {

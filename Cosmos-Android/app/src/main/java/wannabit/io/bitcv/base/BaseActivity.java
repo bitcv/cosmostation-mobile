@@ -795,6 +795,12 @@ public class BaseActivity extends AppCompatActivity implements TaskListener {
 
         } else if (result.taskType == BaseConstant.TASK_FETCH_BAC_TOKENS) {
             mBacTokens = (ArrayList<BacToken>)result.resultData;
+            if (mBacTokens!= null) {
+                for (BacToken token:mBacTokens) {
+                    token.type = BacToken.BAC_TOKEN_TYPE_BEP2;
+                    getBaseDao().mBacTokens.add(token);
+                }
+            }
         } else if (result.taskType == BaseConstant.TASK_FETCH_KAVA_CDP_PARAM) {
             if (result.isSuccess && result.resultData != null) {
                 final ResCdpParam.Result cdpParam = (ResCdpParam.Result)result.resultData;

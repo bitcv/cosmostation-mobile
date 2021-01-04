@@ -44,6 +44,7 @@ import wannabit.io.bitcv.base.BaseActivity;
 import wannabit.io.bitcv.base.BaseChain;
 import wannabit.io.bitcv.base.BaseFragment;
 import wannabit.io.bitcv.dao.Account;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.dao.Balance;
 import wannabit.io.bitcv.dialog.Dialog_AddAccount;
 import wannabit.io.bitcv.dialog.Dialog_Kava_Testnet;
@@ -77,9 +78,11 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SYMBOL;
 import static wannabit.io.bitcv.base.BaseConstant.CONST_PW_PURPOSE;
 import static wannabit.io.bitcv.base.BaseConstant.CONST_PW_SIMPLE_CHECK;
-import static wannabit.io.bitcv.base.BaseConstant.FEE_BAC_SEND;
+import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
@@ -498,11 +501,11 @@ public class MainActivity extends BaseActivity implements FetchCallBack {
             intent.putExtra("bnbToken", WUtil.getBnbMainToken(getBaseDao().mBnbTokens));
 
         } else if (mBaseChain.equals(BAC_MAIN)) {
-            if (WDp.getAvailableCoin(balances, BAC_MAIN_DENOM).compareTo(new BigDecimal(FEE_BAC_SEND)) > 0) {
+            if (WDp.getAvailableCoin(balances, BAC_MAIN_DENOM).compareTo(new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL)) > 0) {
                 hasbalance  = true;
             }
 
-            intent.putExtra("bacToken", WUtil.getBacMainToken(getBaseDao().mBacTokens));
+            intent.putExtra("bacToken", new BacToken(BAC_TOKEN_SYMBOL));
 
         } else if (mBaseChain.equals(IOV_MAIN)) {
             if (WDp.getAvailableCoin(balances, TOKEN_IOV).compareTo(new BigDecimal("100000")) > 0) {

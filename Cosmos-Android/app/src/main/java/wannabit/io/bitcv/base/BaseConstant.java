@@ -403,7 +403,8 @@ public class BaseConstant {
     public final static String  BAC_TOKEN_SYMBOL = "BAC";
     public final static String  BCV_TOKEN_SYMBOL = "BCV";
     public final static Integer  BAC_TOKEN_DECIMAL = 9;
-    public final static Integer BAC_GAS_FEE_DECIMAL = 8;
+    public final static Integer BAC_GAS_FEE_DECIMAL = 9;
+    public final static String GAS_FEE_BAC_SEND                     = "0.1";
     public final static Integer BCV_TOKEN_DECIMAL = 6;
 
     //HTLC swap support Token Types
@@ -486,7 +487,7 @@ public class BaseConstant {
     public final static String FEE_BEP3_RELAY_FEE               = "0.00001";
     public final static String GAS_FEE_BAC_TRANSFER                    = "0.1";
 
-    public final static String FEE_BAC_SEND                     = "0.1";
+
 
     public final static String FEE_IOV_GAS_RATE_AVERAGE         = "1.00";
     public final static String FEE_IOV_GAS_AMOUNT_SEND          = "100000";

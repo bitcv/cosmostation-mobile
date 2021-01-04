@@ -14,10 +14,12 @@ import java.math.BigDecimal;
 import wannabit.io.bitcv.activities.SendActivity;
 import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.base.BaseFragment;
+import wannabit.io.bitcv.dao.BacToken;
 import wannabit.io.bitcv.utils.WDp;
 import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -31,6 +33,9 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SYMBOL;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_BNB;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_IOV;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_IOV_TEST;
@@ -321,6 +326,35 @@ public class SendStep4Fragment extends BaseFragment implements View.OnClickListe
             mCurrentBalance.setText(WDp.getDpAmount2(getContext(), currentAvai, 6, 6));
             mRemainingBalance.setText(WDp.getDpAmount2(getContext(), currentAvai.subtract(toSendAmount).subtract(feeAmount), 6, 6));
             mRemainingPrice.setText(WDp.getValueOfAkash(getContext(), getBaseDao(), currentAvai.subtract(toSendAmount).subtract(feeAmount)));
+
+
+        } else if (getSActivity().mBaseChain.equals(BAC_MAIN)) {
+            BacToken token = getSActivity().mBacToken;
+            mDpDecimal = token.decimal;
+
+            mDenomSendAmount.setText(token.symbol);
+            mDenomFeeType.setText(BAC_TOKEN_SYMBOL);
+            mDenomTotalSpend.setText(token.symbol);
+            mDenomCurrentAmount.setText(token.symbol);
+            mDenomRemainAmount.setText(token.symbol);
+            mSendAmount.setText(WDp.getDpAmount2(getContext(), toSendAmount,  mDpDecimal, 6));
+            mFeeAmount.setText(WDp.getDpAmount2(getContext(), feeAmount, BAC_TOKEN_DECIMAL, 6));
+            BigDecimal currentBalance  = getSActivity().mAccount.getTokenBalance(token.original_symbol);
+            mCurrentBalance.setText(WDp.getDpAmount2(getContext(), currentBalance, token.decimal, 6));
+
+            if(token.original_symbol.equals(BAC_MAIN_DENOM)){
+                mTotalSpendAmount.setText(WDp.getDpAmount2(getContext(), toSendAmount.add(feeAmount),
+                        BAC_TOKEN_DECIMAL, 6));
+                mRemainingBalance.setText(WDp.getDpAmount2(getContext(), currentBalance.subtract(feeAmount).subtract(toSendAmount), token.decimal, 6));
+            }
+            else{
+                mTotalSpendAmount.setText(WDp.getDpAmount2(getContext(), toSendAmount,
+                        mDpDecimal, 6));
+                mRemainingBalance.setText(WDp.getDpAmount2(getContext(), currentBalance.subtract(feeAmount), token.decimal, 6));
+            }
+
+
+        //    mRemainingPrice.setText(WDp.getValueOfAkash(getContext(), getBaseDao(), currentBac.subtract(toSendAmount).subtract(feeAmount)));
 
 
         }

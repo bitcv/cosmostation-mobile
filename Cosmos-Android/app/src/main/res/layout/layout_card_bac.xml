@@ -31,6 +31,7 @@
                     android:layout_height="@dimen/space_20"
                     android:src="@drawable/bac_token_img"/>
                 <TextView
+                    android:id="@+id/name_bac_token"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/dash_bac_icon"

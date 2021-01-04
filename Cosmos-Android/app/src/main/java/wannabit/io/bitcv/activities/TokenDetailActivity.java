@@ -59,8 +59,10 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_VAL_URL;
 import static wannabit.io.bitcv.base.BaseConstant.BCV_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.KAVA_COIN_IMG_URL;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_ATOM;
@@ -381,6 +383,17 @@ public class TokenDetailActivity extends BaseActivity implements View.OnClickLis
             if (WDp.getAvailableCoin(balances, TOKEN_OK_TEST).compareTo(new BigDecimal("0.02")) > 0) {
                 hasbalance  = true;
             }
+        } else if(mBaseChain.equals(BAC_MAIN)){
+            BigDecimal bacBalance = WDp.getAvailableCoin(balances, BAC_MAIN_DENOM);
+            if(bacBalance.compareTo(new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL)) < 0){
+                Toast.makeText(getBaseContext(), R.string.error_not_enough_budget_bep3, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            if (WDp.getAvailableCoin(balances, mBalance.symbol).compareTo(BigDecimal.ZERO) <= 0) {
+                Toast.makeText(getBaseContext(), R.string.error_not_enough_to_balance, Toast.LENGTH_SHORT).show();
+                return false;
+            }
+            hasbalance = true;
         }
 
         if (!hasbalance){
@@ -549,24 +562,19 @@ public class TokenDetailActivity extends BaseActivity implements View.OnClickLis
             final BacHolder holder = (BacHolder)viewHolder;
             holder.mBacAction.setVisibility(View.GONE);
             holder.mBacTransfer.setVisibility(View.VISIBLE);
-//            if(mBacToken.original_symbol.equals(BAC_MAIN_DENOM)) {
-//                BigDecimal totalAmount = WDp.getAllBac(mBalances, null, null, null, mAllValidators);
-//                holder.mTvBacTotal.setText(WDp.getDpAmount2(getBaseContext(), totalAmount, BAC_TOKEN_DECIMAL, 6));
-//                holder.mTvBacAvailable.setText(WDp.getDpAmount2(getBaseContext(), WDp.getAvailableCoin(mBalances, BAC_MAIN_DENOM), BAC_TOKEN_DECIMAL, 6));
-//            }
-//            else if(mBacToken.original_symbol.equals(BCV_MAIN_DENOM)){
-//                BigDecimal totalAmount = WDp.getAvailableCoin(mBalances, BAC_MAIN_DENOM);
-//                holder.mTvBacTotal.setText(WDp.getDpAmount2(getBaseContext(), totalAmount, BAC_TOKEN_DECIMAL, 6));
-//                holder.mTvBacAvailable.setText(WDp.getDpAmount2(getBaseContext(), WDp.getAvailableCoin(mBalances, BCV_MAIN_DENOM), BCV_TOKEN_DECIMAL, 6));
-//            } else {
+
+                holder.mBacTokenName.setText(mBacToken.symbol);
+                Picasso.get().cancelRequest(holder.mBacIcon);
+                holder.mBacIcon.setImageDrawable(getResources().getDrawable(R.drawable.token_ic));
+                try {
+                    Picasso.get().load(BAC_VAL_URL +mBacToken.original_symbol+".png")
+                            .fit().placeholder(R.drawable.token_ic).error(R.drawable.token_ic)
+                            .into(holder.mBacIcon);
+
+                } catch (Exception e) { }
                 BigDecimal totalAmount = WDp.getAvailableCoin(mBalances, mBacToken.original_symbol);
                 holder.mTvBacTotal.setText(WDp.getDpAmount2(getBaseContext(), totalAmount, mBacToken.decimal, 6));
                 holder.mTvBacAvailable.setText(WDp.getDpAmount2(getBaseContext(), WDp.getAvailableCoin(mBalances, mBacToken.original_symbol), mBacToken.decimal, 6));
-            //}
-            // holder.mTvBacDelegated.setText(WDp.getDpAmount(getBaseContext(), WDp.getAllDelegatedAmount(mBondings, mAllValidators, mBaseChain), 18, mBaseChain));
-          //  holder.mTvBacUnBonding.setText(WDp.getDpAmount(getBaseContext(), WDp.getUnbondingAmount(mUnbondings), 18, mBaseChain));
-           // holder.mTvBacRewards.setText(WDp.getDpAmount(getBaseContext(), mBacReward.getSimpleBacReward(), 18, mBaseChain));
-          //  holder.mTvBacValue.setText(WDp.getValueOfBac(getBaseContext(), getBaseDao(), totalAmount));
 
             holder.mBtnSendBac.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1034,7 +1042,8 @@ public class TokenDetailActivity extends BaseActivity implements View.OnClickLis
         public class BacHolder extends RecyclerView.ViewHolder {
             private LinearLayout    mBacAction, mBacTransfer;
             private RelativeLayout  mBtnSendBac, mBtnReceiveBac;
-            private TextView        mTvBacTotal, mTvBacValue, mTvBacAvailable, mTvBacDelegated, mTvBacUnBonding, mTvBacRewards;
+            private ImageView       mBacIcon;
+            private TextView        mTvBacTotal, mTvBacValue, mTvBacAvailable, mTvBacDelegated, mTvBacUnBonding, mTvBacRewards, mBacTokenName;
 
             public BacHolder(View v) {
                 super(v);
@@ -1048,6 +1057,8 @@ public class TokenDetailActivity extends BaseActivity implements View.OnClickLis
                 mBacTransfer           = itemView.findViewById(R.id.layer_bac_transfer);
                 mBtnReceiveBac         = itemView.findViewById(R.id.btn_bac_receive);
                 mBtnSendBac            = itemView.findViewById(R.id.btn_bac_send);
+                mBacIcon                = itemView.findViewById(R.id.dash_bac_icon);
+                mBacTokenName           = itemView.findViewById(R.id.name_bac_token);
             }
         }
 
