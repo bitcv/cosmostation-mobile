@@ -38,7 +38,7 @@ public class BacToken implements  Parcelable {
     @SerializedName("outer_name")
     public String symbol;
 
-    @SerializedName("inner_symbol")
+    @SerializedName("inner_name")
     public String original_symbol;
 
     @SerializedName("supply_num")

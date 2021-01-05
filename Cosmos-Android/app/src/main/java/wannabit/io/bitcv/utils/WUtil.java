@@ -1353,7 +1353,7 @@ public class WUtil {
     public static BacToken getBacToken(ArrayList<BacToken> all, Balance balance) {
         if (all == null || balance == null) return null;
         for (BacToken token:all) {
-            if (token.symbol.equals(balance.symbol)) {
+            if (token.original_symbol.equals(balance.symbol)) {
                 return token;
             }
         }

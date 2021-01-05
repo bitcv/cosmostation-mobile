@@ -361,10 +361,15 @@ public class MainHistoryFragment extends BaseFragment implements TaskListener {
                 final BacHistory history = mBacHistory.get(position);
                 viewHolder.historyType.setText(WDp.DpBacTxType(getContext(), history, getMainActivity().mAccount.address));
                 viewHolder.history_time.setText(history.timeStamp);
-                String to = history.to;
-                viewHolder.history_time_gap.setText(to.substring(0, 4)+"..."+to.substring(to.length()-4));
+                if(history.from.equals(getMainActivity().mAccount.address)) {
+                    String to = history.to;
+                    viewHolder.history_time_gap.setText(String.format("%s:%s...%s", getString(R.string.str_tx_to), to.substring(0, 6), to.substring(to.length() - 6)));
+                } else {
+                    String from = history.from;
+                    viewHolder.history_time_gap.setText(String.format("%s:%s...%s", getString(R.string.str_tx_from), from.substring(0, 6), from.substring(from.length() - 6)));
+                }
                 String hash = history.txHash;
-                viewHolder.history_block.setText(history.blockHeight + ":" + hash.substring(0, 4)+"..."+hash.substring(hash.length()-4));
+                viewHolder.history_block.setText(String.format("%s:%s...%s", getString(R.string.str_tx_hash), hash.substring(0, 5), hash.substring(hash.length() - 5)));
                 if(history.state == 0){
                     viewHolder.historySuccess.setText("Success");
                 }
