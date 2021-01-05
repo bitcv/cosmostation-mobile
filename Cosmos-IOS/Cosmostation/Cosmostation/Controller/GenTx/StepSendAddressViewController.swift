@@ -170,7 +170,14 @@ class StepSendAddressViewController: BaseViewController, QrScannerDelegate {
     
     
     func scannedAddress(result: String) {
-        mTargetAddressTextField.text = result.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let address = result.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let qindex = address.index(of: "?")
+        if qindex != nil {
+            mTargetAddressTextField.text = address.substring(to: qindex!)
+        }
+        else{
+            mTargetAddressTextField.text = address
+        }
     }
     
     func onCheckNameservice(_ userInput: String) {

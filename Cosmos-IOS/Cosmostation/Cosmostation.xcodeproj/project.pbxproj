@@ -311,6 +311,7 @@
 		28ED4A59255112BA0073E164 /* MintParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED4A58255112BA0073E164 /* MintParam.swift */; };
 		28F4CF6F25429BBF0050985D /* EventStakeDropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F4CF6D25429BBF0050985D /* EventStakeDropViewController.swift */; };
 		28F4CF722542AD3A0050985D /* EventStakeDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F4CF742542AD3A0050985D /* EventStakeDropViewController.xib */; };
+		6C912EE225A404010027CB2E /* BacHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C912EE125A404010027CB2E /* BacHistory.swift */; };
 		6CD65FAC259E014D007BF7F9 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; };
 		6CD65FAD259E014D007BF7F9 /* BitcoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CD65FB0259E022B007BF7F9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */; };
@@ -857,6 +858,7 @@
 		28F4CF772542AD3F0050985D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/EventStakeDropViewController.strings; sourceTree = "<group>"; };
 		2F1D0E50B408222929C7B772 /* Pods_Cosmostation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cosmostation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DF825783BC00234AD1092F /* Pods-Cosmostation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cosmostation.debug.xcconfig"; path = "Target Support Files/Pods-Cosmostation/Pods-Cosmostation.debug.xcconfig"; sourceTree = "<group>"; };
+		6C912EE125A404010027CB2E /* BacHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacHistory.swift; sourceTree = "<group>"; };
 		6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = "<group>"; };
 		6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacToken.swift; sourceTree = "<group>"; };
@@ -1752,6 +1754,7 @@
 				2866CBA82580DB6C00A91172 /* StakingPool_V1.swift */,
 				28CE973225870E29006DEBEE /* Auth_V1.swift */,
 				6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */,
+				6C912EE125A404010027CB2E /* BacHistory.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2250,6 +2253,7 @@
 				28B4303C24F7EE0C00BD7BB2 /* StepOkDepositAmountViewController.swift in Sources */,
 				E16D9B24224A083E0019B7BB /* KeyboardViewController.swift in Sources */,
 				284D17DC2535573100C364F9 /* CdpViewController.swift in Sources */,
+				6C912EE225A404010027CB2E /* BacHistory.swift in Sources */,
 				2866CBA92580DB6C00A91172 /* StakingPool_V1.swift in Sources */,
 				283E9458254901D9007A9291 /* RegisterDomain0ViewController.swift in Sources */,
 				2858CCED2538103F00E0A44D /* StepDepositHarvestCheckViewController.swift in Sources */,

@@ -414,7 +414,14 @@ class WUtils {
             return "(\(secondsLeft / day) days remaining)"
         }
     }
-    
+    static func shortString(_ str:String) -> String {
+        let start = str.index(str.startIndex, offsetBy: 5)
+        let startstr = str.prefix(upTo: start) // Hello
+        
+        let end = str.index(str.endIndex, offsetBy: -5)
+        let endstr = str.suffix(from: end) // playground
+        return startstr + "..." + endstr
+    }
     
     
     static func historyTitle(_ msgs:Array<Msg>, _ myaddress:String) -> String {
@@ -569,7 +576,21 @@ class WUtils {
         }
         return resultMsg
     }
-    
+    static func bacHistoryTitle(_ bacHistory:BacHistory, _ myaddress:String) -> String{
+        var resultMsg = NSLocalizedString("tx_known", comment: "")
+        if (bacHistory.txType == BAC_MSG_TYPE_SEND) {
+            if (bacHistory.fromAddr == myaddress) {
+                resultMsg = NSLocalizedString("tx_send", comment: "")
+            } else {
+                resultMsg = NSLocalizedString("tx_receive", comment: "")
+            }
+        } else if(bacHistory.txType == BAC_MSG_TYPE_EDATA){
+            resultMsg = NSLocalizedString("tx_deposit", comment: "")
+        } else if(bacHistory.txType == BAC_MSG_TYPE_ISSUE_TOKEN){
+            resultMsg = NSLocalizedString("tx_issue_token", comment: "")
+        }
+        return resultMsg
+    }
     static func bnbHistoryTitle(_ bnbHistory:BnbHistory, _ myaddress:String) -> String {
         var resultMsg = NSLocalizedString("tx_known", comment: "")
         if (bnbHistory.txType == "NEW_ORDER") {
@@ -1757,14 +1778,14 @@ class WUtils {
     }
     static func getBacToken(_ bacTokens:Array<BacToken>, _ balance:Balance) -> BacToken? {
         for bacToken in bacTokens {
-            if (bacToken.symbol == balance.balance_denom) {
+            if (bacToken.original_symbol == balance.balance_denom) {
                 return bacToken
             }
         }
         return nil
     }
     
-    static func getBacToken(_ balance:Balance) -> BacToken? {
+    static func getBacMainToken(_ balance:Balance) -> BacToken? {
         let symbol = balance.balance_denom
         if(symbol == BAC_MAIN_DENOM){
             let bcvDict = [
@@ -1778,6 +1799,18 @@ class WUtils {
             return BacToken(bcvDict)
         }
         return nil
+    }
+    
+    static func getBacMainToken() -> BacToken? {
+        let bcvDict = [
+            "inner_name" : BAC_MAIN_DENOM,
+            "outer_name" :"BAC",
+            "precision" : BAC_DECIMAL,
+            "supply_num" : BAC_SUPPLY,
+            "description" : "BAC Chain Main Token",
+            "mintable" : false
+        ] as [String : Any]
+        return BacToken(bcvDict)
     }
     
     static func getBcvToken(_ balance:Balance) -> BacToken? {
@@ -1800,7 +1833,7 @@ class WUtils {
     
     static func getBacToken(_ bacTokens:Array<BacToken>, _ denom:String) -> BacToken? {
         for bacToken in bacTokens {
-            if (bacToken.symbol == denom) {
+            if (bacToken.original_symbol == denom) {
                 return bacToken
             }
         }
@@ -1818,7 +1851,7 @@ class WUtils {
     
     static func getBacMainToken(_ bacTokens:Array<BacToken>) -> BacToken?{
         for bacToken in bacTokens {
-            if (bacToken.symbol == BAC_MAIN_DENOM) {
+            if (bacToken.original_symbol == BAC_MAIN_DENOM) {
                 return bacToken
             }
         }

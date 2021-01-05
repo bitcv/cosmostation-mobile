@@ -41,6 +41,7 @@ let IRIS_LCD_URL                        = "https://lcd-iris.cosmostation.io/";
 let IRIS_API                            = "https://api-iris.cosmostation.io/";
 
 let BAC_LCD_URL                             = "https://rpc.bitcv.net"
+let BAC_HISTORY_API_URL                    = "https://main.bitcv.net/api/txs?address=";
 
 let BNB_URL                             = "https://dex.binance.org/";
 let BNB_TEST_URL                        = "https://testnet-dex.binance.org/";

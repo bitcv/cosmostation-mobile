@@ -2260,11 +2260,11 @@ class MainTabWalletViewController: BaseViewController, UITableViewDelegate, UITa
             txVC.mType = BNB_MSG_TYPE_TRANSFER
             
         } else if (chainType! == ChainType.BAC_MAIN) {
-            if (WUtils.getTokenAmount(balances, BAC_MAIN_DENOM).compare(NSDecimalNumber.init(string: "0.1")).rawValue < 0) {
+            if (WUtils.getTokenAmount(balances, BAC_MAIN_DENOM).compare(NSDecimalNumber.init(string: "0.1").multiplying(byPowerOf10: Int16(BAC_DECIMAL))).rawValue < 0) {
                 self.onShowToast(NSLocalizedString("error_not_enough_balance_to_send", comment: ""))
                 return
             }
-            txVC.mBacToken = WUtils.getBacMainToken(BaseData.instance.mBacTokenList)
+            txVC.mBacToken =  WUtils.getBacMainToken()
             txVC.mType = BAC_MSG_TYPE_SEND
             
         }else if (chainType! == ChainType.KAVA_MAIN || chainType! == ChainType.KAVA_TEST) {

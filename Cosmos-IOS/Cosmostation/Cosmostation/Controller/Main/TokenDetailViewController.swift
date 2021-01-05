@@ -30,6 +30,8 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
     var refresher: UIRefreshControl!
     var mApiHistories = Array<ApiHistory.HistoryData>()
     var mBnbHistories = Array<BnbHistory>()
+    var mBacHistories = Array<BacHistory>()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +95,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
     }
     
     @objc func onRequestFetch() {
-        if (chainType == ChainType.COSMOS_MAIN) {
+        if (chainType == ChainType.COSMOS_MAIN || chainType == ChainType.BAC_MAIN) {
             onFetchApiHistory(account!.account_address, balance!.balance_denom)
             
         } else if (chainType == ChainType.IRIS_MAIN) {
@@ -182,6 +184,8 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
         } else {
             if (chainType == ChainType.BINANCE_MAIN || chainType == ChainType.BINANCE_TEST) {
                 return mBnbHistories.count
+            } else if(chainType == ChainType.BAC_MAIN){
+                return mBacHistories.count
             }
             return mApiHistories.count
         }
@@ -237,9 +241,14 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             } else if (chainType == ChainType.KAVA_TEST) {
                 return onSetKavaHistoryItem(tableView, indexPath);
                 
-            } else {
+            } else if (chainType == ChainType.BINANCE_MAIN){
                 return onSetBnbHistoryItem(tableView, indexPath);
+            } else if(chainType == ChainType.BAC_MAIN){
+                return onSetBacHistoryItem(tableView, indexPath);
+            } else {
+                return onSetCosmosHistoryItems(tableView, indexPath);
             }
+            
         }
     }
     
@@ -276,6 +285,23 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
                     present(safariViewController, animated: true, completion: nil)
                 }
                            
+            } else if(chainType == ChainType.BAC_MAIN){
+                let bacHistory = mBacHistories[indexPath.row]
+                if (bacHistory.txType == BAC_MSG_TYPE_SEND || bacHistory.txType == BAC_MSG_TYPE_EDATA) {
+                    let txDetailVC = TxDetailViewController(nibName: "TxDetailViewController", bundle: nil)
+                    txDetailVC.mIsGen = false
+                    txDetailVC.mTxHash = bacHistory.txHash
+                    txDetailVC.mBnbTime = bacHistory.timeStamp
+                    txDetailVC.hidesBottomBarWhenPushed = true
+                    self.navigationItem.title = ""
+                    self.navigationController?.pushViewController(txDetailVC, animated: true)
+                    
+                } else {
+                    guard let url = URL(string: EXPLORER_BAC_MAIN + "/tx/" + bacHistory.txHash) else { return }
+                    let safariViewController = SFSafariViewController(url: url)
+                    safariViewController.modalPresentationStyle = .popover
+                    present(safariViewController, animated: true, completion: nil)
+                }
             } else if (chainType == ChainType.KAVA_MAIN || chainType == ChainType.KAVA_TEST) {
                 let history = mApiHistories[indexPath.row]
                 let txDetailVC = TxDetailViewController(nibName: "TxDetailViewController", bundle: nil)
@@ -686,6 +712,25 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
         return cell!
     }
     
+    func onSetBacHistoryItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
+        let cell:HistoryCell? = tableView.dequeueReusableCell(withIdentifier:"HistoryCell") as? HistoryCell
+        let history = mBacHistories[indexPath.row]
+        cell?.txTimeLabel.text =  history.timeStamp
+        if(account!.account_address == history.fromAddr)
+        {
+            cell?.txTimeGapLabel.text = WUtils.shortString(history.toAddr)
+        }
+        else
+        {
+            cell?.txTimeGapLabel.text = WUtils.shortString(history.fromAddr)
+        }
+        
+        cell?.txBlockLabel.text = String(history.blockHeight) + ":" + WUtils.shortString(history.txHash)
+        cell?.txTypeLabel.text = WUtils.bacHistoryTitle(history, account!.account_address)
+        cell?.txResultLabel.isHidden = true
+        return cell!
+    }
+    
     func onSetBnbHistoryItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
         let cell:HistoryCell? = tableView.dequeueReusableCell(withIdentifier:"HistoryCell") as? HistoryCell
         let history = mBnbHistories[indexPath.row]
@@ -790,18 +835,35 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             url = KAVA_API_TRANS_HISTORY + address
         } else if (chainType == ChainType.KAVA_TEST) {
             url = KAVA_TEST_API_TRANS_HISTORY + address
+        } else if (chainType == ChainType.BAC_MAIN) {
+            url = BAC_HISTORY_API_URL + address
         }
         let request = Alamofire.request(url!, method: .get, parameters: ["denom":balance!.balance_denom], encoding: URLEncoding.default, headers: [:]);
         request.responseJSON { (response) in
             switch response.result {
             case .success(let res):
-                self.mApiHistories.removeAll()
-                guard let histories = res as? Array<NSDictionary> else {
-                    print("no history!!")
-                    return;
+                if(self.chainType == ChainType.BAC_MAIN){
+                    self.mBacHistories.removeAll()
+                    guard let history = res as? NSDictionary  else {
+                        print("no history!!")
+                        return;
+                    }
+                    let histories:Array<NSDictionary> = history.object(forKey: "data") as! Array<NSDictionary>
+                    
+                    for rawHistory in histories {
+                        self.mBacHistories.append(BacHistory.init(rawHistory as! [String : Any]))
+                    }
                 }
-                for rawHistory in histories {
-                    self.mApiHistories.append(ApiHistory.HistoryData.init(rawHistory))
+                else{
+                    self.mApiHistories.removeAll()
+                    guard let histories = res as? Array<NSDictionary> else {
+                        print("no history!!")
+                        return;
+                    }
+                    for rawHistory in histories {
+                        self.mApiHistories.append(ApiHistory.HistoryData.init(rawHistory))
+                    
+                    }
                 }
                 if (self.mApiHistories.count > 0) {
                     self.tokenDetailTableView.reloadData()

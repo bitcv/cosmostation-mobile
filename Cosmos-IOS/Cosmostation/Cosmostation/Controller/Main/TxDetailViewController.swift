@@ -1220,7 +1220,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             self.present(activityViewController, animated: true, completion: nil)
             
         } else if (self.chainType! == ChainType.BAC_MAIN) {
-            let text = EXPLORER_BAC_MAIN + "txs/" + mTxInfo!.hash!
+            let text = EXPLORER_BAC_MAIN + "tx/" + mTxInfo!.txhash!
             let textToShare = [ text ]
             let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.view
@@ -1314,7 +1314,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             self.onShowSafariWeb(url)
             
         } else if (self.chainType! == ChainType.BAC_MAIN) {
-            guard let url = URL(string: EXPLORER_BAC_MAIN + "txs/" + mTxInfo!.hash!) else { return }
+            guard let url = URL(string: EXPLORER_BAC_MAIN + "tx/" + mTxInfo!.txhash!) else { return }
             self.onShowSafariWeb(url)
             
         } else if (self.chainType! == ChainType.KAVA_MAIN) {

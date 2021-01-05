@@ -496,7 +496,7 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
         } else if (chainType! == ChainType.BAC_MAIN) {
             tokenDetailVC.balance = mainTabVC.mBalances[indexPath.row]
             if(mainTabVC.mBalances[indexPath.row].balance_denom == BAC_MAIN_DENOM){
-                tokenDetailVC.bacToken = WUtils.getBacToken(mainTabVC.mBalances[indexPath.row])
+                tokenDetailVC.bacToken = WUtils.getBacMainToken()
             }
             else if(mainTabVC.mBalances[indexPath.row].balance_denom == BCV_MAIN_DENOM){
                 tokenDetailVC.bacToken = WUtils.getBcvToken(mainTabVC.mBalances[indexPath.row])
@@ -741,38 +741,34 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
             cell?.tokenValue.attributedText = WUtils.dpBacValue(allBac, BaseData.instance.getLastPrice(), cell!.tokenValue.font)
 
         } else {
-            // TODO no this case yet!
             
-            for i in 0..<mainTabVC.mBalances.count {
-                if ((mainTabVC.mBalances[i].balance_denom == BAC_MAIN_DENOM)) {
-                    continue;
-                }
                 var bacToken:BacToken?
                 for j in 0..<BaseData.instance.mBacTokenList.count{
-                    if(BaseData.instance.mBacTokenList[j].symbol == mainTabVC.mBalances[i].balance_denom){
+                    if(BaseData.instance.mBacTokenList[j].original_symbol == balance.balance_denom){
                         bacToken = BaseData.instance.mBacTokenList[j]
+                        break
                     }
                 }
-                if ((bacToken == nil) && (mainTabVC.mBalances[i].balance_denom == BCV_MAIN_DENOM)) {
+                if ((bacToken == nil) && (balance.balance_denom == BCV_MAIN_DENOM)) {
                     cell?.tokenImg.image = UIImage(named: "bcvTokenImg")
                     cell?.tokenSymbol.text = "BCV"
                     cell?.tokenSymbol.textColor = COLOR_BAC
                     cell?.tokenDescription.text = "BAC Chain Right Token"
-                    cell?.tokenTitle.text = "(" + mainTabVC.mBalances[i].balance_denom + ")"
+                    cell?.tokenTitle.text = "(" + balance.balance_denom + ")"
                     
                     
-                    cell?.tokenAmount.attributedText = WUtils.displayAmount(mainTabVC.mBalances[i].balance_amount, cell!.tokenAmount.font, BCV_DECIMAL, ChainType.BAC_MAIN)
+                    cell?.tokenAmount.attributedText = WUtils.displayAmount(balance.balance_amount, cell!.tokenAmount.font, BCV_DECIMAL, ChainType.BAC_MAIN)
                 }
                 else if(bacToken != nil){
                     cell?.tokenImg.image = UIImage(named: "bacTokenImg")
                     cell?.tokenSymbol.text = bacToken?.symbol
                     cell?.tokenSymbol.textColor = COLOR_BAC
                     cell?.tokenDescription.text = bacToken?.description
-                    cell?.tokenTitle.text = "(" + mainTabVC.mBalances[i].balance_denom + ")"
+                    cell?.tokenTitle.text = "(" + balance.balance_denom + ")"
                     
-                    cell?.tokenAmount.attributedText = WUtils.displayAmount(mainTabVC.mBalances[i].balance_amount, cell!.tokenAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
+                    cell?.tokenAmount.attributedText = WUtils.displayAmount(balance.balance_amount, cell!.tokenAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
                 }
-            }
+        
         }
         return cell!
     }

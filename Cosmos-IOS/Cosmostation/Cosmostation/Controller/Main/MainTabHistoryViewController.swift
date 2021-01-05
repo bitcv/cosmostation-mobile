@@ -26,6 +26,7 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
     var mainTabVC: MainTabViewController!
     var refresher: UIRefreshControl!
     var mBnbHistories = Array<BnbHistory>()
+    var mBacHistories = Array<BacHistory>()
     var mApiHistories = Array<ApiHistory.HistoryData>()
     
     override func viewDidLoad() {
@@ -236,6 +237,8 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
                     chainType == ChainType.SECRET_MAIN || chainType == ChainType.IOV_MAIN || chainType == ChainType.CERTIK_MAIN ||
                     chainType == ChainType.CERTIK_TEST || chainType == ChainType.AKASH_MAIN) {
             return self.mApiHistories.count
+        } else if (chainType == ChainType.BAC_MAIN){
+            return self.mBacHistories.count
         }
         return 0
     }
@@ -307,16 +310,21 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
     }
     func onSetBacItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
         let cell:HistoryCell? = tableView.dequeueReusableCell(withIdentifier:"HistoryCell") as? HistoryCell
-        let history = mApiHistories[indexPath.row]
-        cell?.txTimeLabel.text = WUtils.txTimetoString(input: history.time)
-        cell?.txTimeGapLabel.text = WUtils.txTimeGap(input: history.time)
-        cell?.txBlockLabel.text = String(history.height) + " block"
-        cell?.txTypeLabel.text = WUtils.historyTitle(history.msg, mainTabVC.mAccount.account_address)
-        if (history.result.code > 0) {
-            cell?.txResultLabel.isHidden = false
-        } else {
-            cell?.txResultLabel.isHidden = true
+        let history = mBacHistories[indexPath.row]
+        cell?.txTimeLabel.text = history.timeStamp
+        if(mainTabVC.mAccount.account_address == history.fromAddr)
+        {
+            cell?.txTimeGapLabel.text = WUtils.shortString(history.toAddr)
         }
+        else
+        {
+            cell?.txTimeGapLabel.text = WUtils.shortString(history.fromAddr)
+        }
+        cell?.txBlockLabel.text = String(history.blockHeight) + ":" + WUtils.shortString(history.txHash)
+        cell?.txTypeLabel.text = WUtils.bacHistoryTitle(history, mainTabVC.mAccount.account_address)
+         
+        cell?.txResultLabel.isHidden = true
+        
         return cell!
     }
     func onSetBnbItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
@@ -468,7 +476,24 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
                 present(safariViewController, animated: true, completion: nil)
             }
             
-        } else if (chainType == ChainType.BINANCE_TEST) {
+        }  else if(chainType == ChainType.BAC_MAIN){
+            let bacHistory = mBacHistories[indexPath.row]
+            if (bacHistory.txType == BAC_MSG_TYPE_SEND || bacHistory.txType == BAC_MSG_TYPE_EDATA) {
+                let txDetailVC = TxDetailViewController(nibName: "TxDetailViewController", bundle: nil)
+                txDetailVC.mIsGen = false
+                txDetailVC.mTxHash = bacHistory.txHash
+                txDetailVC.mBnbTime = bacHistory.timeStamp
+                txDetailVC.hidesBottomBarWhenPushed = true
+                self.navigationItem.title = ""
+                self.navigationController?.pushViewController(txDetailVC, animated: true)
+                
+            } else {
+                guard let url = URL(string: EXPLORER_BAC_MAIN + "/tx/" + bacHistory.txHash) else { return }
+                let safariViewController = SFSafariViewController(url: url)
+                safariViewController.modalPresentationStyle = .popover
+                present(safariViewController, animated: true, completion: nil)
+            }
+        }else if (chainType == ChainType.BINANCE_TEST) {
             let bnbHistory = mBnbHistories[indexPath.row]
             if (bnbHistory.txType == "HTL_TRANSFER" || bnbHistory.txType == "CLAIM_HTL" || bnbHistory.txType == "REFUND_HTL" || bnbHistory.txType == "TRANSFER") {
                 let txDetailVC = TxDetailViewController(nibName: "TxDetailViewController", bundle: nil)
@@ -546,29 +571,52 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
         } else if (chainType == ChainType.AKASH_MAIN) {
             url = AKASH_API_HISTORY + address
         } else if(chainType == ChainType.BAC_MAIN){
-            url = BAC_LCD_URL_USER_HISTORY + address + BAC_HISTORY_TAIL
-            method = .post
+            url = BAC_HISTORY_API_URL + address
         }
         let request = Alamofire.request(url!, method: method, parameters: ["limit":"50"], encoding: URLEncoding.default, headers: [:]);
         request.responseJSON { (response) in
             switch response.result {
             case .success(let res):
-                self.mApiHistories.removeAll()
-                guard let histories = res as? Array<NSDictionary> else {
-                    if (SHOW_LOG) { print("no history!!") }
-                    self.emptyLabel.isHidden = false
-                    return;
+                
+                if(self.chainType == ChainType.BAC_MAIN){
+                    self.mBacHistories.removeAll()
+                    guard let history = res as? NSDictionary  else {
+                        print("no history!!")
+                        return;
+                    }
+                    let histories:Array<NSDictionary> = history.object(forKey: "data") as! Array<NSDictionary>
+                    
+                    for rawHistory in histories {
+                        self.mBacHistories.append(BacHistory.init(rawHistory as! [String : Any]))
+                    
+                    }
+                    if (SHOW_LOG) { print("mBacHistories ", self.mBacHistories.count) }
+                    if (self.mBacHistories.count > 0) {
+                        self.historyTableView.reloadData()
+                        self.emptyLabel.isHidden = true
+                    } else {
+                        self.emptyLabel.isHidden = false
+                    }
                 }
-                for rawHistory in histories {
-                    self.mApiHistories.append(ApiHistory.HistoryData.init(rawHistory))
+                else{
+                    self.mApiHistories.removeAll()
+                    guard let histories = res as? Array<NSDictionary> else {
+                        if (SHOW_LOG) { print("no history!!") }
+                        self.emptyLabel.isHidden = false
+                        return;
+                    }
+                    for rawHistory in histories {
+                        self.mApiHistories.append(ApiHistory.HistoryData.init(rawHistory))
+                    }
+                    if (SHOW_LOG) { print("mApiHistories ", self.mApiHistories.count) }
+                    if (self.mApiHistories.count > 0) {
+                        self.historyTableView.reloadData()
+                        self.emptyLabel.isHidden = true
+                    } else {
+                        self.emptyLabel.isHidden = false
+                    }
                 }
-                if (SHOW_LOG) { print("mApiHistories ", self.mApiHistories.count) }
-                if (self.mApiHistories.count > 0) {
-                    self.historyTableView.reloadData()
-                    self.emptyLabel.isHidden = true
-                } else {
-                    self.emptyLabel.isHidden = false
-                }
+                
                 
             case .failure(let error):
                 self.emptyLabel.isHidden = false
