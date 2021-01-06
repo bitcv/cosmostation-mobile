@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <RelativeLayout
-                    android:id="@+id/btn_bac_reward"
+                    android:id="@+id/btn_bac_receive"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="@dimen/space_40"
@@ -164,11 +164,11 @@
                         android:drawablePadding="@dimen/space_4"
                         android:gravity="center"
                         style="@style/font_ss_12_white"
-                        android:text="@string/str_get_reward" />
+                        android:text="@string/str_receive" />
                 </RelativeLayout>
 
                 <RelativeLayout
-                    android:id="@+id/btn_bac_vote"
+                    android:id="@+id/btn_bac_send"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="@dimen/space_40"
@@ -185,7 +185,7 @@
                         android:drawablePadding="@dimen/space_4"
                         android:gravity="center"
                         style="@style/font_ss_12_white"
-                        android:text="@string/str_vote_to" />
+                        android:text="@string/str_send" />
                 </RelativeLayout>
             </LinearLayout>
 

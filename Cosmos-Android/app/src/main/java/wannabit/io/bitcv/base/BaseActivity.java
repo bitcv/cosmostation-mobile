@@ -148,6 +148,8 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_ENERGY_TOKEN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_STAKE_TOKEN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.SUPPORT_BEP3_SWAP;
 import static wannabit.io.bitcv.base.BaseConstant.TASK_FETCH_BAND_ORACLE_STATUS;

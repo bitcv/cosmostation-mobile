@@ -243,27 +243,32 @@ public class MainSendFragment extends BaseFragment {
 
         @Override
         public int getItemCount() {
-            if (getMainActivity().mBaseChain.equals(BNB_MAIN) || getMainActivity().mBaseChain.equals(BNB_TEST) || getMainActivity().mBaseChain.equals(OK_TEST)) {
+            if (getMainActivity().mBaseChain.equals(BNB_MAIN)  || getMainActivity().mBaseChain.equals(BNB_TEST) || getMainActivity().mBaseChain.equals(OK_TEST)) {
                 return 4;
-            } else {
-                if (getMainActivity().mUnbondings.size() > 0) {
+            } else  if (getMainActivity().mBaseChain.equals(BAC_MAIN)) {
+                return 3;
+            }else if (getMainActivity().mUnbondings.size() > 0) {
                     return 6;
                 } else {
                     return 5;
                 }
-            }
+
         }
 
 
         @Override
         public int getItemViewType(int position) {
-            if (getMainActivity().mBaseChain.equals(BNB_MAIN) || getMainActivity().mBaseChain.equals(BNB_TEST) || getMainActivity().mBaseChain.equals(OK_TEST)) {
+            if (getMainActivity().mBaseChain.equals(BNB_MAIN) || getMainActivity().mBaseChain.equals(BAC_MAIN) || getMainActivity().mBaseChain.equals(BNB_TEST) || getMainActivity().mBaseChain.equals(OK_TEST)) {
                 if (position == 0) {
                     return TYPE_ADDRESS;
                 } else if (position == 1) {
                     if (getMainActivity().mBaseChain.equals(BNB_MAIN) || getMainActivity().mBaseChain.equals(BNB_TEST)) { return TYPE_BINANCE; }
                     else if (getMainActivity().mBaseChain.equals(OK_TEST)) { return TYPE_OKEX; }
+                    else if (getMainActivity().mBaseChain.equals(BAC_MAIN)) { return TYPE_BAC; }
                 } else if (position == 2) {
+                    if (getMainActivity().mBaseChain.equals(BAC_MAIN)){
+                        return TYPE_GIUDE;
+                    }
                     return TYPE_PRICE;
                 } else if (position == 3) {
                     return TYPE_GIUDE;
@@ -287,6 +292,7 @@ public class MainSendFragment extends BaseFragment {
                     else { return TYPE_PRICE; }
 
                 } else if (position == 3) {
+
                     if (getMainActivity().mUnbondings.size() > 0) { return TYPE_PRICE; }
                     else { return TYPE_MINT; }
 

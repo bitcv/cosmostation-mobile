@@ -65,6 +65,8 @@ import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_ENERGY_TOKEN_DENOM;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_STAKE_TOKEN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.PRE_EVENT_HIDE;
 import static wannabit.io.bitcv.base.BaseConstant.PRE_SECRET_TIC;
@@ -1271,6 +1273,7 @@ public class BaseData {
         Cursor cursor 	= getBaseDB().query(BaseConstant.DB_TABLE_BALANCE, new String[]{"accountId", "symbol", "balance", "fetchTime", "frozen", "locked"}, "accountId == ?", new String[]{""+accountId}, null, null, null);
         if(cursor != null && cursor.moveToFirst()) {
             do {
+
                 Balance balance = new Balance(
                         cursor.getLong(0),
                         cursor.getString(1),
@@ -1286,6 +1289,10 @@ public class BaseData {
     }
 
     public long onInsertBalance(Balance balance) {
+        if(balance.symbol.equals(BAC_ENERGY_TOKEN_DENOM) || balance.symbol.equals(BAC_STAKE_TOKEN_DENOM))
+        {
+            return 0;
+        }
         if(onHasBalance(balance)) {
             return onUpdateBalance(balance);
         } else {

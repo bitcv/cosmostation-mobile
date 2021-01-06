@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">BAC钱包</string>
+    <string name="app_name">BAC保险箱</string>
     <string name="str_cosmos_main_net">COSMOS主网</string>
     <string name="str_cosmos_test_net_12k">COSMOS测试网（盖亚12k）</string>
     <string name="str_cosmos_test_net_13k">COSMOS测试网（盖亚13k）</string>
@@ -128,10 +128,10 @@
     <string name="str_wallet_detail">钱包细节</string>
     <string name="str_general">总则</string>
     <string name="str_alarm">报警</string>
-    <string name="str_app_applock">应用程序锁定</string>
+    <string name="str_app_applock">应用锁定</string>
     <string name="str_app_applock_enabled">启用</string>
-    <string name="str_app_applock_diabeld">残疾人</string>
-    <string name="str_currency">货币</string>
+    <string name="str_app_applock_diabeld">停用</string>
+    <string name="str_currency">计价货币</string>
     <string name="str_base_price">基价</string>
     <string name="str_support">支持</string>
     <string name="str_faq">常见问题</string>
@@ -159,8 +159,8 @@
     <string name="str_telegram">电报</string>
     <string name="str_explore">浏览器</string>
     <string name="str_explore_bnb">币安链浏览器</string>
-    <string name="str_homepage">COSMOS主页</string>
-    <string name="str_starname_wallet_connect">Starname钱包连接</string>
+    <string name="str_homepage">币威链主页</string>
+    <string name="str_starname_wallet_connect">连接币威钱包</string>
     <string name="str_app_info">应用程序信息</string>
     <string name="str_term">服务条款</string>
     <string name="str_github">开源（GitHub）</string>

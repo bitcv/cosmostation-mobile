@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cosmostation</string>
+    <string name="app_name">BAC Vault</string>
 
     <string name="str_cosmos_main_net">코스모스 메인넷</string>
     <string name="str_cosmos_test_net_12k">코스모스 테스트넷 (GAIA 12k)</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cosmostation</string>
+    <string name="app_name">BAC Vault</string>
     <string name="db_password" translatable="false">wannabit</string>
 
     <string name="url_coinmarketcap" translatable="false">https://api.coinmarketcap.com/</string>

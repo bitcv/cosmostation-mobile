@@ -399,9 +399,19 @@ public class BaseConstant {
     public final static String BAC_TOKEN_DESCRIPTION      = "BAC Chain Main Token";
     public final static String BCV_TOKEN_DESCRIPTION      = "BCV Chain Right Token";
     public final static String BAC_TOKEN_HOME    = "https://www.bitcv.net";
+    public final static String BCV_SERVICE_AGREEMENT_URL_PREFIX = "https://api.bitcv.com/appWebview/importantNotice?nid=";
+    public final static String BCV_SERVICE_AGREEMENT_CN = "44";
+    public final static String BCV_SERVICE_AGREEMENT_KO = "154";
+    public final static String BCV_SERVICE_AGREEMENT_EN = "153";
+
     public final static String BCV_TOKEN_HOME   = "https://bitcv.app";
+    public final static String BAC_WALLET_GITHUB_HOME = "https://github.com/bitcv/cosmostation-mobile";
+    public final static String BCV_WALLET_PACKAGE = "bitcv.com.wallet";
     public final static String  BAC_TOKEN_SYMBOL = "BAC";
     public final static String  BCV_TOKEN_SYMBOL = "BCV";
+    public final static String  BAC_ENERGY_TOKEN_DENOM = "energy";
+    public final static String  BAC_STAKE_TOKEN_DENOM = "ubcvstake";
+
     public final static Integer  BAC_TOKEN_DECIMAL = 9;
     public final static Integer BAC_GAS_FEE_DECIMAL = 9;
     public final static String GAS_FEE_BAC_SEND                     = "0.1";

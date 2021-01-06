@@ -35,6 +35,7 @@ import wannabit.io.bitcv.dialog.Dialog_Currency_Set;
 import wannabit.io.bitcv.dialog.Dialog_Starname_WC_Confirm;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BNB_TEST;
@@ -46,7 +47,16 @@ import static wannabit.io.bitcv.base.BaseChain.IRIS_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_WALLET_GITHUB_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_SERVICE_AGREEMENT_CN;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_SERVICE_AGREEMENT_EN;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_SERVICE_AGREEMENT_KO;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_SERVICE_AGREEMENT_URL_PREFIX;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_TOKEN_HOME;
+import static wannabit.io.bitcv.base.BaseConstant.BCV_WALLET_PACKAGE;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_AKASH_MAIN;
+import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BAND_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BINANCE_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.EXPLORER_BINANCE_TEST;
@@ -64,8 +74,9 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
     public final static int SELECT_MARKET                   = 9035;
     public final static int SELECT_STARNAME_WALLET_CONNECT  = 9036;
 
-    private FrameLayout mBtnWallet, mBtnAlaram, mBtnAppLock, mBtnCurrency, mBtnBasePrice,
-                        mBtnGuide, mBtnTelegram, mBtnExplore, mBtnHomepage, mBtnStarnameWc,
+    private FrameLayout mBtnWallet, mBtnAlaram, mBtnAppLock,// mBtnCurrency, mBtnBasePrice,
+                        //mBtnGuide, mBtnTelegram,
+                        mBtnExplore, mBtnHomepage, mBtnStarnameWc,
                         mBtnTerm, mBtnGithub, mBtnVersion;
 
     private TextView    mTvAppLock, mTvCurrency, mTvBasePrice, mTvVersion;
@@ -120,10 +131,10 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
         mBtnWallet = rootView.findViewById(R.id.card_wallet);
         mBtnAlaram = rootView.findViewById(R.id.card_alaram);
         mBtnAppLock = rootView.findViewById(R.id.card_applock);
-        mBtnCurrency = rootView.findViewById(R.id.card_currency);
-        mBtnBasePrice = rootView.findViewById(R.id.card_base_price);
-        mBtnGuide = rootView.findViewById(R.id.card_guide);
-        mBtnTelegram = rootView.findViewById(R.id.card_telegram);
+        //mBtnCurrency = rootView.findViewById(R.id.card_currency);
+        //mBtnBasePrice = rootView.findViewById(R.id.card_base_price);
+       // mBtnGuide = rootView.findViewById(R.id.card_guide);
+        //mBtnTelegram = rootView.findViewById(R.id.card_telegram);
         mBtnExplore = rootView.findViewById(R.id.card_explore);
         mBtnHomepage = rootView.findViewById(R.id.card_homepage);
         mBtnStarnameWc = rootView.findViewById(R.id.card_starname_wallet_connect);
@@ -131,17 +142,17 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
         mBtnGithub = rootView.findViewById(R.id.card_github);
         mBtnVersion = rootView.findViewById(R.id.card_version);
         mTvAppLock = rootView.findViewById(R.id.applock_text);
-        mTvCurrency = rootView.findViewById(R.id.currency_text);
-        mTvBasePrice = rootView.findViewById(R.id.base_price_text);
+        //mTvCurrency = rootView.findViewById(R.id.currency_text);
+        //mTvBasePrice = rootView.findViewById(R.id.base_price_text);
         mTvVersion = rootView.findViewById(R.id.version_text);
         mTvTitleExplore = rootView.findViewById(R.id.title_explore);
         mBtnWallet.setOnClickListener(this);
         mBtnAlaram.setOnClickListener(this);
         mBtnAppLock.setOnClickListener(this);
-        mBtnCurrency.setOnClickListener(this);
-        mBtnBasePrice.setOnClickListener(this);
-        mBtnGuide.setOnClickListener(this);
-        mBtnTelegram.setOnClickListener(this);
+       // mBtnCurrency.setOnClickListener(this);
+        //mBtnBasePrice.setOnClickListener(this);
+        //mBtnGuide.setOnClickListener(this);
+        //mBtnTelegram.setOnClickListener(this);
         mBtnExplore.setOnClickListener(this);
         mBtnHomepage.setOnClickListener(this);
         mBtnStarnameWc.setOnClickListener(this);
@@ -159,8 +170,8 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
     @Override
     public void onRefreshTab() {
         if(!isAdded()) return;
-        mTvCurrency.setText(getBaseDao().getCurrencyString());
-        mTvBasePrice.setText(getBaseDao().getMarketString(getMainActivity()));
+  //      mTvCurrency.setText(getBaseDao().getCurrencyString());
+//        mTvBasePrice.setText(getBaseDao().getMarketString(getMainActivity()));
         if(getBaseDao().getUsingAppLock()) {
             mTvAppLock.setText(R.string.str_app_applock_enabled);
         } else {
@@ -179,36 +190,41 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
         } else if (v.equals(mBtnAppLock)) {
             startActivity(new Intent(getBaseActivity(), AppLockSetActivity.class));
 
-        } else if (v.equals(mBtnCurrency)) {
-            Dialog_Currency_Set currency_dialog = Dialog_Currency_Set.newInstance(null);
-            currency_dialog.setCancelable(true);
-            currency_dialog.setTargetFragment(this, SELECT_CURRENCY);
-            getFragmentManager().beginTransaction().add(currency_dialog, "dialog").commitNowAllowingStateLoss();
-            return;
-
-        } else if (v.equals(mBtnBasePrice)) {
-            //NO more coinmarketcap always using coingecko
-//            Dialog_Market market = Dialog_Market.newInstance(null);
-//            market.setCancelable(true);
-//            market.setTargetFragment(this, SELECT_MARKET);
-//            getFragmentManager().beginTransaction().add(market, "dialog").commitNowAllowingStateLoss();
+        }
+//        else if (v.equals(mBtnCurrency)) {
+//            Dialog_Currency_Set currency_dialog = Dialog_Currency_Set.newInstance(null);
+//            currency_dialog.setCancelable(true);
+//            currency_dialog.setTargetFragment(this, SELECT_CURRENCY);
+//            getFragmentManager().beginTransaction().add(currency_dialog, "dialog").commitNowAllowingStateLoss();
 //            return;
-            return;
-
-        } else if (v.equals(mBtnGuide)) {
-            if(Locale.getDefault().getLanguage().toLowerCase().equals("ko")) {
-                Intent guideIntent = new Intent(Intent.ACTION_VIEW , Uri.parse("https://guide.cosmostation.io/app_wallet_ko.html"));
-                startActivity(guideIntent);
-            } else {
-                Intent guideIntent = new Intent(Intent.ACTION_VIEW , Uri.parse("https://guide.cosmostation.io/app_wallet_en.html"));
-                startActivity(guideIntent);
-            }
-
-        } else if (v.equals(mBtnTelegram)) {
-            Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://t.me/cosmostation"));
-            startActivity(telegram);
-
-        } else if (v.equals(mBtnExplore)) {
+//
+//        }
+//        else if (v.equals(mBtnBasePrice)) {
+//            //NO more coinmarketcap always using coingecko
+////            Dialog_Market market = Dialog_Market.newInstance(null);
+////            market.setCancelable(true);
+////            market.setTargetFragment(this, SELECT_MARKET);
+////            getFragmentManager().beginTransaction().add(market, "dialog").commitNowAllowingStateLoss();
+////            return;
+//            return;
+//
+//        }
+//        else if (v.equals(mBtnGuide)) {
+//            if(Locale.getDefault().getLanguage().toLowerCase().equals("ko")) {
+//                Intent guideIntent = new Intent(Intent.ACTION_VIEW , Uri.parse("https://guide.cosmostation.io/app_wallet_ko.html"));
+//                startActivity(guideIntent);
+//            } else {
+//                Intent guideIntent = new Intent(Intent.ACTION_VIEW , Uri.parse("https://guide.cosmostation.io/app_wallet_en.html"));
+//                startActivity(guideIntent);
+//            }
+//
+//        }
+//        else if (v.equals(mBtnTelegram)) {
+//            Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse("https://t.me/cosmostation"));
+//            startActivity(telegram);
+//
+//        }
+           else if (v.equals(mBtnExplore)) {
             if (getMainActivity().mBaseChain.equals(COSMOS_MAIN)) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(EXPLORER_COSMOS_MAIN));
                 startActivity(intent);
@@ -243,23 +259,29 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
             } else if (getMainActivity().mBaseChain.equals(AKASH_MAIN)) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(EXPLORER_AKASH_MAIN));
                 startActivity(intent);
+            } else if(getMainActivity().mBaseChain.equals(BAC_MAIN)){
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(EXPLORER_BAC_MAIN));
+                startActivity(intent);
             }
 
         } else if (v.equals(mBtnHomepage)) {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cosmostation.io/"));
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BAC_TOKEN_HOME));
             startActivity(intent);
 
         } else if (v.equals(mBtnTerm)) {
+            String urlcode = "";
             if(Locale.getDefault().getLanguage().toLowerCase().equals("ko")) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cosmostation.io/service_ko.html"));
-                startActivity(intent);
-            }  else {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.cosmostation.io/service_en.html"));
-                startActivity(intent);
+                urlcode = BCV_SERVICE_AGREEMENT_KO;
+            } else if(Locale.getDefault().getLanguage().toLowerCase().equals("zh")){
+                urlcode = BCV_SERVICE_AGREEMENT_CN;
+            } else {
+                urlcode = BCV_SERVICE_AGREEMENT_EN;
             }
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BCV_SERVICE_AGREEMENT_URL_PREFIX + urlcode));
+            startActivity(intent);
 
         } else if (v.equals(mBtnGithub)) {
-            Intent intent = new Intent(Intent.ACTION_VIEW , Uri.parse("https://github.com/cosmostation/cosmostation-mobile"));
+            Intent intent = new Intent(Intent.ACTION_VIEW , Uri.parse(BAC_WALLET_GITHUB_HOME));
             startActivity(intent);
 
         } else if (v.equals(mBtnVersion)) {
@@ -268,10 +290,19 @@ public class MainSettingFragment extends BaseFragment implements View.OnClickLis
             startActivity(intent);
 
         } else if (v.equals(mBtnStarnameWc)) {
-            Dialog_Starname_WC_Confirm wc_dialog = Dialog_Starname_WC_Confirm.newInstance();
-            wc_dialog.setCancelable(true);
-            wc_dialog.setTargetFragment(this, SELECT_STARNAME_WALLET_CONNECT);
-            getFragmentManager().beginTransaction().add(wc_dialog, "dialog").commitNowAllowingStateLoss();
+            Intent launchIntent = this.getMainActivity().getPackageManager().getLaunchIntentForPackage(BCV_WALLET_PACKAGE);
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }
+            else{
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(BCV_TOKEN_HOME));
+                startActivity(intent);
+
+            }
+//            Dialog_Starname_WC_Confirm wc_dialog = Dialog_Starname_WC_Confirm.newInstance();
+//            wc_dialog.setCancelable(true);
+//            wc_dialog.setTargetFragment(this, SELECT_STARNAME_WALLET_CONNECT);
+//            getFragmentManager().beginTransaction().add(wc_dialog, "dialog").commitNowAllowingStateLoss();
         }
 
     }

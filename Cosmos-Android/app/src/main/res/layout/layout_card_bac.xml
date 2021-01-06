@@ -187,7 +187,7 @@
                         android:drawablePadding="@dimen/space_4"
                         android:gravity="center"
                         style="@style/font_ss_12_white"
-                        android:text="@string/str_vote_to" />
+                        android:text="@string/str_send" />
                 </RelativeLayout>
             </LinearLayout>
 
