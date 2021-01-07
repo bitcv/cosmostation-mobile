@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity implements FetchCallBack {
     private RecyclerView                mAccountRecyclerView;
     private ChainListAdapter            mChainListAdapter;
     private AccountListAdapter          mAccountListAdapter;
-    private int                         mSelectChainPosition = 0;
+    private int                         mSelectChainPosition = 1;
 
     private boolean                     mToShowTestWarn = true;
 

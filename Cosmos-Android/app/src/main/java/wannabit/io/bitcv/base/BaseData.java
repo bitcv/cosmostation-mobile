@@ -703,7 +703,7 @@ public class BaseData {
 
 
     public int getLastChain() {
-        int position =  getSharedPreferences().getInt(BaseConstant.PRE_SELECTED_CHAIN, 0);
+        int position =  getSharedPreferences().getInt(BaseConstant.PRE_SELECTED_CHAIN, 1);
         if (BaseChain.SUPPORT_CHAINS().size() < position) {
             return 0;
         } else {

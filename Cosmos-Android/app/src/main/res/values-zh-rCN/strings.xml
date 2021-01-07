@@ -325,7 +325,7 @@
     <string name="str_wc_sign_result_msg">发送消息。\请检查您的Dex屏幕！</string>
     <string name="str_wc_new_order">新订单</string>
     <string name="str_wc_cancel_order">订单取消</string>
-    <string name="str_switch_wallet">交换钱包</string>
+    <string name="str_switch_wallet">切换钱包</string>
     <string name="str_wc_trade_title">下订单请求</string>
     <string name="str_wc_cancel_title">取消订单请求</string>
     <string name="str_wc_transfer_title">转移请求</string>

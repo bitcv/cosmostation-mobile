@@ -279,7 +279,7 @@ public class Account {
                 return WDp.getDpAmount2(c, new BigDecimal(lastTotal), 0, 6);
 
             } else if (chain.equals(BaseChain.BAC_MAIN)) {
-                return WDp.getDpAmount2(c, new BigDecimal(lastTotal), 0, 6);
+                return WDp.getDpAmount2(c, new BigDecimal(lastTotal), BaseConstant.BAC_TOKEN_DECIMAL, 6);
 
             } else if (chain.equals(BaseChain.KAVA_MAIN) || chain.equals(BaseChain.KAVA_TEST)) {
                 return WDp.getDpAmount2(c, new BigDecimal(lastTotal), 6, 6);

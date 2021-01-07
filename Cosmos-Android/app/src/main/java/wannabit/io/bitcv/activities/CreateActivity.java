@@ -93,6 +93,7 @@ public class CreateActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        mChain = BAC_MAIN;
         if (mChain == null) {
             Dialog_ChoiceNet dialog = Dialog_ChoiceNet.newInstance(null);
             dialog.setCancelable(false);

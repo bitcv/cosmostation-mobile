@@ -43,6 +43,7 @@ import wannabit.io.bitcv.utils.WDp;
 import wannabit.io.bitcv.utils.WKey;
 import wannabit.io.bitcv.utils.WUtil;
 
+import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
@@ -132,6 +133,7 @@ public class RestoreActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onPostResume() {
         super.onPostResume();
+        mChain = BAC_MAIN;
         if (mChain == null) {
             Dialog_ChoiceNet dialog = Dialog_ChoiceNet.newInstance(null);
             dialog.setCancelable(false);

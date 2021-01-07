@@ -47,7 +47,7 @@ public class AccountListActivity extends BaseActivity implements View.OnClickLis
     private ChainListAdapter            mChainListAdapter;
     private AccountListAdapter          mAccountListAdapter;
     private ItemTouchHelper             mItemTouchHelper;
-    private int                         mSelectChainPosition = 0;
+    private int                         mSelectChainPosition = 1;
     private boolean                     isEditMode;
     private ArrayList<Account>          mAccounts = new ArrayList<>();
 

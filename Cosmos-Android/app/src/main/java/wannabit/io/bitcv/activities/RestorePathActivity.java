@@ -476,7 +476,7 @@ public class RestorePathActivity extends BaseActivity implements TaskListener {
 
         @Override
         public int getItemCount() {
-            return 5;
+            return 1;
         }
 
         public class NewWalletHolder extends RecyclerView.ViewHolder {
