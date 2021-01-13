@@ -415,6 +415,8 @@ public class BaseConstant {
     public final static Integer  BAC_TOKEN_DECIMAL = 9;
     public final static Integer BAC_GAS_FEE_DECIMAL = 9;
     public final static String GAS_FEE_BAC_SEND                     = "0.1";
+
+    public final static String GAS_FEE_RATE_BAC_SEND                     = "1.0";
     public final static Integer BCV_TOKEN_DECIMAL = 6;
 
     //HTLC swap support Token Types

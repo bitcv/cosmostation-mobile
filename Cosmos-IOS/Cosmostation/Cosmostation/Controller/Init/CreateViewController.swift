@@ -99,7 +99,7 @@ class CreateViewController: BaseViewController, PasswordViewDelegate{
         self.mnemonicView.isHidden = true
         self.warningView.isHidden = true
         self.nextBtn.isHidden = true
-        
+        chainType = ChainType.BAC_MAIN
         if (chainType == nil) {
             self.onShowChainType()
         } else {

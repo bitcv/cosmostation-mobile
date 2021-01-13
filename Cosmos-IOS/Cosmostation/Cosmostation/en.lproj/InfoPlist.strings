@@ -6,7 +6,7 @@
   Copyright © 2019 wannabit. All rights reserved.
 */
 
-"CFBundleDisplayName" = "Cosmostation";
+"CFBundleDisplayName" = "BACVault";
 "NSCameraUsageDescription" = "Request Camera access for QR code scan.";
 "NSFaceIDUsageDescription" = "Request Face ID for unlock app";
 

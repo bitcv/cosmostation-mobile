@@ -565,13 +565,21 @@ public class TokenDetailActivity extends BaseActivity implements View.OnClickLis
 
                 holder.mBacTokenName.setText(mBacToken.symbol);
                 Picasso.get().cancelRequest(holder.mBacIcon);
-                holder.mBacIcon.setImageDrawable(getResources().getDrawable(R.drawable.token_ic));
-                try {
-                    Picasso.get().load(BAC_VAL_URL +mBacToken.original_symbol+".png")
-                            .fit().placeholder(R.drawable.token_ic).error(R.drawable.token_ic)
-                            .into(holder.mBacIcon);
+                if(mBacToken.original_symbol.equals(BAC_MAIN_DENOM)){
+                    holder.mBacIcon.setImageDrawable(getResources().getDrawable(R.drawable.bac_token_img));
+                } else if(mBacToken.original_symbol.equals(BCV_MAIN_DENOM)){
+                    holder.mBacIcon.setImageDrawable(getResources().getDrawable(R.drawable.bcv_token_img));
+                } else {
+                    try {
+                        Picasso.get().load(BAC_VAL_URL + mBacToken.original_symbol+".png?v1")
+                                .fit().placeholder(R.drawable.bac_token_default_img).error(R.drawable.bac_token_default_img)
+                                .into(holder.mBacIcon);
 
-                } catch (Exception e) { }
+                    } catch (Exception e) { }
+                }
+
+
+
                 BigDecimal totalAmount = WDp.getAvailableCoin(mBalances, mBacToken.original_symbol);
                 holder.mTvBacTotal.setText(WDp.getDpAmount2(getBaseContext(), totalAmount, mBacToken.decimal, 6));
                 holder.mTvBacAvailable.setText(WDp.getDpAmount2(getBaseContext(), WDp.getAvailableCoin(mBalances, mBacToken.original_symbol), mBacToken.decimal, 6));

@@ -35,6 +35,7 @@ import wannabit.io.bitcv.dialog.Dialog_Event_Confirm;
 import wannabit.io.bitcv.model.type.Coin;
 import wannabit.io.bitcv.model.type.Fee;
 import wannabit.io.bitcv.utils.WDp;
+import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.COSMOS_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.KAVA_MAIN;
@@ -240,7 +241,8 @@ public class EventStakeDropActivity extends BaseActivity implements View.OnClick
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() != null) {
-                mMemo.setText(result.getContents().trim());
+                String addr = WUtil.formatAddress(result.getContents().trim());
+                mMemo.setText(addr);
                 mMemo.setSelection(mMemo.getText().length());
             }
         } else {

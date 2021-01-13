@@ -604,18 +604,20 @@ public class MainTokensFragment extends BaseFragment implements View.OnClickList
             holder.itemInnerSymbol.setText("(" + balance.symbol + ")");
             if (balance.symbol.equals(BCV_MAIN_DENOM)) {
                 holder.itemFullName.setText("BAC Chain Right Token");
+                Picasso.get().cancelRequest(holder.itemImg);
+                holder.itemImg.setImageDrawable(getResources().getDrawable(R.drawable.bcv_token_img));
             } else {
                 holder.itemFullName.setText(balance.symbol.toUpperCase() + " on BAC Chain");
+                try {
+                    Picasso.get().load(BAC_VAL_URL +balance.symbol+".png")
+                            .fit().placeholder(R.drawable.token_ic).error(R.drawable.bac_token_default_img)
+                            .into(holder.itemImg);
+
+                } catch (Exception e) { }
             }
 
-            Picasso.get().cancelRequest(holder.itemImg);
-            holder.itemImg.setImageDrawable(getResources().getDrawable(R.drawable.token_ic));
-            try {
-                Picasso.get().load(BAC_VAL_URL +balance.symbol+".png")
-                        .fit().placeholder(R.drawable.token_ic).error(R.drawable.token_ic)
-                        .into(holder.itemImg);
 
-            } catch (Exception e) { }
+
 
             BigDecimal tokenTotalAmount = WDp.getBacTokenAll(getBaseDao(), mBalances, balance.symbol);
             if (balance.symbol.equals(BCV_MAIN_DENOM)) {

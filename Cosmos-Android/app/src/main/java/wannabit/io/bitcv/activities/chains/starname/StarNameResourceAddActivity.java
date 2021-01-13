@@ -177,7 +177,8 @@ public class StarNameResourceAddActivity extends BaseActivity implements View.On
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() != null) {
-                mUserInput.setText(result.getContents().trim());
+                String addr = WUtil.formatAddress(result.getContents().trim());
+                mUserInput.setText(addr);
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

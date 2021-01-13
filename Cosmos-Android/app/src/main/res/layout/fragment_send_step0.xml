@@ -112,7 +112,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
+    <!--LinearLayout
         android:id="@+id/starname_layer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
             style="@style/font_ss_12_white"
             android:text="@string/str_support_starname_msg"/>
 
-    </LinearLayout>
+    </LinearLayout-->
 
     <LinearLayout
         android:id="@+id/bottom_control"

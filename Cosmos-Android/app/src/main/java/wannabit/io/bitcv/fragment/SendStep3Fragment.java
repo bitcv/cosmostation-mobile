@@ -47,6 +47,7 @@ import static wannabit.io.bitcv.base.BaseChain.OK_TEST;
 import static wannabit.io.bitcv.base.BaseChain.SECRET_MAIN;
 import static wannabit.io.bitcv.base.BaseConstant.BAC_MAIN_DENOM;
 import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_DECIMAL;
+import static wannabit.io.bitcv.base.BaseConstant.BAC_TOKEN_SYMBOL;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_AKASH_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_AKASH_GAS_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_BNB_SEND;
@@ -64,6 +65,7 @@ import static wannabit.io.bitcv.base.BaseConstant.FEE_KAVA_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_OK_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.FEE_OK_GAS_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_BAC_SEND;
+import static wannabit.io.bitcv.base.BaseConstant.GAS_FEE_RATE_BAC_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.SECRET_GAS_AMOUNT_SEND;
 import static wannabit.io.bitcv.base.BaseConstant.SECRET_GAS_FEE_RATE_AVERAGE;
 import static wannabit.io.bitcv.base.BaseConstant.TOKEN_AKASH;
@@ -342,16 +344,20 @@ public class SendStep3Fragment extends BaseFragment implements View.OnClickListe
             mFeeLayer2.setVisibility(View.VISIBLE);
             mFeeLayer3.setVisibility(View.GONE);
 
-            mSpeedImg.setImageDrawable(getResources().getDrawable(R.drawable.fee_img));
-            mSpeedMsg.setText(getString(R.string.str_fee_speed_title_akash));
+            mSpeedImg.setVisibility(View.GONE);
+            mSpeedMsg.setVisibility(View.GONE);
+
+            //mSpeedImg.setImageDrawable(getResources().getDrawable(R.drawable.fee_img));
+            //mSpeedMsg.setText(getString(R.string.str_fee_speed_title_akash));
 
             mGasAmount.setText(GAS_FEE_BAC_SEND);
-            mGasRate.setText(WDp.getDpString(GAS_FEE_BAC_SEND, 3));
+            mGasRate.setText(WDp.getDpString(GAS_FEE_RATE_BAC_SEND, 3));
             mFeeAmount = new BigDecimal(GAS_FEE_BAC_SEND).movePointRight(BAC_TOKEN_DECIMAL).setScale(0);
 
-            mGasFeeAmount.setText(WDp.getDpAmount2(getContext(), mFeeAmount, BAC_TOKEN_DECIMAL, 6));
-            mGasFeePrice.setText(WDp.getPriceApproximatelyDp(getSActivity(), BigDecimal.ZERO, getBaseDao().getCurrencySymbol(), getBaseDao().getCurrency()));
-
+            mGasFeeAmount.setText(WDp.getDpAmount2(getContext(), mFeeAmount, BAC_TOKEN_DECIMAL, 2) + " " + BAC_TOKEN_SYMBOL);
+            mGasFeePrice.setVisibility(View.GONE);
+            //mGasFeePrice.setText(WDp.getPriceApproximatelyDp(getSActivity(), BigDecimal.ZERO, getBaseDao().getCurrencySymbol(), getBaseDao().getCurrency()));
+            //mDenomTitle.setTextColor(getResources().getColor(R.color.colorBac));
         }
         return rootView;
     }

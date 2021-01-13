@@ -58,7 +58,7 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
 
     private EditText        mAddressInput;
     private Button          mCancel, mNextBtn;
-    private LinearLayout    mStarNameLayer;
+    //private LinearLayout    mStarNameLayer;
     private LinearLayout    mBtnQr, mBtnPaste, mBtnHistory;
 
     public static SendStep0Fragment newInstance(Bundle bundle) {
@@ -78,7 +78,7 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
         mAddressInput = rootView.findViewById(R.id.receiver_account);
         mNextBtn = rootView.findViewById(R.id.btn_next);
         mCancel = rootView.findViewById(R.id.btn_cancel);
-        mStarNameLayer = rootView.findViewById(R.id.starname_layer);
+      //  mStarNameLayer = rootView.findViewById(R.id.starname_layer);
 
         mBtnQr = rootView.findViewById(R.id.btn_qr);
         mBtnPaste = rootView.findViewById(R.id.btn_paste);
@@ -108,18 +108,18 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
                 }
                 alreadyOpen = isShown;
                 if (alreadyOpen) {
-                    mStarNameLayer.setVisibility(View.GONE);
+                  //  mStarNameLayer.setVisibility(View.GONE);
                 } else {
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            mStarNameLayer.setVisibility(View.VISIBLE);
+                           // mStarNameLayer.setVisibility(View.VISIBLE);
                         }
                     },100);
                 }
             }
         });
-        mStarNameLayer.setVisibility(View.VISIBLE);
+        //mStarNameLayer.setVisibility(View.VISIBLE);
         return rootView;
     }
 
@@ -285,12 +285,7 @@ public class SendStep0Fragment extends BaseFragment implements View.OnClickListe
             IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
             if(result != null) {
                 if(result.getContents() != null) {
-                    String addr = result.getContents().trim();
-                    int idx = addr.indexOf("?");
-                    if(idx != -1)
-                    {
-                        addr = addr.substring(0, idx);
-                    }
+                    String addr = WUtil.formatAddress(result.getContents().trim());
                     mAddressInput.setText(addr);
                     mAddressInput.setSelection(mAddressInput.getText().length());
                 }

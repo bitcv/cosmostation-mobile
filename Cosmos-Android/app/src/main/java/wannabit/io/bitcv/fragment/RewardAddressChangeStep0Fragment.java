@@ -23,6 +23,7 @@ import wannabit.io.bitcv.R;
 import wannabit.io.bitcv.base.BaseChain;
 import wannabit.io.bitcv.base.BaseFragment;
 import wannabit.io.bitcv.utils.WKey;
+import wannabit.io.bitcv.utils.WUtil;
 
 public class RewardAddressChangeStep0Fragment extends BaseFragment implements View.OnClickListener {
 
@@ -174,7 +175,8 @@ public class RewardAddressChangeStep0Fragment extends BaseFragment implements Vi
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() != null) {
-                mAddressInput.setText(result.getContents().trim());
+                String addr = WUtil.formatAddress(result.getContents().trim());
+                mAddressInput.setText(addr);
                 mAddressInput.setSelection(mAddressInput.getText().length());
             }
         } else {

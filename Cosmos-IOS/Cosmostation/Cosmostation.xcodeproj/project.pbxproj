@@ -858,6 +858,8 @@
 		28F4CF772542AD3F0050985D /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/EventStakeDropViewController.strings; sourceTree = "<group>"; };
 		2F1D0E50B408222929C7B772 /* Pods_Cosmostation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cosmostation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		53DF825783BC00234AD1092F /* Pods-Cosmostation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cosmostation.debug.xcconfig"; path = "Target Support Files/Pods-Cosmostation/Pods-Cosmostation.debug.xcconfig"; sourceTree = "<group>"; };
+		6C38914825AF59A000B29D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Init.strings; sourceTree = "<group>"; };
+		6C38914A25AF5AF000B29D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GenTx.strings; sourceTree = "<group>"; };
 		6C912EE125A404010027CB2E /* BacHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacHistory.swift; sourceTree = "<group>"; };
 		6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = "<group>"; };
 		6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -2768,6 +2770,7 @@
 				E103DADF22814802006C2146 /* Base */,
 				E103DAE222814815006C2146 /* ko */,
 				6CD6600925A028EB007BF7F9 /* zh-Hans */,
+				6C38914825AF59A000B29D5E /* en */,
 			);
 			name = Init.storyboard;
 			sourceTree = "<group>";
@@ -2778,6 +2781,7 @@
 				E103DAE422814DFC006C2146 /* Base */,
 				E16B70DC229E619A001D6B9C /* ko */,
 				6CD6600525A028EA007BF7F9 /* zh-Hans */,
+				6C38914A25AF5AF000B29D5E /* en */,
 			);
 			name = GenTx.storyboard;
 			sourceTree = "<group>";
@@ -3079,7 +3083,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3135,7 +3139,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -3154,7 +3158,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cosmostation/Cosmostation.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 84;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MT97N7D27A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3165,7 +3169,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wannabit.bitcv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3185,7 +3189,7 @@
 				CODE_SIGN_ENTITLEMENTS = Cosmostation/Cosmostation.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 84;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = MT97N7D27A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3196,7 +3200,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4.9;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = io.wannabit.bitcv;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

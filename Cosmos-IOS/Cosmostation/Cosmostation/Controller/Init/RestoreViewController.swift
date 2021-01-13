@@ -124,6 +124,7 @@ class RestoreViewController: BaseViewController , UICollectionViewDelegate, UICo
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("clear_all", comment: ""), style: .done, target: self, action: #selector(clearAll))
         
+        chainType = ChainType.BAC_MAIN
         if (chainType == nil) {
             self.onShowChainType()
         } else {

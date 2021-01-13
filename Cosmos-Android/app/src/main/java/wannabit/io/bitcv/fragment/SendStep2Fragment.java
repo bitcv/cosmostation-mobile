@@ -71,7 +71,7 @@ public class SendStep2Fragment extends BaseFragment implements View.OnClickListe
         mBtnPaste.setOnClickListener(this);
         mBtnHistory.setOnClickListener(this);
 
-        mMemoCnt.setText("0" + "/" + WUtil.getMaxMemoSize(getSActivity().mBaseChain) + " byte");
+        mMemoCnt.setText("0" + "/" + WUtil.getMaxMemoSize(getSActivity().mBaseChain));
 
         mMemo.addTextChangedListener(new TextWatcher() {
             @Override

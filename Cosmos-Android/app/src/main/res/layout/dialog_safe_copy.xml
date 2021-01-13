@@ -27,7 +27,7 @@
             android:layout_marginLeft="@dimen/space_24"
             android:layout_marginRight="@dimen/space_24"
             style="@style/font_ss_12_gray1"
-            android:gravity="center"
+            android:gravity="left"
             android:text="@string/str_safe_copy_msg"/>
 
 

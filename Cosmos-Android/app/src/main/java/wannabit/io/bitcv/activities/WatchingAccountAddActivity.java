@@ -28,6 +28,7 @@ import wannabit.io.bitcv.task.TaskListener;
 import wannabit.io.bitcv.task.TaskResult;
 import wannabit.io.bitcv.task.UserTask.GenerateEmptyAccountTask;
 import wannabit.io.bitcv.utils.WKey;
+import wannabit.io.bitcv.utils.WUtil;
 
 import static wannabit.io.bitcv.base.BaseChain.AKASH_MAIN;
 import static wannabit.io.bitcv.base.BaseChain.BAC_MAIN;
@@ -300,7 +301,8 @@ public class WatchingAccountAddActivity extends BaseActivity implements View.OnC
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if(result != null) {
             if(result.getContents() != null) {
-                mInput.setText(result.getContents().trim());
+                String addr = WUtil.formatAddress(result.getContents().trim());
+                mInput.setText(addr);
                 mInput.setSelection(mInput.getText().length());
             }
         } else {

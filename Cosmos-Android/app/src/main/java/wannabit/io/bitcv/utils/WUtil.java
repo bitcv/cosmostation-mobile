@@ -158,6 +158,15 @@ public class WUtil {
         }
     }
 
+    public static String formatAddress(String addr){
+        String addrret = addr.trim();
+        int idx = addrret.indexOf("?");
+        if(idx != -1)
+        {
+            addrret = addrret.substring(0, idx);
+        }
+        return addrret;
+    }
     public static Account getAccountFromBnbLcd(long id, ResBnbAccountInfo lcd) {
         Account result = new Account();
         result.id = id;

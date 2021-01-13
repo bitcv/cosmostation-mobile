@@ -164,11 +164,11 @@ class IntroViewController: BaseViewController, PasswordViewDelegate {
                 if (!enable) {
                     self.onShowDisableAlert()
                 } else {
-                    if (latestVersion > appVersion) {
-                        self.onShowUpdateAlert()
-                    } else {
+//                    if (latestVersion > appVersion) {
+//                        self.onShowUpdateAlert()
+//                    } else {
                         self.onStartInitJob()
-                    }
+                    //}
                 }
                 
             case .failure(let error):
@@ -198,6 +198,7 @@ class IntroViewController: BaseViewController, PasswordViewDelegate {
     }
     
     func onShowUpdateAlert() {
+        return
         let updateAlert = UIAlertController(title: NSLocalizedString("update_title", comment: ""), message: NSLocalizedString("update_msg", comment: ""), preferredStyle: .alert)
         let action = UIAlertAction(title: NSLocalizedString("go_appstore", comment: ""), style: .default, handler: { (UIAlertAction) in
             let urlAppStore = URL(string: "itms-apps://itunes.apple.com/app/id1459830339")
