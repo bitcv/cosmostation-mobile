@@ -63,7 +63,6 @@
 		2815AA7624349DF2008B23AA /* StepRepayCdpCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2815AA7524349DF2008B23AA /* StepRepayCdpCheckViewController.swift */; };
 		2827E11123F3896C007CDB6E /* TxDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827E10F23F3896C007CDB6E /* TxDetailViewController.swift */; };
 		2827E11523F3DC9B007CDB6E /* TxCommonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827E11323F3DC9B007CDB6E /* TxCommonCell.swift */; };
-		2827E11623F3DC9B007CDB6E /* TxCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2827E11423F3DC9B007CDB6E /* TxCommonCell.xib */; };
 		2827F4CA255B93240029AE1C /* WalletAkashCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2827F4C8255B93240029AE1C /* WalletAkashCell.swift */; };
 		2827F4CB255B93240029AE1C /* WalletAkashCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2827F4C9255B93240029AE1C /* WalletAkashCell.xib */; };
 		282BDFE224A5992500D3A5D4 /* WcTradePopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 282BDFE024A5992500D3A5D4 /* WcTradePopup.swift */; };
@@ -311,6 +310,9 @@
 		28ED4A59255112BA0073E164 /* MintParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ED4A58255112BA0073E164 /* MintParam.swift */; };
 		28F4CF6F25429BBF0050985D /* EventStakeDropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F4CF6D25429BBF0050985D /* EventStakeDropViewController.swift */; };
 		28F4CF722542AD3A0050985D /* EventStakeDropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28F4CF742542AD3A0050985D /* EventStakeDropViewController.xib */; };
+		6C63A7CE25B04F2300BA0EE7 /* TokenDetailHeaderBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C63A7D025B04F2300BA0EE7 /* TokenDetailHeaderBacCell.xib */; };
+		6C63A80425B0735300BA0EE7 /* TxCommonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C63A80625B0735300BA0EE7 /* TxCommonCell.xib */; };
+		6C63A80D25B076D600BA0EE7 /* WalletBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C63A80F25B076D600BA0EE7 /* WalletBacCell.xib */; };
 		6C912EE225A404010027CB2E /* BacHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C912EE125A404010027CB2E /* BacHistory.swift */; };
 		6CD65FAC259E014D007BF7F9 /* BitcoinKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; };
 		6CD65FAD259E014D007BF7F9 /* BitcoinKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -318,9 +320,9 @@
 		6CD65FB2259E1D2F007BF7F9 /* BacToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */; };
 		6CD65FB4259E2E66007BF7F9 /* BacAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */; };
 		6CD65FB6259E3EBD007BF7F9 /* WalletBacCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */; };
-		6CD65FB8259E3EE7007BF7F9 /* WalletBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */; };
 		6CD65FE2259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */; };
-		6CD65FE4259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */; };
+		6CDBF24925AFE99A0025B204 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F2AE5B227EC5B600C87F3F /* MainStoryboard.storyboard */; };
+		6CDBF24A25AFE9AA0025B204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1945E2B222E7C0600A1436F /* Main.storyboard */; };
 		E103DAA32281266D006C2146 /* ValidatorDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAA52281266D006C2146 /* ValidatorDetailCell.xib */; };
 		E103DAAA2281274A006C2146 /* ValidatorDetailHistoryHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAAC2281274A006C2146 /* ValidatorDetailHistoryHeader.xib */; };
 		E103DAAF22812773006C2146 /* ValidatorDetailHistoryEmpty.xib in Resources */ = {isa = PBXBuildFile; fileRef = E103DAB122812773006C2146 /* ValidatorDetailHistoryEmpty.xib */; };
@@ -449,7 +451,6 @@
 		E191A57D237902C5002577BC /* WalletKavaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E191A57B237902C5002577BC /* WalletKavaCell.swift */; };
 		E191A5812379091A002577BC /* TokenDetailHeaderKavaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E191A57F2379091A002577BC /* TokenDetailHeaderKavaCell.swift */; };
 		E1945E28222E7C0600A1436F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1945E27222E7C0600A1436F /* AppDelegate.swift */; };
-		E1945E2D222E7C0600A1436F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1945E2B222E7C0600A1436F /* Main.storyboard */; };
 		E1945E32222E7C0800A1436F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1945E30222E7C0800A1436F /* LaunchScreen.storyboard */; };
 		E1945E3E222E7E2900A1436F /* SegwitAddrCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1945E3C222E7E2900A1436F /* SegwitAddrCoder.swift */; };
 		E1945E3F222E7E2900A1436F /* Bech32.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1945E3D222E7E2900A1436F /* Bech32.swift */; };
@@ -506,7 +507,6 @@
 		E1F1CF0A239F7D7D004EF8A2 /* VoteSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1CF09239F7D7D004EF8A2 /* VoteSelectViewController.swift */; };
 		E1F1CF0C239F7D8D004EF8A2 /* VoteCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F1CF0B239F7D8D004EF8A2 /* VoteCheckViewController.swift */; };
 		E1F2AE4E227EC05100C87F3F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1F2AE50227EC05100C87F3F /* InfoPlist.strings */; };
-		E1F2AE59227EC5B600C87F3F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1F2AE5B227EC5B600C87F3F /* MainStoryboard.storyboard */; };
 		E1F7F63223421394000E597F /* IrisToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7F63123421394000E597F /* IrisToken.swift */; };
 		E1F7F634234311F8000E597F /* BnbToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7F633234311F8000E597F /* BnbToken.swift */; };
 		E1F7F63623436B71000E597F /* BnbHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1F7F63523436B71000E597F /* BnbHistory.swift */; };
@@ -594,7 +594,6 @@
 		2815AA7524349DF2008B23AA /* StepRepayCdpCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepRepayCdpCheckViewController.swift; sourceTree = "<group>"; };
 		2827E10F23F3896C007CDB6E /* TxDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxDetailViewController.swift; sourceTree = "<group>"; };
 		2827E11323F3DC9B007CDB6E /* TxCommonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxCommonCell.swift; sourceTree = "<group>"; };
-		2827E11423F3DC9B007CDB6E /* TxCommonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TxCommonCell.xib; sourceTree = "<group>"; };
 		2827F4C8255B93240029AE1C /* WalletAkashCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletAkashCell.swift; sourceTree = "<group>"; };
 		2827F4C9255B93240029AE1C /* WalletAkashCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletAkashCell.xib; sourceTree = "<group>"; };
 		282BDFE024A5992500D3A5D4 /* WcTradePopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WcTradePopup.swift; sourceTree = "<group>"; };
@@ -634,7 +633,6 @@
 		283850222448A6C600E5DEF2 /* TxHtlcRefundCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TxHtlcRefundCell.swift; sourceTree = "<group>"; };
 		283850232448A6C600E5DEF2 /* TxHtlcRefundCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TxHtlcRefundCell.xib; sourceTree = "<group>"; };
 		283A80BF24513DA2008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpListPromotionCell.xib; sourceTree = "<group>"; };
-		283A80C224513DA7008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpListPromotionCell.strings; sourceTree = "<group>"; };
 		283A80C424513F6F008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpListAllCell.xib; sourceTree = "<group>"; };
 		283A80C724513F74008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpListAllCell.strings; sourceTree = "<group>"; };
 		283A80C924513FF7008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpDetailTopCell.xib; sourceTree = "<group>"; };
@@ -642,15 +640,10 @@
 		283A80CE24514194008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpDetailMyTopCell.xib; sourceTree = "<group>"; };
 		283A80D124514196008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpDetailMyTopCell.strings; sourceTree = "<group>"; };
 		283A80D3245141EB008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpDetailMyActionCell.xib; sourceTree = "<group>"; };
-		283A80D6245141F2008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpDetailMyActionCell.strings; sourceTree = "<group>"; };
 		283A80D82451436A008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpDetailAssetsCell.xib; sourceTree = "<group>"; };
-		283A80DB2451436F008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpDetailAssetsCell.strings; sourceTree = "<group>"; };
 		283A80DD24514AB8008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RiskCheckPopupViewController.xib; sourceTree = "<group>"; };
-		283A80E024514ABF008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/RiskCheckPopupViewController.strings; sourceTree = "<group>"; };
 		283A80E224514BD0008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CdpDetailViewController.xib; sourceTree = "<group>"; };
-		283A80E524514BD3008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/CdpDetailViewController.strings; sourceTree = "<group>"; };
 		283A80E7245158FB008FF813 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HtlcResultViewController.xib; sourceTree = "<group>"; };
-		283A80EA24515901008FF813 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/HtlcResultViewController.strings; sourceTree = "<group>"; };
 		283D2EA324F52FE700247424 /* OkToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkToken.swift; sourceTree = "<group>"; };
 		283D2EA524F5308900247424 /* OkTokenList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkTokenList.swift; sourceTree = "<group>"; };
 		283D2EA724F5388C00247424 /* OkAccountToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OkAccountToken.swift; sourceTree = "<group>"; };
@@ -773,7 +766,6 @@
 		2872B0F1252EF79900E8CACF /* WalletSecretCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletSecretCell.xib; sourceTree = "<group>"; };
 		2876AD58240CDC5A005B33F4 /* WalletUnbondingInfoCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUnbondingInfoCellTableViewCell.swift; sourceTree = "<group>"; };
 		2876AD5D240CE4A6005B33F4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletUnbondingInfoCellTableViewCell.xib; sourceTree = "<group>"; };
-		2876AD62240CE966005B33F4 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletUnbondingInfoCellTableViewCell.strings; sourceTree = "<group>"; };
 		2877B8F9240E2A0200EFE369 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TxDetailViewController.xib; sourceTree = "<group>"; };
 		2877B8FC240E2A0E00EFE369 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TxDetailViewController.strings; sourceTree = "<group>"; };
 		2888B7FB246BC17300B2EB4A /* BnbNodeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BnbNodeInfo.swift; sourceTree = "<group>"; };
@@ -783,7 +775,6 @@
 		2888B803246CE37200B2EB4A /* StepHtlcRefund3ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepHtlcRefund3ViewController.swift; sourceTree = "<group>"; };
 		288A14DB25199A9800E17808 /* WalletCertikCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCertikCell.swift; sourceTree = "<group>"; };
 		288A14E225199C6200E17808 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletCertikCell.xib; sourceTree = "<group>"; };
-		288A14E725199C6500E17808 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletCertikCell.strings; sourceTree = "<group>"; };
 		28908F6823F69BD100164030 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
 		2892C46A2581D724009A96A6 /* Reward_V1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reward_V1.swift; sourceTree = "<group>"; };
 		289BE016252DF58B00E5E4B4 /* KavaHavestParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KavaHavestParam.swift; sourceTree = "<group>"; };
@@ -860,73 +851,86 @@
 		53DF825783BC00234AD1092F /* Pods-Cosmostation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cosmostation.debug.xcconfig"; path = "Target Support Files/Pods-Cosmostation/Pods-Cosmostation.debug.xcconfig"; sourceTree = "<group>"; };
 		6C38914825AF59A000B29D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Init.strings; sourceTree = "<group>"; };
 		6C38914A25AF5AF000B29D5E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GenTx.strings; sourceTree = "<group>"; };
+		6C63A74825AFF21200BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/EventStakeDropViewController.xib"; sourceTree = "<group>"; };
+		6C63A74925AFF21200BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CdpDetailViewController.xib; sourceTree = "<group>"; };
+		6C63A74A25AFF21200BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailViewController.xib"; sourceTree = "<group>"; };
+		6C63A74B25AFF21200BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/RiskCheckPopupViewController.xib; sourceTree = "<group>"; };
+		6C63A74C25AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/RiskCheckPopupViewController.xib"; sourceTree = "<group>"; };
+		6C63A74D25AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/TokenDetailHeaderCosmosCell.xib; sourceTree = "<group>"; };
+		6C63A74E25AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCosmosCell.xib"; sourceTree = "<group>"; };
+		6C63A75025AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletUnbondingInfoCellTableViewCell.xib; sourceTree = "<group>"; };
+		6C63A75125AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletUnbondingInfoCellTableViewCell.xib"; sourceTree = "<group>"; };
+		6C63A75225AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/PromotionCell.xib; sourceTree = "<group>"; };
+		6C63A75325AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/PromotionCell.xib"; sourceTree = "<group>"; };
+		6C63A75525AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletIrisCell.xib; sourceTree = "<group>"; };
+		6C63A75625AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletIrisCell.xib"; sourceTree = "<group>"; };
+		6C63A75725AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailTopCell.xib"; sourceTree = "<group>"; };
+		6C63A75825AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyTopCell.xib"; sourceTree = "<group>"; };
+		6C63A75925AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/ValidatorDetailMyActionCell.xib; sourceTree = "<group>"; };
+		6C63A75A25AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailMyActionCell.xib"; sourceTree = "<group>"; };
+		6C63A75B25AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/HtlcResultViewController.xib; sourceTree = "<group>"; };
+		6C63A75C25AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/HtlcResultViewController.xib"; sourceTree = "<group>"; };
+		6C63A75D25AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CdpListPromotionCell.xib; sourceTree = "<group>"; };
+		6C63A75E25AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpListPromotionCell.xib"; sourceTree = "<group>"; };
+		6C63A75F25AFF21300BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CdpDetailMyActionCell.xib; sourceTree = "<group>"; };
+		6C63A76025AFF21300BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyActionCell.xib"; sourceTree = "<group>"; };
+		6C63A76125AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletCertikCell.xib; sourceTree = "<group>"; };
+		6C63A76225AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCertikCell.xib"; sourceTree = "<group>"; };
+		6C63A76325AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/RedelegateCell.xib; sourceTree = "<group>"; };
+		6C63A76425AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/RedelegateCell.xib"; sourceTree = "<group>"; };
+		6C63A76525AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/ClaimRewardAllCell.xib; sourceTree = "<group>"; };
+		6C63A76625AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/ClaimRewardAllCell.xib"; sourceTree = "<group>"; };
+		6C63A76725AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletCosmosCell.xib; sourceTree = "<group>"; };
+		6C63A76825AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCosmosCell.xib"; sourceTree = "<group>"; };
+		6C63A76925AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletInflationCell.xib; sourceTree = "<group>"; };
+		6C63A76A25AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletInflationCell.xib"; sourceTree = "<group>"; };
+		6C63A76B25AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/TokenDetailHeaderBnbCell.xib; sourceTree = "<group>"; };
+		6C63A76C25AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderBnbCell.xib"; sourceTree = "<group>"; };
+		6C63A76D25AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletAddressCell.xib; sourceTree = "<group>"; };
+		6C63A76E25AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletAddressCell.xib"; sourceTree = "<group>"; };
+		6C63A76F25AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/CdpDetailAssetsCell.xib; sourceTree = "<group>"; };
+		6C63A77025AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailAssetsCell.xib"; sourceTree = "<group>"; };
+		6C63A77125AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/TokenDetailHeaderIrisCell.xib; sourceTree = "<group>"; };
+		6C63A77225AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderIrisCell.xib"; sourceTree = "<group>"; };
+		6C63A77325AFF23100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ko; path = ko.lproj/WalletPriceCell.xib; sourceTree = "<group>"; };
+		6C63A77425AFF23100BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/WalletPriceCell.xib"; sourceTree = "<group>"; };
+		6C63A77525AFF26500BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Init.strings"; sourceTree = "<group>"; };
+		6C63A77625AFF2A400BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GenTx.strings"; sourceTree = "<group>"; };
+		6C63A7A025AFF4F200BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.strings"; sourceTree = "<group>"; };
+		6C63A7CF25B04F2300BA0EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderBacCell.xib; sourceTree = "<group>"; };
+		6C63A7D325B04F3200BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TokenDetailHeaderBacCell.strings; sourceTree = "<group>"; };
+		6C63A7D525B04F3400BA0EE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TokenDetailHeaderBacCell.strings; sourceTree = "<group>"; };
+		6C63A7D725B0557800BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderBacCell.strings"; sourceTree = "<group>"; };
+		6C63A80025B0613700BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCustomCell.strings"; sourceTree = "<group>"; };
+		6C63A80125B06F8E00BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TxDetailViewController.strings"; sourceTree = "<group>"; };
+		6C63A80325B06F9000BA0EE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TxDetailViewController.strings; sourceTree = "<group>"; };
+		6C63A80525B0735300BA0EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TxCommonCell.xib; sourceTree = "<group>"; };
+		6C63A80825B0735A00BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TxCommonCell.strings"; sourceTree = "<group>"; };
+		6C63A80A25B0735A00BA0EE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TxCommonCell.strings; sourceTree = "<group>"; };
+		6C63A80C25B0735B00BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TxCommonCell.strings; sourceTree = "<group>"; };
+		6C63A80E25B076D600BA0EE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletBacCell.xib; sourceTree = "<group>"; };
+		6C63A81125B076DF00BA0EE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WalletBacCell.strings; sourceTree = "<group>"; };
+		6C63A81325B076E000BA0EE7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletBacCell.strings"; sourceTree = "<group>"; };
+		6C63A81525B076E100BA0EE7 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletBacCell.strings; sourceTree = "<group>"; };
 		6C912EE125A404010027CB2E /* BacHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacHistory.swift; sourceTree = "<group>"; };
 		6CD65FA9259DFF4F007BF7F9 /* BitcoinKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BitcoinKit.framework; sourceTree = "<group>"; };
 		6CD65FAF259E022B007BF7F9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6CD65FB1259E1D2F007BF7F9 /* BacToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacToken.swift; sourceTree = "<group>"; };
 		6CD65FB3259E2E66007BF7F9 /* BacAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BacAccountInfo.swift; sourceTree = "<group>"; };
 		6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBacCell.swift; sourceTree = "<group>"; };
-		6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletBacCell.xib; sourceTree = "<group>"; };
 		6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailHeaderBacCell.swift; sourceTree = "<group>"; };
-		6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenDetailHeaderBacCell.xib; sourceTree = "<group>"; };
-		6CD65FE525A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpListPromotionCell.strings"; sourceTree = "<group>"; };
-		6CD65FE625A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpListAllCell.strings"; sourceTree = "<group>"; };
-		6CD65FE725A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailTopCell.strings"; sourceTree = "<group>"; };
-		6CD65FE825A028E7007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyTopCell.strings"; sourceTree = "<group>"; };
-		6CD65FE925A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailMyActionCell.strings"; sourceTree = "<group>"; };
-		6CD65FEA25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailAssetsCell.strings"; sourceTree = "<group>"; };
-		6CD65FEB25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AllValidatorCell.strings"; sourceTree = "<group>"; };
-		6CD65FEC25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MyValidatorCell.strings"; sourceTree = "<group>"; };
-		6CD65FED25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OtherValidatorCell.strings"; sourceTree = "<group>"; };
-		6CD65FEE25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ClaimRewardAllCell.strings"; sourceTree = "<group>"; };
-		6CD65FEF25A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PromotionCell.strings"; sourceTree = "<group>"; };
-		6CD65FF025A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailMyDetailCell.strings"; sourceTree = "<group>"; };
-		6CD65FF125A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailMyActionCell.strings"; sourceTree = "<group>"; };
-		6CD65FF225A028E8007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailCell.strings"; sourceTree = "<group>"; };
-		6CD65FF325A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailHistoryHeader.strings"; sourceTree = "<group>"; };
-		6CD65FF425A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ValidatorDetailHistoryEmpty.strings"; sourceTree = "<group>"; };
-		6CD65FF525A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RedelegateCell.strings"; sourceTree = "<group>"; };
-		6CD65FF625A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletAddressCell.strings"; sourceTree = "<group>"; };
-		6CD65FF725A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCosmosCell.strings"; sourceTree = "<group>"; };
-		6CD65FF825A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletIrisCell.strings"; sourceTree = "<group>"; };
-		6CD65FF925A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletBnbCell.strings"; sourceTree = "<group>"; };
-		6CD65FFA25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletKavaCell.strings"; sourceTree = "<group>"; };
-		6CD65FFB25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletIovCell.strings"; sourceTree = "<group>"; };
-		6CD65FFC25A028E9007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCertikCell.strings"; sourceTree = "<group>"; };
-		6CD65FFD25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletUnbondingInfoCellTableViewCell.strings"; sourceTree = "<group>"; };
-		6CD65FFE25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletPriceCell.strings"; sourceTree = "<group>"; };
-		6CD65FFF25A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletInflationCell.strings"; sourceTree = "<group>"; };
-		6CD6600025A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCosmosCell.strings"; sourceTree = "<group>"; };
-		6CD6600125A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderIrisCell.strings"; sourceTree = "<group>"; };
-		6CD6600225A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderBnbCell.strings"; sourceTree = "<group>"; };
-		6CD6600325A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderKavaCell.strings"; sourceTree = "<group>"; };
-		6CD6600425A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TokenDetailHeaderCustomCell.strings"; sourceTree = "<group>"; };
-		6CD6600525A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GenTx.strings"; sourceTree = "<group>"; };
-		6CD6600625A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RiskCheckPopupViewController.strings"; sourceTree = "<group>"; };
-		6CD6600725A028EA007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HtlcResultViewController.strings"; sourceTree = "<group>"; };
-		6CD6600825A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EventStakeDropViewController.strings"; sourceTree = "<group>"; };
-		6CD6600925A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Init.strings"; sourceTree = "<group>"; };
 		6CD6600A25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletManageViewController.strings"; sourceTree = "<group>"; };
-		6CD6600B25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletDetailViewController.strings"; sourceTree = "<group>"; };
-		6CD6600C25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/WalletCheckViewController.strings"; sourceTree = "<group>"; };
-		6CD6600D25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/QRScanViewController.strings"; sourceTree = "<group>"; };
-		6CD6600E25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CdpDetailViewController.strings"; sourceTree = "<group>"; };
-		6CD6600F25A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainStoryboard.strings"; sourceTree = "<group>"; };
-		6CD6601025A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/TxDetailViewController.strings"; sourceTree = "<group>"; };
 		6CD6601125A028EB007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6CD6601225A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6CD6601325A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		6CD6601425A028EC007BF7F9 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		6CDBF17E25AFE4470025B204 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
+		6CDBF18025AFE44E0025B204 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		E103DAA42281266D006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailCell.xib; sourceTree = "<group>"; };
-		E103DAA9228126F3006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailCell.strings; sourceTree = "<group>"; };
 		E103DAAB2281274A006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailHistoryHeader.xib; sourceTree = "<group>"; };
-		E103DAAE22812750006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailHistoryHeader.strings; sourceTree = "<group>"; };
 		E103DAB022812773006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailHistoryEmpty.xib; sourceTree = "<group>"; };
-		E103DAB322812780006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailHistoryEmpty.strings; sourceTree = "<group>"; };
 		E103DAB5228127A3006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailMyDetailCell.xib; sourceTree = "<group>"; };
-		E103DAB8228127AF006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailMyDetailCell.strings; sourceTree = "<group>"; };
 		E103DABA228127D8006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ValidatorDetailMyActionCell.xib; sourceTree = "<group>"; };
-		E103DABF22812849006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ValidatorDetailMyActionCell.strings; sourceTree = "<group>"; };
 		E103DAC12281296E006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QRScanViewController.xib; sourceTree = "<group>"; };
 		E103DACA228129FD006C2146 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletManageViewController.xib; sourceTree = "<group>"; };
 		E103DACD22812A17006C2146 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletManageViewController.strings; sourceTree = "<group>"; };
@@ -951,27 +955,16 @@
 		E123FD3C233DEFE1004EC348 /* BnbAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BnbAccountInfo.swift; sourceTree = "<group>"; };
 		E123FD3E233E0161004EC348 /* MainTabWalletViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabWalletViewController.swift; sourceTree = "<group>"; };
 		E126CF7E2387A3E1002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletCosmosCell.xib; sourceTree = "<group>"; };
-		E126CF812387A3E8002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletCosmosCell.strings; sourceTree = "<group>"; };
 		E126CF832387A48F002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletAddressCell.xib; sourceTree = "<group>"; };
-		E126CF862387A491002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletAddressCell.strings; sourceTree = "<group>"; };
 		E126CF882387A4B4002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletIrisCell.xib; sourceTree = "<group>"; };
-		E126CF8B2387A4BD002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletIrisCell.strings; sourceTree = "<group>"; };
 		E126CF8D2387A50E002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletBnbCell.xib; sourceTree = "<group>"; };
-		E126CF902387A515002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletBnbCell.strings; sourceTree = "<group>"; };
 		E126CF922387A55A002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletKavaCell.xib; sourceTree = "<group>"; };
-		E126CF952387A561002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletKavaCell.strings; sourceTree = "<group>"; };
 		E126CF972387A5C9002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletIovCell.xib; sourceTree = "<group>"; };
-		E126CF9A2387A5CE002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletIovCell.strings; sourceTree = "<group>"; };
 		E126CF9C2387A60D002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletPriceCell.xib; sourceTree = "<group>"; };
-		E126CF9F2387A613002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletPriceCell.strings; sourceTree = "<group>"; };
 		E126CFA12387A643002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WalletInflationCell.xib; sourceTree = "<group>"; };
-		E126CFA42387A649002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/WalletInflationCell.strings; sourceTree = "<group>"; };
 		E126CFA62387A713002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderCosmosCell.xib; sourceTree = "<group>"; };
-		E126CFA92387A718002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TokenDetailHeaderCosmosCell.strings; sourceTree = "<group>"; };
 		E126CFAB2387A75E002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderIrisCell.xib; sourceTree = "<group>"; };
-		E126CFAE2387A768002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TokenDetailHeaderIrisCell.strings; sourceTree = "<group>"; };
 		E126CFB02387A799002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderBnbCell.xib; sourceTree = "<group>"; };
-		E126CFB32387A79D002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TokenDetailHeaderBnbCell.strings; sourceTree = "<group>"; };
 		E126CFB52387A7BD002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderKavaCell.xib; sourceTree = "<group>"; };
 		E126CFB82387A7C3002A546F /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/TokenDetailHeaderKavaCell.strings; sourceTree = "<group>"; };
 		E126CFBA2387A7F4002A546F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TokenDetailHeaderCustomCell.xib; sourceTree = "<group>"; };
@@ -986,7 +979,6 @@
 		E12D6B8A226DF3A700D07CE4 /* StepSendAmountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSendAmountViewController.swift; sourceTree = "<group>"; };
 		E12D6B8C226DF3BB00D07CE4 /* StepSendCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepSendCheckViewController.swift; sourceTree = "<group>"; };
 		E1317141225F352A00EE5AD0 /* PostTx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTx.swift; sourceTree = "<group>"; };
-		E13696572292492800F3D5E2 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MainStoryboard.strings; sourceTree = "<group>"; };
 		E13696582292499400F3D5E2 /* OtherValidatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherValidatorViewController.swift; sourceTree = "<group>"; };
 		E136D8A223039493001BEBB8 /* Cosmostation.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Cosmostation.entitlements; sourceTree = "<group>"; };
 		E1406FBF2260643200D9440C /* BlockInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockInfo.swift; sourceTree = "<group>"; };
@@ -1022,10 +1014,8 @@
 		E151B65322486C300026B8C0 /* ProposalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProposalCell.xib; sourceTree = "<group>"; };
 		E151B657224873640026B8C0 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
 		E15DA48222F1738C000557FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/PromotionCell.xib; sourceTree = "<group>"; };
-		E15DA48522F1738F000557FC /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/PromotionCell.strings; sourceTree = "<group>"; };
 		E16B70DC229E619A001D6B9C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/GenTx.strings; sourceTree = "<group>"; };
 		E16B70DE229F9A78001D6B9C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RedelegateCell.xib; sourceTree = "<group>"; };
-		E16B70E3229F9FAD001D6B9C /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/RedelegateCell.strings; sourceTree = "<group>"; };
 		E16B89132341C558003E0922 /* TokenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCell.swift; sourceTree = "<group>"; };
 		E16B89142341C558003E0922 /* TokenCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokenCell.xib; sourceTree = "<group>"; };
 		E16D9B1422489B030019B7BB /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -1054,9 +1044,7 @@
 		E17748ED2284229B003D8CD1 /* GuideListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideListTableViewCell.swift; sourceTree = "<group>"; };
 		E17748EE2284229B003D8CD1 /* GuideListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideListTableViewCell.xib; sourceTree = "<group>"; };
 		E17748F622842628003D8CD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ClaimRewardAllCell.xib; sourceTree = "<group>"; };
-		E17748F92284263F003D8CD1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/ClaimRewardAllCell.strings; sourceTree = "<group>"; };
 		E17748FB22842689003D8CD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AllValidatorCell.xib; sourceTree = "<group>"; };
-		E1774900228426DC003D8CD1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/AllValidatorCell.strings; sourceTree = "<group>"; };
 		E177490222842724003D8CD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyValidatorCell.xib; sourceTree = "<group>"; };
 		E17B213023470222001743D6 /* TokenDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailViewController.swift; sourceTree = "<group>"; };
 		E17B213A23470932001743D6 /* TokenDetailHeaderCosmosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailHeaderCosmosCell.swift; sourceTree = "<group>"; };
@@ -1128,7 +1116,6 @@
 		E1E15FBD2253663600A10C7B /* AccountPopupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPopupCell.swift; sourceTree = "<group>"; };
 		E1E15FBE2253663600A10C7B /* AccountPopupCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountPopupCell.xib; sourceTree = "<group>"; };
 		E1E15FC12253748B00A10C7B /* DashedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedButton.swift; sourceTree = "<group>"; };
-		E1E251DC22A66B860008F0DB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/MyValidatorCell.strings; sourceTree = "<group>"; };
 		E1E251DD22A66FC30008F0DB /* OtherValidatorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherValidatorCell.swift; sourceTree = "<group>"; };
 		E1E251E222A671180008F0DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/OtherValidatorCell.xib; sourceTree = "<group>"; };
 		E1E251E522A671260008F0DB /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/OtherValidatorCell.strings; sourceTree = "<group>"; };
@@ -1278,7 +1265,7 @@
 			isa = PBXGroup;
 			children = (
 				2827E11323F3DC9B007CDB6E /* TxCommonCell.swift */,
-				2827E11423F3DC9B007CDB6E /* TxCommonCell.xib */,
+				6C63A80625B0735300BA0EE7 /* TxCommonCell.xib */,
 				282FF33F23F4FFD20028CC66 /* TxCommissionCell.swift */,
 				282FF34023F4FFD20028CC66 /* TxCommissionCell.xib */,
 				282FF34323F5062A0028CC66 /* TxDelegateCell.swift */,
@@ -1892,9 +1879,9 @@
 				28060E7525427F2C00F13510 /* EventStakeDropCell.swift */,
 				28060E7625427F2C00F13510 /* EventStakeDropCell.xib */,
 				6CD65FB5259E3EBD007BF7F9 /* WalletBacCell.swift */,
-				6CD65FB7259E3EE7007BF7F9 /* WalletBacCell.xib */,
+				6C63A80F25B076D600BA0EE7 /* WalletBacCell.xib */,
+				6C63A7D025B04F2300BA0EE7 /* TokenDetailHeaderBacCell.xib */,
 				6CD65FE1259F952C007BF7F9 /* TokenDetailHeaderBacCell.swift */,
-				6CD65FE3259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1932,7 +1919,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1010;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = wannabit;
 				TargetAttributes = {
 					E1945E23222E7C0600A1436F = {
@@ -1977,6 +1964,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDBF24A25AFE9AA0025B204 /* Main.storyboard in Resources */,
+				6CDBF24925AFE99A0025B204 /* MainStoryboard.storyboard in Resources */,
 				283E9473254902F4007A9291 /* TxDeleteAccountCell.xib in Resources */,
 				2852D76E2477DEB800D11DC4 /* TxIncentiveTableViewCell.xib in Resources */,
 				28663BF0248A4FB000080311 /* WalletBandCell.xib in Resources */,
@@ -1996,13 +1985,12 @@
 				2876AD5C240CE4A6005B33F4 /* WalletUnbondingInfoCellTableViewCell.xib in Resources */,
 				280E1F21254AC6340007BA7D /* ReplaceSelectChainViewController.xib in Resources */,
 				28A7BD762535DB1200969295 /* TxWithdrawHavestCell.xib in Resources */,
+				6C63A7CE25B04F2300BA0EE7 /* TokenDetailHeaderBacCell.xib in Resources */,
 				282FF35A23F52FD40028CC66 /* TxRewardCell.xib in Resources */,
 				285A33DF2447633D0052BD3D /* SelectAccountCell.xib in Resources */,
-				6CD65FE4259F9548007BF7F9 /* TokenDetailHeaderBacCell.xib in Resources */,
 				E103DAC02281296E006C2146 /* QRScanViewController.xib in Resources */,
 				E126CFB42387A7BD002A546F /* TokenDetailHeaderKavaCell.xib in Resources */,
 				282FF34A23F50C540028CC66 /* TxUndelegateCell.xib in Resources */,
-				E1F2AE59227EC5B600C87F3F /* MainStoryboard.storyboard in Resources */,
 				282FF35E23F530ED0028CC66 /* TxEditRewardAddressCell.xib in Resources */,
 				28474ED3241E06AF00AF5A81 /* TxCreateCdpCell.xib in Resources */,
 				28156EA02536DE29006FF06C /* HarvestDetailMyActionCell.xib in Resources */,
@@ -2026,7 +2014,7 @@
 				E16D9B192248C4880019B7BB /* Assets.xcassets in Resources */,
 				283850252448A6C600E5DEF2 /* TxHtlcRefundCell.xib in Resources */,
 				28156E8025360B70006FF06C /* HarvestListAllCell.xib in Resources */,
-				2827E11623F3DC9B007CDB6E /* TxCommonCell.xib in Resources */,
+				6C63A80425B0735300BA0EE7 /* TxCommonCell.xib in Resources */,
 				28D372A1254BFCCA0071B136 /* RegisterAccount0ViewController.xib in Resources */,
 				28BB2A822533D9FB00CFF097 /* DomainPromotionCell.xib in Resources */,
 				280E1EFE254A7AD60007BA7D /* DeleteStarname3ViewController.xib in Resources */,
@@ -2071,7 +2059,7 @@
 				283E947D25490322007A9291 /* TxRenewStarnameCell.xib in Resources */,
 				28156EA52536DE53006FF06C /* HarvestDetailViewController.xib in Resources */,
 				28A7BD7B2535DB2600969295 /* TxClaimRewardHavestCell.xib in Resources */,
-				6CD65FB8259E3EE7007BF7F9 /* WalletBacCell.xib in Resources */,
+				6C63A80D25B076D600BA0EE7 /* WalletBacCell.xib in Resources */,
 				28A209E0248897F400C2C078 /* TokenDetailVestingDetailCell.xib in Resources */,
 				E16B70DD229F9A78001D6B9C /* RedelegateCell.xib in Resources */,
 				E126CF912387A55A002A546F /* WalletKavaCell.xib in Resources */,
@@ -2131,7 +2119,6 @@
 				E126CFAF2387A799002A546F /* TokenDetailHeaderBnbCell.xib in Resources */,
 				2834399B2531D13C00CCFADE /* StarName.storyboard in Resources */,
 				283E9469254902D4007A9291 /* TxRegisterAccountCell.xib in Resources */,
-				E1945E2D222E7C0600A1436F /* Main.storyboard in Resources */,
 				280E1F2B254AD3A80007BA7D /* ResourceChainCell.xib in Resources */,
 				283D2EB024F5742000247424 /* WalletOkCell.xib in Resources */,
 			);
@@ -2549,8 +2536,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80BF24513DA2008FF813 /* Base */,
-				283A80C224513DA7008FF813 /* ko */,
-				6CD65FE525A028E7007BF7F9 /* zh-Hans */,
+				6C63A75D25AFF21300BA0EE7 /* ko */,
+				6C63A75E25AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = CdpListPromotionCell.xib;
 			sourceTree = "<group>";
@@ -2560,7 +2547,6 @@
 			children = (
 				283A80C424513F6F008FF813 /* Base */,
 				283A80C724513F74008FF813 /* ko */,
-				6CD65FE625A028E7007BF7F9 /* zh-Hans */,
 			);
 			name = CdpListAllCell.xib;
 			sourceTree = "<group>";
@@ -2570,7 +2556,7 @@
 			children = (
 				283A80C924513FF7008FF813 /* Base */,
 				283A80CC24513FFC008FF813 /* ko */,
-				6CD65FE725A028E7007BF7F9 /* zh-Hans */,
+				6C63A75725AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = CdpDetailTopCell.xib;
 			sourceTree = "<group>";
@@ -2580,7 +2566,7 @@
 			children = (
 				283A80CE24514194008FF813 /* Base */,
 				283A80D124514196008FF813 /* ko */,
-				6CD65FE825A028E7007BF7F9 /* zh-Hans */,
+				6C63A75825AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = CdpDetailMyTopCell.xib;
 			sourceTree = "<group>";
@@ -2589,8 +2575,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80D3245141EB008FF813 /* Base */,
-				283A80D6245141F2008FF813 /* ko */,
-				6CD65FE925A028E8007BF7F9 /* zh-Hans */,
+				6C63A75F25AFF21300BA0EE7 /* ko */,
+				6C63A76025AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = CdpDetailMyActionCell.xib;
 			sourceTree = "<group>";
@@ -2599,8 +2585,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80D82451436A008FF813 /* Base */,
-				283A80DB2451436F008FF813 /* ko */,
-				6CD65FEA25A028E8007BF7F9 /* zh-Hans */,
+				6C63A76F25AFF23100BA0EE7 /* ko */,
+				6C63A77025AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = CdpDetailAssetsCell.xib;
 			sourceTree = "<group>";
@@ -2609,8 +2595,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80DD24514AB8008FF813 /* Base */,
-				283A80E024514ABF008FF813 /* ko */,
-				6CD6600625A028EA007BF7F9 /* zh-Hans */,
+				6C63A74B25AFF21200BA0EE7 /* ko */,
+				6C63A74C25AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = RiskCheckPopupViewController.xib;
 			sourceTree = "<group>";
@@ -2619,8 +2605,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80E224514BD0008FF813 /* Base */,
-				283A80E524514BD3008FF813 /* ko */,
-				6CD6600E25A028EB007BF7F9 /* zh-Hans */,
+				6C63A74925AFF21200BA0EE7 /* ko */,
+				6C63A74A25AFF21200BA0EE7 /* zh-Hans */,
 			);
 			name = CdpDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2629,8 +2615,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				283A80E7245158FB008FF813 /* Base */,
-				283A80EA24515901008FF813 /* ko */,
-				6CD6600725A028EA007BF7F9 /* zh-Hans */,
+				6C63A75B25AFF21300BA0EE7 /* ko */,
+				6C63A75C25AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = HtlcResultViewController.xib;
 			sourceTree = "<group>";
@@ -2639,8 +2625,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				2876AD5D240CE4A6005B33F4 /* Base */,
-				2876AD62240CE966005B33F4 /* ko */,
-				6CD65FFD25A028EA007BF7F9 /* zh-Hans */,
+				6C63A75025AFF21300BA0EE7 /* ko */,
+				6C63A75125AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = WalletUnbondingInfoCellTableViewCell.xib;
 			sourceTree = "<group>";
@@ -2650,7 +2636,8 @@
 			children = (
 				2877B8F9240E2A0200EFE369 /* Base */,
 				2877B8FC240E2A0E00EFE369 /* ko */,
-				6CD6601025A028EB007BF7F9 /* zh-Hans */,
+				6C63A80125B06F8E00BA0EE7 /* zh-Hans */,
+				6C63A80325B06F9000BA0EE7 /* en */,
 			);
 			name = TxDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2659,8 +2646,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				288A14E225199C6200E17808 /* Base */,
-				288A14E725199C6500E17808 /* ko */,
-				6CD65FFC25A028E9007BF7F9 /* zh-Hans */,
+				6C63A76125AFF23100BA0EE7 /* ko */,
+				6C63A76225AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = WalletCertikCell.xib;
 			sourceTree = "<group>";
@@ -2670,17 +2657,48 @@
 			children = (
 				28F4CF732542AD3A0050985D /* Base */,
 				28F4CF772542AD3F0050985D /* ko */,
-				6CD6600825A028EB007BF7F9 /* zh-Hans */,
+				6C63A74825AFF21200BA0EE7 /* zh-Hans */,
 			);
 			name = EventStakeDropViewController.xib;
+			sourceTree = "<group>";
+		};
+		6C63A7D025B04F2300BA0EE7 /* TokenDetailHeaderBacCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C63A7CF25B04F2300BA0EE7 /* Base */,
+				6C63A7D325B04F3200BA0EE7 /* ko */,
+				6C63A7D525B04F3400BA0EE7 /* en */,
+				6C63A7D725B0557800BA0EE7 /* zh-Hans */,
+			);
+			name = TokenDetailHeaderBacCell.xib;
+			sourceTree = "<group>";
+		};
+		6C63A80625B0735300BA0EE7 /* TxCommonCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C63A80525B0735300BA0EE7 /* Base */,
+				6C63A80825B0735A00BA0EE7 /* zh-Hans */,
+				6C63A80A25B0735A00BA0EE7 /* en */,
+				6C63A80C25B0735B00BA0EE7 /* ko */,
+			);
+			name = TxCommonCell.xib;
+			sourceTree = "<group>";
+		};
+		6C63A80F25B076D600BA0EE7 /* WalletBacCell.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6C63A80E25B076D600BA0EE7 /* Base */,
+				6C63A81125B076DF00BA0EE7 /* en */,
+				6C63A81325B076E000BA0EE7 /* zh-Hans */,
+				6C63A81525B076E100BA0EE7 /* ko */,
+			);
+			name = WalletBacCell.xib;
 			sourceTree = "<group>";
 		};
 		E103DAA52281266D006C2146 /* ValidatorDetailCell.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				E103DAA42281266D006C2146 /* Base */,
-				E103DAA9228126F3006C2146 /* ko */,
-				6CD65FF225A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailCell.xib;
 			sourceTree = "<group>";
@@ -2689,8 +2707,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DAAB2281274A006C2146 /* Base */,
-				E103DAAE22812750006C2146 /* ko */,
-				6CD65FF325A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailHistoryHeader.xib;
 			sourceTree = "<group>";
@@ -2699,8 +2715,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DAB022812773006C2146 /* Base */,
-				E103DAB322812780006C2146 /* ko */,
-				6CD65FF425A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailHistoryEmpty.xib;
 			sourceTree = "<group>";
@@ -2709,8 +2723,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DAB5228127A3006C2146 /* Base */,
-				E103DAB8228127AF006C2146 /* ko */,
-				6CD65FF025A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = ValidatorDetailMyDetailCell.xib;
 			sourceTree = "<group>";
@@ -2719,8 +2731,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DABA228127D8006C2146 /* Base */,
-				E103DABF22812849006C2146 /* ko */,
-				6CD65FF125A028E8007BF7F9 /* zh-Hans */,
+				6C63A75925AFF21300BA0EE7 /* ko */,
+				6C63A75A25AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = ValidatorDetailMyActionCell.xib;
 			sourceTree = "<group>";
@@ -2729,7 +2741,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E103DAC12281296E006C2146 /* Base */,
-				6CD6600D25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = QRScanViewController.xib;
 			sourceTree = "<group>";
@@ -2749,7 +2760,6 @@
 			children = (
 				E103DACF22813248006C2146 /* Base */,
 				E103DAD222813256006C2146 /* ko */,
-				6CD6600B25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = WalletDetailViewController.xib;
 			sourceTree = "<group>";
@@ -2759,7 +2769,6 @@
 			children = (
 				E103DAD4228143D0006C2146 /* Base */,
 				E103DADD2281463E006C2146 /* ko */,
-				6CD6600C25A028EB007BF7F9 /* zh-Hans */,
 			);
 			name = WalletCheckViewController.xib;
 			sourceTree = "<group>";
@@ -2769,8 +2778,8 @@
 			children = (
 				E103DADF22814802006C2146 /* Base */,
 				E103DAE222814815006C2146 /* ko */,
-				6CD6600925A028EB007BF7F9 /* zh-Hans */,
 				6C38914825AF59A000B29D5E /* en */,
+				6C63A77525AFF26500BA0EE7 /* zh-Hans */,
 			);
 			name = Init.storyboard;
 			sourceTree = "<group>";
@@ -2780,8 +2789,8 @@
 			children = (
 				E103DAE422814DFC006C2146 /* Base */,
 				E16B70DC229E619A001D6B9C /* ko */,
-				6CD6600525A028EA007BF7F9 /* zh-Hans */,
 				6C38914A25AF5AF000B29D5E /* en */,
+				6C63A77625AFF2A400BA0EE7 /* zh-Hans */,
 			);
 			name = GenTx.storyboard;
 			sourceTree = "<group>";
@@ -2790,8 +2799,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF7E2387A3E1002A546F /* Base */,
-				E126CF812387A3E8002A546F /* ko */,
-				6CD65FF725A028E9007BF7F9 /* zh-Hans */,
+				6C63A76725AFF23100BA0EE7 /* ko */,
+				6C63A76825AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = WalletCosmosCell.xib;
 			sourceTree = "<group>";
@@ -2800,8 +2809,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF832387A48F002A546F /* Base */,
-				E126CF862387A491002A546F /* ko */,
-				6CD65FF625A028E9007BF7F9 /* zh-Hans */,
+				6C63A76D25AFF23100BA0EE7 /* ko */,
+				6C63A76E25AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = WalletAddressCell.xib;
 			sourceTree = "<group>";
@@ -2810,8 +2819,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF882387A4B4002A546F /* Base */,
-				E126CF8B2387A4BD002A546F /* ko */,
-				6CD65FF825A028E9007BF7F9 /* zh-Hans */,
+				6C63A75525AFF21300BA0EE7 /* ko */,
+				6C63A75625AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = WalletIrisCell.xib;
 			sourceTree = "<group>";
@@ -2820,8 +2829,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF8D2387A50E002A546F /* Base */,
-				E126CF902387A515002A546F /* ko */,
-				6CD65FF925A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletBnbCell.xib;
 			sourceTree = "<group>";
@@ -2830,8 +2837,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF922387A55A002A546F /* Base */,
-				E126CF952387A561002A546F /* ko */,
-				6CD65FFA25A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletKavaCell.xib;
 			sourceTree = "<group>";
@@ -2840,8 +2845,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF972387A5C9002A546F /* Base */,
-				E126CF9A2387A5CE002A546F /* ko */,
-				6CD65FFB25A028E9007BF7F9 /* zh-Hans */,
 			);
 			name = WalletIovCell.xib;
 			sourceTree = "<group>";
@@ -2850,8 +2853,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CF9C2387A60D002A546F /* Base */,
-				E126CF9F2387A613002A546F /* ko */,
-				6CD65FFE25A028EA007BF7F9 /* zh-Hans */,
+				6C63A77325AFF23100BA0EE7 /* ko */,
+				6C63A77425AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = WalletPriceCell.xib;
 			sourceTree = "<group>";
@@ -2860,8 +2863,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CFA12387A643002A546F /* Base */,
-				E126CFA42387A649002A546F /* ko */,
-				6CD65FFF25A028EA007BF7F9 /* zh-Hans */,
+				6C63A76925AFF23100BA0EE7 /* ko */,
+				6C63A76A25AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = WalletInflationCell.xib;
 			sourceTree = "<group>";
@@ -2870,8 +2873,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CFA62387A713002A546F /* Base */,
-				E126CFA92387A718002A546F /* ko */,
-				6CD6600025A028EA007BF7F9 /* zh-Hans */,
+				6C63A74D25AFF21300BA0EE7 /* ko */,
+				6C63A74E25AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderCosmosCell.xib;
 			sourceTree = "<group>";
@@ -2880,8 +2883,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CFAB2387A75E002A546F /* Base */,
-				E126CFAE2387A768002A546F /* ko */,
-				6CD6600125A028EA007BF7F9 /* zh-Hans */,
+				6C63A77125AFF23100BA0EE7 /* ko */,
+				6C63A77225AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderIrisCell.xib;
 			sourceTree = "<group>";
@@ -2890,8 +2893,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E126CFB02387A799002A546F /* Base */,
-				E126CFB32387A79D002A546F /* ko */,
-				6CD6600225A028EA007BF7F9 /* zh-Hans */,
+				6C63A76B25AFF23100BA0EE7 /* ko */,
+				6C63A76C25AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderBnbCell.xib;
 			sourceTree = "<group>";
@@ -2901,7 +2904,6 @@
 			children = (
 				E126CFB52387A7BD002A546F /* Base */,
 				E126CFB82387A7C3002A546F /* ko */,
-				6CD6600325A028EA007BF7F9 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderKavaCell.xib;
 			sourceTree = "<group>";
@@ -2911,7 +2913,7 @@
 			children = (
 				E126CFBA2387A7F4002A546F /* Base */,
 				E126CFBD2387A7F8002A546F /* ko */,
-				6CD6600425A028EA007BF7F9 /* zh-Hans */,
+				6C63A80025B0613700BA0EE7 /* zh-Hans */,
 			);
 			name = TokenDetailHeaderCustomCell.xib;
 			sourceTree = "<group>";
@@ -2930,8 +2932,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E15DA48222F1738C000557FC /* Base */,
-				E15DA48522F1738F000557FC /* ko */,
-				6CD65FEF25A028E8007BF7F9 /* zh-Hans */,
+				6C63A75225AFF21300BA0EE7 /* ko */,
+				6C63A75325AFF21300BA0EE7 /* zh-Hans */,
 			);
 			name = PromotionCell.xib;
 			sourceTree = "<group>";
@@ -2940,8 +2942,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E16B70DE229F9A78001D6B9C /* Base */,
-				E16B70E3229F9FAD001D6B9C /* ko */,
-				6CD65FF525A028E9007BF7F9 /* zh-Hans */,
+				6C63A76325AFF23100BA0EE7 /* ko */,
+				6C63A76425AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = RedelegateCell.xib;
 			sourceTree = "<group>";
@@ -2950,8 +2952,8 @@
 			isa = PBXVariantGroup;
 			children = (
 				E17748F622842628003D8CD1 /* Base */,
-				E17748F92284263F003D8CD1 /* ko */,
-				6CD65FEE25A028E8007BF7F9 /* zh-Hans */,
+				6C63A76525AFF23100BA0EE7 /* ko */,
+				6C63A76625AFF23100BA0EE7 /* zh-Hans */,
 			);
 			name = ClaimRewardAllCell.xib;
 			sourceTree = "<group>";
@@ -2960,8 +2962,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E17748FB22842689003D8CD1 /* Base */,
-				E1774900228426DC003D8CD1 /* ko */,
-				6CD65FEB25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = AllValidatorCell.xib;
 			sourceTree = "<group>";
@@ -2970,8 +2970,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				E177490222842724003D8CD1 /* Base */,
-				E1E251DC22A66B860008F0DB /* ko */,
-				6CD65FEC25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = MyValidatorCell.xib;
 			sourceTree = "<group>";
@@ -3003,7 +3001,6 @@
 			children = (
 				E1E251E222A671180008F0DB /* Base */,
 				E1E251E522A671260008F0DB /* ko */,
-				6CD65FED25A028E8007BF7F9 /* zh-Hans */,
 			);
 			name = OtherValidatorCell.xib;
 			sourceTree = "<group>";
@@ -3022,8 +3019,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				E1F2AE5A227EC5B600C87F3F /* Base */,
-				E13696572292492800F3D5E2 /* ko */,
-				6CD6600F25A028EB007BF7F9 /* zh-Hans */,
+				6CDBF17E25AFE4470025B204 /* en */,
+				6CDBF18025AFE44E0025B204 /* ko */,
+				6C63A7A025AFF4F200BA0EE7 /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
@@ -3058,6 +3056,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3083,7 +3082,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -3120,6 +3119,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -3139,11 +3139,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
 			};
