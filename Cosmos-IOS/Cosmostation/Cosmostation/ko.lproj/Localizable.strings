@@ -371,6 +371,9 @@
 "sign" = "사인";
 "touchID" = "Touch ID";
 "faceID" = "Face ID";
+"tx_hash" = "해시 보 내기";
+"tx_from" = "부터";
+"tx_to" = "도착";
 
 "only_USD" = "현재 USD만 지원합니다.";
 "only_cmc" = "현재 CoinMarketCap만 지원합니다.";

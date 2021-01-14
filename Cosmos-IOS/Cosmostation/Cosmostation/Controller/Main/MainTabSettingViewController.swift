@@ -111,6 +111,10 @@ class MainTabSettingViewController: BaseViewController {
             titleChainImg.image = UIImage(named: "certikTestnetImg")
             titleChainName.text = "(Certik Testnet)"
             titleAlarmBtn.isHidden = true
+        } else if (chainType! == ChainType.BAC_MAIN){
+            titleChainImg.image = UIImage(named: "bacChainImg")
+            titleChainName.text = "(BAC Mainnet)"
+            titleAlarmBtn.isHidden = true
         }
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {

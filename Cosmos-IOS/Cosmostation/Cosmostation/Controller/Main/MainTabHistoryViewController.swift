@@ -314,17 +314,21 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
         cell?.txTimeLabel.text = history.timeStamp
         if(mainTabVC.mAccount.account_address == history.fromAddr)
         {
-            cell?.txTimeGapLabel.text = WUtils.shortString(history.toAddr)
+            cell?.txTimeGapLabel.text = NSLocalizedString("tx_from", comment: "") +  WUtils.shortString(history.toAddr)
         }
         else
         {
-            cell?.txTimeGapLabel.text = WUtils.shortString(history.fromAddr)
+            cell?.txTimeGapLabel.text =  NSLocalizedString("tx_to", comment: "") +  WUtils.shortString(history.fromAddr)
         }
-        cell?.txBlockLabel.text = String(history.blockHeight) + ":" + WUtils.shortString(history.txHash)
+        cell?.txBlockLabel.text =   NSLocalizedString("tx_hash", comment: "") +  WUtils.shortString(history.txHash)
         cell?.txTypeLabel.text = WUtils.bacHistoryTitle(history, mainTabVC.mAccount.account_address)
-         
-        cell?.txResultLabel.isHidden = true
-        
+        if(history.state == 0){
+            cell?.txResultLabel.isHidden = false
+            cell?.txResultLabel.text = "Success"
+        } else {
+            cell?.txResultLabel.isHidden = false
+            cell?.txResultLabel.text = "Failed"
+        }
         return cell!
     }
     func onSetBnbItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {

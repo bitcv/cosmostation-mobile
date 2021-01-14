@@ -993,21 +993,21 @@ enum ChainType: String {
     static func SUPPRT_CHAIN() -> Array<ChainType> {
         var result = [ChainType]()
         result.append(BAC_MAIN)
-        result.append(COSMOS_MAIN)
-        result.append(IRIS_MAIN)
-        result.append(BINANCE_MAIN)
-        result.append(IOV_MAIN)
-        result.append(KAVA_MAIN)
-        result.append(BAND_MAIN)
-        result.append(SECRET_MAIN)
-        result.append(CERTIK_MAIN)
-        result.append(AKASH_MAIN)
-
-        result.append(COSMOS_TEST)
+//        result.append(COSMOS_MAIN)
+//        result.append(IRIS_MAIN)
+//        result.append(BINANCE_MAIN)
+//        result.append(IOV_MAIN)
+//        result.append(KAVA_MAIN)
+//        result.append(BAND_MAIN)
+//        result.append(SECRET_MAIN)
+//        result.append(CERTIK_MAIN)
+//        result.append(AKASH_MAIN)
+//
+//        result.append(COSMOS_TEST)
 //        result.append(BINANCE_TEST)
 //        result.append(KAVA_TEST)
 //        result.append(IOV_TEST)
-        result.append(OKEX_TEST)
+      //  result.append(OKEX_TEST)
 //        result.append(CERTIK_TEST)
         return result
     }
@@ -1138,6 +1138,15 @@ let SELECT_POPUP_HTLC_TO_COIN = 1
 let SELECT_POPUP_HTLC_TO_ACCOUNT = 2
 let SELECT_POPUP_STARNAME_ACCOUNT = 3
 
+let BAC_TOKEN_HOME    = "https://www.bitcv.net"
+let BCV_SERVICE_AGREEMENT_URL_PREFIX = "https://api.bitcv.com/appWebview/importantNotice?nid="
+let BCV_SERVICE_AGREEMENT_CN = "44"
+let BCV_SERVICE_AGREEMENT_KO = "154"
+let BCV_SERVICE_AGREEMENT_EN = "153"
+let BCV_TOKEN_HOME   = "https://bitcv.app"
+let BAC_WALLET_GITHUB_HOME = "https://github.com/bitcv/cosmostation-mobile"
+let BCV_WALLET_PACKAGE = "com.bitcv.biweiwallet20190507"
+let BCV_WALLET_SCHEMA = "bcvwallet://";
 
 let EXPLORER_BAC_MAIN       = "https://main.bitcv.net/"
 let EXPLORER_BAC_TEST       = "https://test.bitcv.net/"

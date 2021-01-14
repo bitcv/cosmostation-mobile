@@ -6,13 +6,13 @@
 "1JO-em-9vw.title" = "代币";
 
 /* Class = "UISegmentedControl"; 5W3-Re-KAk.segmentTitles[0] = "My"; ObjectID = "5W3-Re-KAk"; */
-"5W3-Re-KAk.segmentTitles[0]" = "我的"
+"5W3-Re-KAk.segmentTitles[0]" = "我的";
 
 /* Class = "UISegmentedControl"; 5W3-Re-KAk.segmentTitles[1] = "Top"; ObjectID = "5W3-Re-KAk"; */
 "5W3-Re-KAk.segmentTitles[1]" = "最高";
 
 /* Class = "UISegmentedControl"; 5W3-Re-KAk.segmentTitles[2] = "Other"; ObjectID = "5W3-Re-KAk"; */
-"5W3-Re-KAk.segmentTitles[2]" = "基他";
+"5W3-Re-KAk.segmentTitles[2]" = "其他";
 
 /* Class = "UILabel"; text = "Connect to"; ObjectID = "6HU-nb-2v1"; */
 "6HU-nb-2v1.text" = "连接到";
@@ -108,7 +108,7 @@
 "TtU-iN-vR0.text" = "0";
 
 /* Class = "UILabel"; text = "Starname Wallet Connect"; ObjectID = "UgT-Jg-siF"; */
-"UgT-Jg-siF.text" = "星名钱包链接";
+"UgT-Jg-siF.text" = "连接币威钱包";
 
 /* Class = "UILabel"; text = "Address"; ObjectID = "Vc7-iX-gd9"; */
 "Vc7-iX-gd9.text" = "地址";
@@ -135,7 +135,7 @@
 "dDV-sI-rMG.headerTitle" = "通用";
 
 /* Class = "UILabel"; text = "App Lock"; ObjectID = "eE5-yJ-glc"; */
-"eE5-yJ-glc.text" = "应用锁";
+"eE5-yJ-glc.text" = "应用锁定";
 
 /* Class = "UILabel"; text = "Tokens"; ObjectID = "fHH-Ok-5A4"; */
 "fHH-Ok-5A4.text" = "代币";
@@ -207,7 +207,7 @@
 "v3s-Wg-QoY.text" = "ATOM";
 
 /* Class = "UILabel"; text = "Cosmostation"; ObjectID = "vkk-Df-UXk"; */
-"vkk-Df-UXk.text" = "Cosmostation";
+"vkk-Df-UXk.text" = "币威链主页";
 
 /* Class = "UILabel"; text = "CREATE"; ObjectID = "x6G-6q-fXT"; */
 "x6G-6q-fXT.text" = "创建";

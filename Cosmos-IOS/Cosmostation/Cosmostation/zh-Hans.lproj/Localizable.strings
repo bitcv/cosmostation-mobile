@@ -151,7 +151,7 @@
 "amount" = "数量";
 "value" = "价值观";
 "//mintscan_explorer" = "Mintscan浏览器";
-"mintscan_explorer" = "探险家";
+"mintscan_explorer" = "区块浏览器";
 "binanace_explorer" = "双星探测器";
 "disconnected" = "断开的";
 "wc_alert_title" = "钱包连接";
@@ -353,6 +353,10 @@
 "sign" = "标志";
 "touchID" = "触摸ID";
 "faceID" = "面部ID";
+"tx_hash"="发送哈希";
+"tx_from"="从";
+"tx_to"="到";
+
 "only_USD" = "现在只支持美元";
 "only_cmc" = "现在只支持CoinMarketCap";
 "title_wallet_manage" = "钱包管理";

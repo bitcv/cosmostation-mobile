@@ -16,6 +16,7 @@ public class BacHistory {
     var fromAddr: String = ""
     var toAddr: String = ""
     var amount: String = ""
+    var state: Int = 0
     
     init() {}
     
@@ -27,5 +28,6 @@ public class BacHistory {
         self.fromAddr = dictionary["from"] as? String ?? ""
         self.toAddr = dictionary["to"] as? String ?? ""
         self.amount = dictionary["amount"] as? String ?? ""
+        self.state = dictionary["state"] as? Int ?? 0
     }
 }

@@ -371,11 +371,14 @@
 "sign" = "Sign";
 "touchID" = "Touch ID";
 "faceID" = "Face ID";
+"tx_hash" = "Tx Hash";
+"tx_from" = "From";
+"tx_to" = "To";
 
 "only_USD" = "now only support USD";
 "only_cmc" = "now only support CoinMarketCap";
 
-"title_wallet_manage" = "Wallet Manage";
+"title_wallet_manage" = "Wallet Manage1";
 "title_wallet_detail" = "Wallet Detail";
 "title_check_mnemonics" = "Check Mnemonics";
 "title_create" = "Create Wallet";

@@ -35,7 +35,6 @@ class SettingTableViewController: UITableViewController, PasswordViewDelegate, Q
         }
         self.onUpdateCurrency()
         self.onUpdateMarket()
-        
     }
     
     
@@ -176,30 +175,37 @@ class SettingTableViewController: UITableViewController, PasswordViewDelegate, Q
                 }
                 
             } else if(indexPath.row == 3) {
-                guard let url = URL(string: "https://www.cosmostation.io") else { return }
+                guard let url = URL(string: BAC_TOKEN_HOME) else { return }
                 self.onShowSafariWeb(url)
                 
             } else if(indexPath.row == 4) {
-                self.onShowStarnameWcDialog()
+                guard let url = URL(string: BCV_TOKEN_HOME) else { return }
+                self.onShowSafariWeb(url)
+//                let url = URL(string: BCV_WALLET_SCHEMA + BCV_WALLET_PACKAGE)!
+//                UIApplication.shared.openURL(url)
+                //self.onShowStarnameWcDialog()
             }
             
         } else if (indexPath.section == 3) {
             if(indexPath.row == 0) {
                 if(Locale.current.languageCode == "ko") {
-                    guard let url = URL(string: "https://www.cosmostation.io/service_ko.html") else { return }
+                    guard let url = URL(string: BCV_SERVICE_AGREEMENT_URL_PREFIX + BCV_SERVICE_AGREEMENT_KO) else { return }
                     self.onShowSafariWeb(url)
-                } else {
-                    guard let url = URL(string: "https://www.cosmostation.io/service_en.html") else { return }
+                } else if(Locale.current.languageCode == "zh") {
+                    guard let url = URL(string: BCV_SERVICE_AGREEMENT_URL_PREFIX + BCV_SERVICE_AGREEMENT_CN) else { return }
+                    self.onShowSafariWeb(url)
+                }
+                else {
+                    guard let url = URL(string: BCV_SERVICE_AGREEMENT_URL_PREFIX + BCV_SERVICE_AGREEMENT_EN) else { return }
                     self.onShowSafariWeb(url)
                 }
                 
-                
             } else if(indexPath.row == 1) {
-                guard let url = URL(string: "https://github.com/cosmostation/cosmostation-mobile") else { return }
+                guard let url = URL(string: BAC_WALLET_GITHUB_HOME) else { return }
                 self.onShowSafariWeb(url)
                 
             } else if(indexPath.row == 2) {
-                let urlAppStore = URL(string: "itms-apps://itunes.apple.com/app/id1459830339")
+                let urlAppStore = URL(string: BCV_TOKEN_HOME)
                 if(UIApplication.shared.canOpenURL(urlAppStore!)) {
                     UIApplication.shared.open(urlAppStore!, options: [:], completionHandler: nil)
                 }
@@ -214,6 +220,12 @@ class SettingTableViewController: UITableViewController, PasswordViewDelegate, Q
             } else {
                 return 44
             }
+        }
+        if(indexPath.section == 1 && (indexPath.row == 2 || indexPath.row == 3)){
+            return 0
+        }
+        if(indexPath.section == 2 && (indexPath.row == 0 || indexPath.row == 1)){
+            return 0
         }
         return super.tableView(tableView, heightForRowAt: indexPath)
     }
