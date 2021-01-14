@@ -16,6 +16,7 @@ class TokenDetailHeaderBacCell: UITableViewCell {
     @IBOutlet weak var delegatedAmount: UILabel!
     @IBOutlet weak var unbondingAmount: UILabel!
     @IBOutlet weak var rewardAmount: UILabel!
+ 
     
     override func awakeFromNib() {
         super.awakeFromNib()

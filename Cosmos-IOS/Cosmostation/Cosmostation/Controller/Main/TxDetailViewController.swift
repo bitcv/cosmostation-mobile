@@ -308,7 +308,12 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
             cell?.timeGapLabel.text = WUtils.txTimeGap(input: mTxInfo!.timestamp!)
             cell?.hashLabel.text = mTxInfo!.txhash
             cell?.memoLabel.text = mTxInfo!.tx?.value.memo
-            cell?.feeAmountLabel.attributedText = WUtils.displayAmount2(mTxInfo?.simpleFee().stringValue, cell!.feeAmountLabel.font!, 6, 6)
+            if(chainType == ChainType.BAC_MAIN){
+                cell?.feeAmountLabel.attributedText = WUtils.displayAmount(mTxInfo?.simpleFee().stringValue, cell!.feeAmountLabel.font!, BAC_DECIMAL, ChainType.BAC_MAIN)
+            }
+            else {
+                WUtils.displayAmount2(mTxInfo?.simpleFee().stringValue, cell!.feeAmountLabel.font!, 6, 6)
+            }
             
         } else if (chainType == ChainType.IRIS_MAIN) {
             cell?.feeLayer.isHidden = true
@@ -1200,6 +1205,7 @@ class TxDetailViewController: BaseViewController, UITableViewDelegate, UITableVi
         let msg = mTxInfo?.getMsg(position - 1)
         cell?.txIcon.image = cell?.txIcon.image?.withRenderingMode(.alwaysTemplate)
         cell?.txIcon.tintColor = WUtils.getChainColor(chainType!)
+        cell?.isHidden = true
         return cell!
     }
     

@@ -203,8 +203,8 @@
 /* Class = "UILabel"; text = "-"; ObjectID = "6c2-ev-eh9"; */
 "6c2-ev-eh9.text" = "-";
 
-/* Class = "UILabel"; text = "接收者地址"; ObjectID = "6eu-qT-mNK"; */
-"6eu-qT-mNK.text" = "接收者地址";
+/* Class = "UILabel"; text = "目标地址"; ObjectID = "6eu-qT-mNK"; */
+"6eu-qT-mNK.text" = "目标地址";
 
 /* Class = "UIButton"; normalTitle = " 粘贴"; ObjectID = "6jK-Bg-pNt"; */
 "6jK-Bg-pNt.normalTitle" = " 粘贴";
@@ -647,8 +647,8 @@
 /* Class = "UILabel"; text = "最多 Depositable : "; ObjectID = "Jcc-dI-6gj"; */
 "Jcc-dI-6gj.text" = "最多可存入 : ";
 
-/* Class = "UILabel"; text = "接收者地址"; ObjectID = "Jf0-eM-DXP"; */
-"Jf0-eM-DXP.text" = "接收者地址";
+/* Class = "UILabel"; text = "目标地址"; ObjectID = "Jf0-eM-DXP"; */
+"Jf0-eM-DXP.text" = "目标地址";
 
 /* Class = "UILabel"; text = "81.23"; ObjectID = "Jgb-KZ-cus"; */
 "Jgb-KZ-cus.text" = "81.23";
@@ -740,8 +740,8 @@
 /* Class = "UILabel"; text = "($ 0.00)"; ObjectID = "Mj4-GV-Og7"; */
 "Mj4-GV-Og7.text" = "($ 0.00)";
 
-/* Class = "UILabel"; text = "接收者地址"; ObjectID = "Mjn-tU-bDU"; */
-"Mjn-tU-bDU.text" = "接收者地址";
+/* Class = "UILabel"; text = "目标地址"; ObjectID = "Mjn-tU-bDU"; */
+"Mjn-tU-bDU.text" = "目标地址";
 
 /* Class = "UILabel"; text = "-"; ObjectID = "Mou-Xl-P5B"; */
 "Mou-Xl-P5B.text" = "-";
@@ -872,8 +872,8 @@
 /* Class = "UILabel"; text = "期望流动性价格"; ObjectID = "QsN-nh-2PJ"; */
 "QsN-nh-2PJ.text" = "期望流动性价格";
 
-/* Class = "UILabel"; text = "接收者地址"; ObjectID = "Qwe-1G-kEd"; */
-"Qwe-1G-kEd.text" = "接收者地址";
+/* Class = "UILabel"; text = "目标地址"; ObjectID = "Qwe-1G-kEd"; */
+"Qwe-1G-kEd.text" = "目标地址";
 
 /* Class = "UIButton"; normalTitle = "下一步"; ObjectID = "R8F-Fh-NZF"; */
 "R8F-Fh-NZF.normalTitle" = "下一步";
@@ -935,8 +935,8 @@
 /* Class = "UILabel"; text = "风险分数"; ObjectID = "SnQ-jo-7b6"; */
 "SnQ-jo-7b6.text" = "风险分数";
 
-/* Class = "UILabel"; text = "接收者地址"; ObjectID = "T7x-0J-45S"; */
-"T7x-0J-45S.text" = "接收者地址";
+/* Class = "UILabel"; text = "目标地址"; ObjectID = "T7x-0J-45S"; */
+"T7x-0J-45S.text" = "目标地址";
 
 /* Class = "UIButton"; normalTitle = "+ 0.1"; ObjectID = "T91-bW-XMa"; */
 "T91-bW-XMa.normalTitle" = "+ 0.1";
@@ -1190,14 +1190,14 @@
 /* Class = "UILabel"; text = "0"; ObjectID = "b6b-41-Kf0"; */
 "b6b-41-Kf0.text" = "0";
 
-/* Class = "UILabel"; text = "接收者Chain"; ObjectID = "bAg-M7-vF2"; */
+/* Class = "UILabel"; text = "目标Chain"; ObjectID = "bAg-M7-vF2"; */
 "bAg-M7-vF2.text" = "接收链";
 
 /* Class = "UILabel"; text = "-"; ObjectID = "bDP-a8-F01"; */
 "bDP-a8-F01.text" = "-";
 
-/* Class = "UITextField"; placeholder = "StarName or 接收者地址"; ObjectID = "bF3-6L-krq"; */
-"bF3-6L-krq.placeholder" = "星名或者接收者地址";
+/* Class = "UITextField"; placeholder = "StarName or 目标地址"; ObjectID = "bF3-6L-krq"; */
+"bF3-6L-krq.placeholder" = "星名或者目标地址";
 
 /* Class = "UIButton"; normalTitle = "一半"; ObjectID = "bGp-OO-B6v"; */
 "bGp-OO-B6v.normalTitle" = "一半";
@@ -1914,7 +1914,7 @@
 "xE1-cJ-uvV.text" = "0.000500";
 
 /* Class = "UILabel"; text = "*starname service supported."; ObjectID = "xQD-Jk-TJF"; */
-"xQD-Jk-TJF.text" = "*支付星名服务.";
+"xQD-Jk-TJF.text" = "*支持星名服务.";
 
 /* Class = "UIButton"; normalTitle = "返回"; ObjectID = "xkz-U9-W7I"; */
 "xkz-U9-W7I.normalTitle" = "返回";

@@ -304,6 +304,11 @@ class MainTabWalletViewController: BaseViewController, UITableViewDelegate, UITa
             }
             
         }
+        else if(chainType == ChainType.BAC_MAIN){
+            if(indexPath.row == 2 || indexPath.row == 3){
+                return 0
+            }
+        }
         return UITableView.automaticDimension;
     }
     
@@ -563,16 +568,20 @@ class MainTabWalletViewController: BaseViewController, UITableViewDelegate, UITa
             cell?.rewardAmount.attributedText = WUtils.displayAmount(rewardAmount.stringValue, cell!.rewardAmount.font, BAC_DECIMAL, ChainType.BAC_MAIN)
                                                                      cell?.totalValue.attributedText = WUtils.dpTokenValue(totalAmount, BaseData.instance.getLastPrice(), Int16(BAC_DECIMAL), cell!.totalValue.font)
             cell?.actionDelegate = {
-                self.onClickValidatorList()
+                self.onClickActionShare()
+               // self.onClickValidatorList()
             }
             cell?.actionVote = {
-                self.onClickVoteList()
+                self.onClickMainSend()
+                //self.onClickVoteList()
             }
             BaseData.instance.updateLastTotal(mainTabVC!.mAccount, totalAmount.multiplying(byPowerOf10: -6).stringValue)
             return cell!
             
-        } else if (indexPath.row == 2) {
+        }
+        else if (indexPath.row == 2) {
             let cell:WalletPriceCell? = tableView.dequeueReusableCell(withIdentifier:"WalletPriceCell") as? WalletPriceCell
+            cell?.isHidden = true
             cell?.sourceSite.text = "("+BaseData.instance.getMarketString()+")"
             cell?.perPrice.attributedText = WUtils.dpPricePerUnit(BaseData.instance.getLastPrice(), cell!.perPrice.font)
             let changeValue = WUtils.priceChanges(BaseData.instance.get24hPrice())
@@ -610,6 +619,7 @@ class MainTabWalletViewController: BaseViewController, UITableViewDelegate, UITa
             
         } else if (indexPath.row == 3) {
             let cell:WalletInflationCell? = tableView.dequeueReusableCell(withIdentifier:"WalletInflationCell") as? WalletInflationCell
+            cell?.isHidden = true
             cell?.infaltionLabel.attributedText = WUtils.displayInflation(self.mInflation, font: cell!.infaltionLabel.font)
             cell?.yieldLabel.attributedText = WUtils.getDpEstApr(cell!.yieldLabel.font, chainType!)
             cell?.actionTapApr = {
@@ -1753,7 +1763,7 @@ class MainTabWalletViewController: BaseViewController, UITableViewDelegate, UITa
             self.onShowSafariWeb(url)
             
         } else if (chainType! == ChainType.BAC_MAIN) {
-            guard let url = URL(string: EXPLORER_BAC_MAIN + "account/" + mainTabVC.mAccount.account_address) else { return }
+            guard let url = URL(string: EXPLORER_BAC_MAIN + "address/" + mainTabVC.mAccount.account_address) else { return }
             self.onShowSafariWeb(url)
             
         } else if (chainType! == ChainType.IOV_MAIN) {

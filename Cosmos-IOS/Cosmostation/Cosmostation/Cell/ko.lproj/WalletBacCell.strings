@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "--"; ObjectID = "Eyi-Jo-fc9"; */
+"Eyi-Jo-fc9.text" = "--";
+
+/* Class = "UILabel"; text = "Delegated"; ObjectID = "Ofi-wC-JqK"; */
+"Ofi-wC-JqK.text" = "Delegated";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "SOT-yk-1d6"; */
+"SOT-yk-1d6.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "byR-w7-kq0"; */
+"byR-w7-kq0.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "c42-3e-h9p"; */
+"c42-3e-h9p.text" = "--";
+
+/* Class = "UILabel"; text = "Unbonding"; ObjectID = "j2A-wM-dhv"; */
+"j2A-wM-dhv.text" = "Unbonding";
+
+/* Class = "UILabel"; text = "Available"; ObjectID = "jE7-bL-AHz"; */
+"jE7-bL-AHz.text" = "Available";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "jgX-LY-r1U"; */
+"jgX-LY-r1U.text" = "--";
+
+/* Class = "UIButton"; normalTitle = "  Vote"; ObjectID = "kbf-WZ-dbc"; */
+"kbf-WZ-dbc.normalTitle" = "  발송 하 다";
+
+/* Class = "UIButton"; normalTitle = "  Delegate"; ObjectID = "oVC-FW-FaL"; */
+"oVC-FW-FaL.normalTitle" = "  투표 하 다";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "pQZ-WK-A4d"; */
+"pQZ-WK-A4d.text" = "--";
+
+/* Class = "UILabel"; text = "Reward"; ObjectID = "pqc-3x-1q2"; */
+"pqc-3x-1q2.text" = "Reward";
+
+/* Class = "UILabel"; text = "BAC"; ObjectID = "uak-Hf-G9r"; */
+"uak-Hf-G9r.text" = "BAC";

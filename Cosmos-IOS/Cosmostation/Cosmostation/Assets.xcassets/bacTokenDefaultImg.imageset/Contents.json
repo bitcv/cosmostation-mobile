@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bac_token_img_22.png",
+      "filename" : "bac_token_default_img_42.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bac_token_img_44.png",
+      "filename" : "bac_token_default_img_84.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bac_token_img_66.png",
+      "filename" : "bac_token_default_img_126.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

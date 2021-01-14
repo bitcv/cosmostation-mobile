@@ -170,18 +170,20 @@ class StepSendCheckViewController: BaseViewController, PasswordViewDelegate{
                 mTotalSpendPrice.attributedText = WUtils.dpBacValue(feeAmount.adding(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
                 mReminaingPrice.attributedText = WUtils.dpBacValue(currentAva.subtracting(feeAmount).subtracting(toSendAmount), BaseData.instance.getLastPrice(), mTotalSpendPrice.font)
                 
-            } else {
+            } else if(pageHolderVC.chainType == ChainType.BAC_MAIN){
+                
+                mToSpendDenomTitle.text = pageHolderVC.mBacToken?.symbol.uppercased()
                 mToSendDenomLabel.textColor = UIColor.white
                 mCurrentBalanceDenomTitle.textColor = UIColor.white
                 mRemainBalanceTitle.textColor = UIColor.white
                 
-                mTotalSpendTitle.isHidden = true
-                mTotalSpendLabel.isHidden = true
-                mToSpendDenomTitle.isHidden = true
+//                mTotalSpendTitle.isHidden = true
+//                mTotalSpendLabel.isHidden = true
+//                mToSpendDenomTitle.isHidden = true
                 mTotalSpendPrice.isHidden = true
                 mReminaingPrice.isHidden = true
                 
-                currentAva = pageHolderVC.mAccount!.getTokenBalance(pageHolderVC.mBacToken!.symbol)
+                currentAva = pageHolderVC.mAccount!.getTokenBalance(pageHolderVC.mBacToken!.original_symbol)
                 mToSendAmountLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mToSendAmountLabel.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)
                 mFeeAmountLabel.attributedText = WUtils.displayAmount(feeAmount.stringValue, mFeeAmountLabel.font, BAC_DECIMAL, ChainType.BAC_MAIN)
                 mTotalSpendLabel.attributedText = WUtils.displayAmount(toSendAmount.stringValue, mTotalSpendLabel.font, pageHolderVC.mBacToken!.decimal, ChainType.BAC_MAIN)

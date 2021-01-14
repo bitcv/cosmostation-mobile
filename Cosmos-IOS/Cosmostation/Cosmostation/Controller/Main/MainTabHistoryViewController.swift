@@ -314,14 +314,14 @@ class MainTabHistoryViewController: BaseViewController, UITableViewDelegate, UIT
         cell?.txTimeLabel.text = history.timeStamp
         if(mainTabVC.mAccount.account_address == history.fromAddr)
         {
-            cell?.txTimeGapLabel.text = NSLocalizedString("tx_from", comment: "") +  WUtils.shortString(history.toAddr)
+            cell?.txTimeGapLabel.text = NSLocalizedString("tx_from", comment: "") + " : " +   WUtils.shortString(history.toAddr)
         }
         else
         {
-            cell?.txTimeGapLabel.text =  NSLocalizedString("tx_to", comment: "") +  WUtils.shortString(history.fromAddr)
+            cell?.txTimeGapLabel.text =  NSLocalizedString("tx_to", comment: "") + " : " +  WUtils.shortString(history.fromAddr)
         }
-        cell?.txBlockLabel.text =   NSLocalizedString("tx_hash", comment: "") +  WUtils.shortString(history.txHash)
-        cell?.txTypeLabel.text = WUtils.bacHistoryTitle(history, mainTabVC.mAccount.account_address)
+        cell?.txBlockLabel.text =   NSLocalizedString("tx_hash", comment: "") + " : " +  WUtils.shortString(history.txHash)
+        cell?.txTypeLabel.text = WUtils.bacHistoryTitle(history, mainTabVC.mAccount.account_address) + " " + history.amount + " " + history.coin
         if(history.state == 0){
             cell?.txResultLabel.isHidden = false
             cell?.txResultLabel.text = "Success"

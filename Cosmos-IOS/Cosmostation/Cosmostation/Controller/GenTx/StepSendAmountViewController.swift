@@ -286,7 +286,7 @@ class StepSendAmountViewController: BaseViewController, UITextFieldDelegate{
                     return false
                 }
             }
-            if (userInput.compare(maxAvailable).rawValue > 0) {
+            if (userInput.multiplying(byPowerOf10: Int16(pageHolderVC.mBacToken!.decimal)).compare(maxAvailable).rawValue > 0) {
                 self.onShowToast(NSLocalizedString("error_amount", comment: ""))
                 return false
             }

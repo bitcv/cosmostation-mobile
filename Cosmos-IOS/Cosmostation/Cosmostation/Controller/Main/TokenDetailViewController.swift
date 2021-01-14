@@ -127,7 +127,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             self.onShowSafariWeb(url)
             
         }  else if (chainType! == ChainType.BAC_MAIN) {
-            guard let url = URL(string: EXPLORER_BAC_MAIN + "account/" + account!.account_address) else { return }
+            guard let url = URL(string: EXPLORER_BAC_MAIN + "address/" + account!.account_address) else { return }
             self.onShowSafariWeb(url)
             
         } else if (chainType! == ChainType.IOV_MAIN) {
@@ -208,9 +208,9 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
                     balance?.balance_denom == BNB_MAIN_DENOM) {
                     return onSetBnbItem(tableView, indexPath);
                     
-                } else if ((chainType == ChainType.BAC_MAIN) &&
-                    balance?.balance_denom == BAC_MAIN_DENOM) {
-                    return onSetBacItem(tableView, indexPath);
+//                } else if ((chainType == ChainType.BAC_MAIN) &&
+//                    balance?.balance_denom == BAC_MAIN_DENOM) {
+//                    return onSetBacItem(tableView, indexPath);
                 } else if (chainType == ChainType.KAVA_MAIN && balance?.balance_denom == KAVA_MAIN_DENOM) {
                     return onSetKavaItem(tableView, indexPath);
                     
@@ -503,7 +503,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
         return cell!
     }
     func onSetBacItem(_ tableView: UITableView, _ indexPath: IndexPath)  -> UITableViewCell {
-        let cell:TokenDetailHeaderBacCell? = tableView.dequeueReusableCell(withIdentifier:"TokenDetailHeaderBacCell") as? TokenDetailHeaderBacCell
+        let cell:TokenDetailHeaderBacCell? = tableView.dequeueReusableCell(withIdentifier:"TokenDetailHeaderBacCell", for: indexPath) as? TokenDetailHeaderBacCell
         let balances = BaseData.instance.selectBalanceById(accountId: account!.account_id)
         let bondingList = BaseData.instance.selectBondingById(accountId: account!.account_id)
         let unbondingList = BaseData.instance.selectUnbondingById(accountId: account!.account_id)
@@ -655,9 +655,16 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
             cell?.tokenSymbol.text = bacToken?.symbol.uppercased()
             cell?.totalAmount.attributedText = WUtils.displayAmount(balance!.getAllAmountBacToken().stringValue, cell!.totalAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
             cell?.availableAmount.attributedText = WUtils.displayAmount(balance!.balance_amount, cell!.availableAmount.font, bacToken!.decimal, ChainType.BAC_MAIN)
-            
-            let url = BAC_TOKEN_IMG_URL + bacToken!.original_symbol + ".png"
-            cell?.tokenImg.af_setImage(withURL: URL(string: url)!)
+            if(bacToken?.original_symbol == BAC_MAIN_DENOM){
+                cell?.tokenImg.image = UIImage(named: "bacTokenImg")
+            } else if(bacToken?.original_symbol == BCV_MAIN_DENOM){
+                cell?.tokenImg.image = UIImage(named: "bcvTokenImg")
+            }
+            else{
+                cell?.tokenImg.image = UIImage(named:"bacTokenDefaultImg")
+                let url = BAC_TOKEN_IMG_URL + bacToken!.original_symbol + ".png"
+                cell?.tokenImg.af_setImage(withURL: URL(string: url)!)
+            }
             cell?.actionTokenInfo = {
                 if (self.chainType == ChainType.BAC_MAIN) {
                     guard let url = URL(string: EXPLORER_BAC_MAIN + "asset/" + self.bacToken!.original_symbol) else { return }
@@ -665,7 +672,7 @@ class TokenDetailViewController: BaseViewController, UITableViewDelegate, UITabl
                     safariViewController.modalPresentationStyle = .popover
                     self.present(safariViewController, animated: true, completion: nil)
                 } else {
-                    guard let url = URL(string: EXPLORER_BAC_TEST + "asset/" + self.bacToken!.original_symbol) else { return }
+                    guard let url = URL(string: EXPLORER_BAC_MAIN + "asset/" + self.bacToken!.original_symbol) else { return }
                     let safariViewController = SFSafariViewController(url: url)
                     safariViewController.modalPresentationStyle = .popover
                     self.present(safariViewController, animated: true, completion: nil)

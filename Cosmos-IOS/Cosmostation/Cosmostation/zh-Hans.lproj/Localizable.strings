@@ -24,13 +24,13 @@
 "undelegate_step_4" = "检查解除委托细节";
 "withdraw_single_step_1" = "查看您的奖励详情";
 "withdraw_single_step_4" = "查看您的信息以获得奖励";
-"send_step_1" = "输入收件人地址";
+"send_step_1" = "输入目标地址";
 "send_step_2" = "输入发送数量";
 "send_step_3" = "输入备注（可选）";
 "send_step_4" = "选择交易费用";
-"send_step_5" = "检查转移细节";
+"send_step_5" = "检查转账详情";
 "redelegate_step_1" = "输入再委托数量";
-"redelegate_step_2" = "选择validator redelegate";
+"redelegate_step_2" = "选择验证节点重新委托";
 "redelegate_step_3" = "输入备注（可选）";
 "redelegate_step_4" = "选择交易费用";
 "redelegate_step_5" = "查看交易明细";
@@ -40,7 +40,7 @@
 "reinvest_step_4" = "查看交易明细";
 "vote_step_1" = "选择你的意见";
 "vote_step_4" = "查看交易明细";
-"recipient_address" = "收件人地址";
+"recipient_address" = "目标地址";
 "reward_claim_top_16" = "我们最多可从16个验证者处领取奖励，按奖励数量顺序排列";
 "add_mnemonic" = "增加助记符";
 "sort_by_name" = "名字";
@@ -68,7 +68,7 @@
 "override" = "覆盖";
 "validator_address" = "验证程序地址";
 "reward_address_notice_title" = "奖励地址变更";
-"reward_address_notice_msg" = "\您可以更改奖励收件人地址。\n更改此地址后，所有申请的奖励都将转到更改的地址。请确认您有权更改地址。\n\n";
+"reward_address_notice_msg" = "\您可以更改奖励目标地址。\n更改此地址后，所有申请的奖励都将转到更改的地址。请确认您有权更改地址。\n\n";
 "reward_address_notice_msg2" = "不要设置为交换地址。\n";
 "reward_address_warnning_title" = "再检查一遍！;";
 "more_wait_title" = "结果显示延迟";
@@ -110,7 +110,7 @@
 "send_guide_title_bnb" = "双星链";
 "send_guide_msg_bnb" = "区块链分散网络\n由BFT和ABCI提供动力";
 "send_guide_title_bac" = "BAC链";
-"send_guide_msg_bac" = "基于Tendermint引擎的跨链DeFi平台";
+"send_guide_msg_bac" = "生态完整、性能领先的数字资产应用公链";
 "send_guide_title_kava" = "卡瓦链";
 "send_guide_msg_kava" = "第一个基于Tendermint引擎的跨链DeFi平台。Kava允许用户利用其跨链CDP利用资产";
 "send_guide_title_iov" = "星名服务";
@@ -147,12 +147,12 @@
 "send_guide_btn2_certik" = "博客";
 "send_guide_btn2_secret" = "博客";
 "send_guide_btn2_akash" = "博客";
-"name" = "姓名";
+"name" = "名称";
 "amount" = "数量";
-"value" = "价值观";
+"value" = "价值";
 "//mintscan_explorer" = "Mintscan浏览器";
 "mintscan_explorer" = "区块浏览器";
-"binanace_explorer" = "双星探测器";
+"binanace_explorer" = "双星浏览器";
 "disconnected" = "断开的";
 "wc_alert_title" = "钱包连接";
 "wc_alert_msg" = "是否要将您的钱包链接到Binance Dex Exchange？;";
@@ -266,7 +266,7 @@
 "repay_cdp_step_2" = "选择交易费用";
 "repay_cdp_step_3" = "查看交易明细";
 "htlc_swap_step_0" = "选择目的链";
-"htlc_swap_step_1" = "选择收件人账户";
+"htlc_swap_step_1" = "选择目标账户";
 "htlc_swap_step_2" = "输入要发送的数量";
 "htlc_swap_step_3" = "检查交易明细";
 "htlc_swap_progress_0" = "1/4 从发送链广播链间发送事务";
@@ -419,7 +419,7 @@
 "proposal_type_communitytaxusage" = "社区税使用";
 "error_password_fail" = "PIN码不相同。请重新输入PIN码！;";
 "error_no_clipboard" = "剪贴板中没有文本";
-"error_invalid_address_or_pubkey" = "地址无效，请重新检查";
+"error_invalid_address_or_pubkey" = "地址或公钥无效，请重新检查";
 "error_recover_mnemonic" = "请输入有效助记符";
 "error_amount" = "请输入有效数量";
 "error_memo" = "请输入备注";

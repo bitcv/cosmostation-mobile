@@ -1,0 +1,54 @@
+
+/* Class = "UILabel"; text = "SYMBOL"; ObjectID = "0ix-SS-Cfs"; */
+"0ix-SS-Cfs.text" = "代号";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "6tq-h6-KG4"; */
+"6tq-h6-KG4.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "9nd-sQ-sZ2"; */
+"9nd-sQ-sZ2.text" = "--";
+
+/* Class = "UILabel"; text = "Locked"; ObjectID = "B1u-mx-LNb"; */
+"B1u-mx-LNb.text" = "锁定";
+
+/* Class = "UIButton"; normalTitle = "  Receive"; ObjectID = "ED2-mL-eZe"; */
+"ED2-mL-eZe.normalTitle" = "  接收";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "Eya-vR-Jcr"; */
+"Eya-vR-Jcr.text" = "--";
+
+/* Class = "UIButton"; normalTitle = "  Send"; ObjectID = "Fj1-l0-i5s"; */
+"Fj1-l0-i5s.normalTitle" = "  发送";
+
+/* Class = "UILabel"; text = "Harvest Deposited"; ObjectID = "KSL-DQ-yGh"; */
+"KSL-DQ-yGh.text" = "收获存入";
+
+/* Class = "UIButton"; normalTitle = "  Interchain Transfer"; ObjectID = "PCe-5j-woO"; */
+"PCe-5j-woO.normalTitle" = "  链间划转";
+
+/* Class = "UILabel"; text = "Vesting"; ObjectID = "QFK-EB-Ayy"; */
+"QFK-EB-Ayy.text" = "投资";
+
+/* Class = "UILabel"; text = "Available"; ObjectID = "QNy-8A-Ifn"; */
+"QNy-8A-Ifn.text" = "可用";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "RCx-oC-5iq"; */
+"RCx-oC-5iq.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "V5i-pu-I61"; */
+"V5i-pu-I61.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "ZtS-bm-FME"; */
+"ZtS-bm-FME.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "g8b-6P-TQl"; */
+"g8b-6P-TQl.text" = "--";
+
+/* Class = "UILabel"; text = "--"; ObjectID = "gzS-C3-Sxs"; */
+"gzS-C3-Sxs.text" = "--";
+
+/* Class = "UILabel"; text = "Harvest Reward"; ObjectID = "lR4-DP-ghL"; */
+"lR4-DP-ghL.text" = "收获奖励";
+
+/* Class = "UILabel"; text = "Frozen"; ObjectID = "zBu-Zv-xk4"; */
+"zBu-Zv-xk4.text" = "冻结";

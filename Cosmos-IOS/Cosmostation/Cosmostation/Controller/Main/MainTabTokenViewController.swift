@@ -760,7 +760,7 @@ class MainTabTokenViewController: BaseViewController, UITableViewDelegate, UITab
                     cell?.tokenAmount.attributedText = WUtils.displayAmount(balance.balance_amount, cell!.tokenAmount.font, BCV_DECIMAL, ChainType.BAC_MAIN)
                 }
                 else if(bacToken != nil){
-                    cell?.tokenImg.image = UIImage(named: "bacTokenImg")
+                    cell?.tokenImg.image = UIImage(named: "bacTokenDefaultImg")
                     cell?.tokenSymbol.text = bacToken?.symbol
                     cell?.tokenSymbol.textColor = COLOR_BAC
                     cell?.tokenDescription.text = bacToken?.description
