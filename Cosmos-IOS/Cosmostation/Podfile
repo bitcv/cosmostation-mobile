@@ -20,5 +20,5 @@ target 'Cosmostation' do
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'NotificationBannerSwift', '2.0.1'
-
+   # pod 'BitcoinKit'
 end

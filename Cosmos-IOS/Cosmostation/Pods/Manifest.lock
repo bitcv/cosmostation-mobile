@@ -153,6 +153,7 @@ DEPENDENCIES:
   - Floaty (~> 4.1.0)
   - NotificationBannerSwift (= 2.0.1)
   - QRCode
+  - secp256k1.swift
   - SQLite.swift (~> 0.11.5)
   - SwiftKeychainWrapper
   - Toast-Swift (~> 4.0.0)
@@ -254,6 +255,6 @@ SPEC CHECKSUMS:
   WalletConnect: 0b21907c54b4bb324bf402dd14954c60a290ad36
   XCGLogger: 1943831ef907df55108b0b18657953f868de973b
 
-PODFILE CHECKSUM: 1a01c9d317dffa3d5e88b5b24872073717b5e429
+PODFILE CHECKSUM: 16667e845a39a13963cf6ccd8f2c9487eac634a6
 
 COCOAPODS: 1.10.0
