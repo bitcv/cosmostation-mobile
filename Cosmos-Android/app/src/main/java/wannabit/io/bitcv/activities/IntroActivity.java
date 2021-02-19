@@ -187,11 +187,11 @@ public class IntroActivity extends BaseActivity implements View.OnClickListener 
                     if (!response.body().enable) {
                         onDisableDialog();
                     } else {
-                        if (response.body().version > BuildConfig.VERSION_CODE) {
+                        /* if (response.body().version > BuildConfig.VERSION_CODE) {
                             onUpdateDialog();
-                        } else {
+                        } else { */
                             onInitJob();
-                        }
+                        //}
                     }
                 } else {
                     onNetworkDialog();
